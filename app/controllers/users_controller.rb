@@ -6,9 +6,11 @@ class UsersController < ApplicationController
 
     if @user.save
       login!(@user)
+      flash[:notice] = 'Account created!'
       redirect_to user_path(@user)
     else
-      render json: @user.errors.full_messages
+      flash[:error] = @user.errors.full_messages.to_sentence
+      render :new
     end
   end
 
