@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+ruby '2.3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
@@ -28,6 +28,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'haml'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'factory_girl_rails'
+gem 'faker'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -40,6 +42,13 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
   gem 'pry-rails'
+  gem 'rspec-rails', '~> 3.0'
+end
+
+group :test do
+  gem 'cucumber-rails', :require => false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
 end
 
 group :development do
