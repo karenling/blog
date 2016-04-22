@@ -10,6 +10,7 @@ Visit [my tumblr](http://blog.karenling.net) until this is ready. =]
 Haven't though this out completely yet...
 - [x] User resource
 - [x] Session resource
+- [ ] RSpec and Cucumber
 - [ ] Post resource
 - [ ] RedCarpet or some other markdown parser
 - [ ] Carrierwave + AmazonS3
