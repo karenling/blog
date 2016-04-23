@@ -1,11 +1,14 @@
 class User < ActiveRecord::Base
   attr_reader :password
 
-  validates :email, presence: true
+  has_many :posts, dependent: :destroy
+
+  validates_presence_of :email, :session_token
   validates :password_digest, presence: { message: 'Password can\'t be blank' }
   # allow password to be blank for situations where we don't
   # plan on changing/setting the password
   validates :password, length: { minimum: 6, allow_nil: true }
+  
   after_initialize :ensure_session_token
 
   def self.generate_session_token

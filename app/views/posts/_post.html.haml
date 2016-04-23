@@ -1,0 +1,7 @@
+%article
+  %h4= post.title
+  %time= post.humanized_post_date
+  %p= post.body
+- if current_user
+  = "(#{post.humanized_status})"
+  = link_to 'Edit post', edit_post_path(post)

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :show]
   resource :session, only: [:new, :create, :destroy]
+  resources :posts, only: [:new, :create, :show, :index, :edit, :update]
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
