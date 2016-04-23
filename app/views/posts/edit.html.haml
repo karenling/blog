@@ -1,0 +1,12 @@
+= form_for @post do |f|
+  = f.label :title
+  = f.text_field :title
+  = f.label :body
+  = f.text_area :body
+  = f.label :status
+  = f.select :status, options_for_select(post_status_options)
+  = f.label :post_date
+  = f.text_field :post_date
+  = f.submit
+
+= link_to 'View All Posts', posts_path
