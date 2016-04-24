@@ -14,7 +14,7 @@ Haven't thought this out completely yet...
 - [x] Posts
 - [x] Tags
 - [x] Photos with Carrierwave + AmazonS3
-- [ ] Event resource
+- [x] Event resource
 - [ ] Cucumber
 - [ ] RedCarpet or some other markdown parser
 - [ ] Styling!
