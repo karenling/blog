@@ -34,6 +34,7 @@ gem 'acts-as-taggable-on', '~> 3.4'
 gem 'figaro'
 gem 'carrierwave'
 gem 'fog'
+gem 'redcarpet'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

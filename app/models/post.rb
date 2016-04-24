@@ -11,6 +11,8 @@ class Post < ActiveRecord::Base
   default_scope { order('post_date DESC') }
   scope :public_posts, -> { where('posts.status = ?', Post::PUBLIC) }
 
+  @@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, strikethrough: true)
+
   def humanized_post_date
     post_date
       .in_time_zone('Pacific Time (US & Canada)')
@@ -27,5 +29,9 @@ class Post < ActiveRecord::Base
 
   def public?
     status == Post::PUBLIC
+  end
+
+  def humanized_body
+    @@markdown.render(body).html_safe
   end
 end

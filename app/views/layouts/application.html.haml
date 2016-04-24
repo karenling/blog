@@ -12,4 +12,5 @@
     %p= button_to 'Logout', session_path, method: :delete
   - else
     %p= link_to 'Please login', new_session_path
-  = yield
+  .container-fluid
+    = yield
