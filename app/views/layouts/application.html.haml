@@ -1,7 +1,8 @@
 !!!
 %html
   %head
-    %title KarenlingBlog
+    %title= @title ? "Twinkie and Karen | #{@title}" : "Twinkie and Karen"
+    %link{:href => "//fonts.googleapis.com/css?family=Montserrat:400,700", :rel => "stylesheet", :type => "text/css"}/
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -9,4 +10,14 @@
 
   .container-fluid
     = render partial: 'layouts/flash'
-    = yield
+    = render partial: 'layouts/navigation'
+    .row
+      #main-wrapper
+        #left
+          = yield
+        #right
+          = render partial: 'layouts/sidebar'
+  %footer.container-fluid
+    .row
+      .col-xs-12.text-center
+        = "&copy; Copyright 2016. Karen Ling. All Rights Reserved.".html_safe

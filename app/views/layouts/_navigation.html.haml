@@ -1,0 +1,19 @@
+.row#navigation
+  .inner-nav
+    .title= link_to 'twinkie and karen', root_path
+    %ul
+      %li= link_to 'Home', root_path
+      %li= link_to 'About', '#'
+      %li= link_to 'Contact', '#'
+
+:javascript
+  $(document).ready(function () {
+    $(window).scroll(function () {
+      if ($('body').scrollTop() > 35) {
+        $('#navigation').addClass('add-shadow');
+      } else {
+        $('#navigation').removeClass('add-shadow');
+      }
+    })
+
+  })

@@ -14,8 +14,8 @@ module PostsHelper
   end
 
   def display_tags(tags)
-    tags.map do |tag|
+    tags.sort{ |x, y| x.name <=> y.name }.map do |tag|
       link_to(tag.name, tagged_posts_path(tag.name))
-    end.join(', ').html_safe
+    end
   end
 end

@@ -1,3 +1,8 @@
 #events {
   font-size: 11px;
+  table {
+    td {
+      overflow: scroll;
+    }
+  }
 }

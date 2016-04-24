@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_filter :require_current_user!, only: [:new, :create, :edit, :update]
 
   def new
+    @title = 'New Post'
     @post = Post.new
     render :edit
   end
@@ -19,6 +20,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @title = @post.title
     if !current_user && !@post.public?
       flash[:alert] = 'Must be author.'
       redirect_to posts_path
@@ -26,14 +28,18 @@ class PostsController < ApplicationController
   end
 
   def index
+    @title = 'All Posts'
+    @truncate = true
     @posts = current_user ? Post.all : Post.public_posts
   end
 
   def edit
     @post = Post.find(params[:id])
+    @title = "Edit #{@post.title}"
   end
 
   def tagged
+    @title = "Posts tagged with #{params[:tag_name]}"
     if current_user
       @posts = Post.tagged_with(params[:tag_name])
     else
