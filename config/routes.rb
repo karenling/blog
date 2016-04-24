@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :photos, only: [:create, :index]
   resources :events, only: [:index]
 
+  get 'feed' => 'posts#feed', as: 'posts_feed', format: 'rss'
   get 'posts/tagged/:tag_name' => 'posts#tagged', as: 'tagged_posts'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

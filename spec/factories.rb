@@ -10,5 +10,6 @@ FactoryGirl.define do
     body { Faker::Lorem.paragraph(4) }
     status { [Post::PRIVATE, Post::DRAFT, Post::PUBLIC].sample }
     post_date { Time.current }
+    tag_list { "#{Faker::Color.color_name}, #{Faker::Color.color_name}, #{Faker::Color.color_name}" }
   end
 end
