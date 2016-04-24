@@ -8,4 +8,8 @@ module ApplicationHelper
       'bg-warning'
     end
   end
+
+  def copyright_text
+    "&copy; Copyright 2016. Karen Ling. All Rights Reserved.".html_safe
+  end
 end
