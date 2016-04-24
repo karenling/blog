@@ -2,6 +2,9 @@ class Post < ActiveRecord::Base
   belongs_to :author, class_name: 'User', foreign_key: :user_id
   acts_as_taggable_on :tags
 
+  # default pagination
+  self.per_page = 5
+
   validates_presence_of :title, :body, :status, :post_date, :user_id
 
   Post::PRIVATE = 0
