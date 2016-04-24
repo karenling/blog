@@ -1,7 +1,17 @@
-- unless current_user
-  %h1 Log In!
-
-  = form_tag session_path do
-    = text_field_tag :user_email
-    = password_field_tag :user_password
-    = submit_tag 'Log in!'
+.row
+  .col-xs-12.col-sm-4.col-sm-offset-4
+    - if current_user
+      %h1 Log Out!
+      %p= "Logged in as: #{current_user.email}"
+      %p= button_to 'Logout', session_path, method: :delete, class: 'btn btn-primary'
+    - else
+      %h1 Log In!
+      = form_tag session_path do
+        .form-group
+          = label_tag :user_email
+          = text_field_tag :user_email, nil, class: 'form-control'
+        .form-group
+          = label_tag :user_password
+          = password_field_tag :user_password, nil, class: 'form-control'
+        .form-group
+          = submit_tag 'Log in!', class: 'btn btn-primary'
