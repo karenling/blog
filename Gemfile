@@ -31,7 +31,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'factory_girl_rails'
 gem 'faker'
 gem 'acts-as-taggable-on', '~> 3.4'
+gem 'figaro'
 gem 'carrierwave'
+gem 'fog'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
