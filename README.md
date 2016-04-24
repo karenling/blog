@@ -10,11 +10,11 @@ Visit [my tumblr](http://blog.karenling.net) until this is ready. =]
 Haven't thought this out completely yet...
 - [x] Users
 - [x] Session
-- [x] RSpec 
-- [ ] Cucumber
+- [x] RSpec
 - [x] Posts
-- [ ] Tags
-- [ ] RedCarpet or some other markdown parser
-- [ ] Carrierwave + AmazonS3
+- [x] Tags
+- [x] Photos with Carrierwave + AmazonS3
 - [ ] Event resource
+- [ ] Cucumber
+- [ ] RedCarpet or some other markdown parser
 - [ ] Styling!

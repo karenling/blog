@@ -1,0 +1,12 @@
+.photo {
+  float: left;
+  width: 200px;
+  img {
+    width: 200px;
+    height: 200px;
+    object-fit: fill;
+  }
+  input {
+    width: 200px;
+  }
+}
