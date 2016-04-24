@@ -7,11 +7,13 @@ Building a blog...making sure I know Rails 4.
 Visit [my tumblr](http://blog.karenling.net) until this is ready. =]
 
 ### To Do
-Haven't though this out completely yet...
-- [x] User resource
-- [x] Session resource
-- [ ] RSpec and Cucumber
-- [ ] Post resource
+Haven't thought this out completely yet...
+- [x] Users
+- [x] Session
+- [x] RSpec 
+- [ ] Cucumber
+- [x] Posts
+- [ ] Tags
 - [ ] RedCarpet or some other markdown parser
 - [ ] Carrierwave + AmazonS3
 - [ ] Event resource
