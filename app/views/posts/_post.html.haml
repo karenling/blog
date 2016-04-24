@@ -1,9 +1,16 @@
-%article
-  %h4= post.title
-  %time= post.humanized_post_date
-  %p= post.humanized_body
-  %p= display_tags(post.tags)
-- if current_user
-  = "(#{post.humanized_status})"
-  = link_to 'Edit post', edit_post_path(post)
-  = link_to 'View post', post_path(post)
+%article.post.white-box
+  .text-time-wrapper
+    .title= link_to post.title, post_path(post)
+    %time= post.humanized_post_date
+  .body
+    - if @truncate
+      = post.humanized_body.truncate(250, separate: ' ').html_safe
+      .text-right= link_to 'Read Full Post', post_path(post), class: 'read-full'
+    - else
+      = post.humanized_body
+  - unless post.tags.empty?
+    .tags= display_tags(post.tags).join(', ').html_safe
+  - if current_user
+    = "(#{post.humanized_status})"
+    = link_to 'Edit post', edit_post_path(post)
+    = link_to 'View post', post_path(post)

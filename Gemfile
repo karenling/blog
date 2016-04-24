@@ -35,6 +35,7 @@ gem 'figaro'
 gem 'carrierwave'
 gem 'fog'
 gem 'redcarpet'
+gem 'font-awesome-sass', '~> 4.5.0'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
