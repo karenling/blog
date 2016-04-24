@@ -30,7 +30,11 @@ class PostsController < ApplicationController
   def index
     @title = 'All Posts'
     @truncate = true
-    @posts = current_user ? Post.all : Post.public_posts
+    if current_user
+      @posts = Post.paginate(:page => params[:page])
+    else
+      @posts = Post.public_posts.paginate(:page => params[:page])
+    end
   end
 
   def edit
@@ -41,9 +45,9 @@ class PostsController < ApplicationController
   def tagged
     @title = "Posts tagged with #{params[:tag_name]}"
     if current_user
-      @posts = Post.tagged_with(params[:tag_name])
+      @posts = Post.tagged_with(params[:tag_name]).paginate(:page => params[:page])
     else
-      @posts = Post.public_posts.tagged_with(params[:tag_name])
+      @posts = Post.public_posts.tagged_with(params[:tag_name]).paginate(:page => params[:page])
     end
     render :index
   end
