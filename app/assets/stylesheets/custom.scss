@@ -1,2 +1,11 @@
+$default-color: #111;
+
 body {
+  color: $default-color;
+}
+#notice, #hi {
+  padding: 15px 0;
+  a {
+    color: $default-color;
+  }
 }

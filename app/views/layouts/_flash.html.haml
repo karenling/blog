@@ -1,0 +1,5 @@
+- if flash[:notice] || flash[:error] || flash[:alert]
+  .row#notice.collapsed.in{ class: flash_class }
+    .col-xs-12.text-center
+      = flash[:notice] || flash[:error] || flash[:alert]
+      .pull-right= link_to ('&#x2715;').html_safe, '#notice', 'data-toggle' => 'collapse'

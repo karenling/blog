@@ -9,7 +9,7 @@
         = f.text_area :body, rows: 5, cols: 100, class: 'form-control'
       .form-group
         = f.label :status
-        = f.select :status, options_for_select(post_status_options), class: 'form-control'
+        = f.select :status, options_for_select(post_status_options, @post.status), class: 'form-control'
       .form-group
         = f.label :post_date
         = f.text_field :post_date, value: set_post_date(@post), type: 'datetime-local', class: 'form-control'
@@ -20,4 +20,8 @@
         = f.submit nil, class: 'btn btn-primary'
 .row
   .col-xs-12.col-sm-6.col-sm-offset-3
-    = link_to 'View All Posts', posts_path
+    = link_to 'View Post', post_path(@post), target: '_blank' if @post.persisted?
+    = '/'
+    = link_to 'View All Posts', posts_path, target: '_blank'
+    = '/'
+    = link_to 'View All Images', photos_path, target: '_blank'

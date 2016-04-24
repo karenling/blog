@@ -6,11 +6,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 %body
-  .bg-warning= flash[:notice] || flash[:error] || flash[:alert]
-  - if current_user
-    %p= "Logged in as: #{current_user.email}"
-    %p= button_to 'Logout', session_path, method: :delete
-  - else
-    %p= link_to 'Please login', new_session_path
+
   .container-fluid
+    = render partial: 'layouts/flash'
     = yield
