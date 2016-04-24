@@ -20,6 +20,9 @@ class ApplicationController < ActionController::Base
   end
 
   def require_current_user!
-    redirect_to new_session_path unless current_user
+    unless current_user
+      flash[:alert] = 'Must be logged in.'
+      redirect_to new_session_path
+    end
   end
 end
