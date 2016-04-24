@@ -2,6 +2,8 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
 user = FactoryGirl.create(:user, email: 'test@test.com', password: 'testing')
-FactoryGirl.create(:post, author: user, status: Post::PUBLIC)
-FactoryGirl.create(:post, author: user, status: Post::DRAFT)
-FactoryGirl.create(:post, author: user, status: Post::PRIVATE)
+2.times do
+  FactoryGirl.create(:post, author: user, status: Post::PUBLIC)
+  FactoryGirl.create(:post, author: user, status: Post::DRAFT)
+  FactoryGirl.create(:post, author: user, status: Post::PRIVATE)
+end
