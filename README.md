@@ -17,6 +17,6 @@ Haven't thought this out completely yet...
 - [x] Event resource
 - [x] RedCarpet or some other markdown parser
 - [x] Paginate
-- [ ] RSS Feed
+- [x] RSS Feed
 - [ ] Cucumber
 - [ ] Styling!

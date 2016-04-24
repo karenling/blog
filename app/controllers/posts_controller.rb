@@ -63,6 +63,13 @@ class PostsController < ApplicationController
     end
   end
 
+  def feed
+    @posts = Post.public_posts
+    respond_to do |format|
+      format.rss { render layout: false }
+    end
+  end
+
   private
 
   def post_params
