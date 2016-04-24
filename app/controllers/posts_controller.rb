@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = @current_user.posts.new(post_params)
+    @post = current_user.posts.new(post_params)
     if @post.save
       flash[:notice] = 'Post created!'
       redirect_to post_path(@post)
@@ -33,6 +33,15 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def tagged
+    if current_user
+      @posts = Post.tagged_with(params[:tag_name])
+    else
+      @posts = Post.public_posts.tagged_with(params[:tag_name])
+    end
+    render :index
+  end
+
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
@@ -47,6 +56,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :status, :post_date)
+    params.require(:post).permit(:title, :body, :status, :post_date, :tag_list)
   end
 end

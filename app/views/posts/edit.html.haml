@@ -7,6 +7,8 @@
   = f.select :status, options_for_select(post_status_options)
   = f.label :post_date
   = f.text_field :post_date, value: set_post_date(@post), type: 'datetime-local'
+  = f.label :tag_list
+  = f.text_field :tag_list
   = f.submit
 
 = link_to 'View All Posts', posts_path

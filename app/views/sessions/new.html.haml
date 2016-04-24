@@ -1,6 +1,7 @@
-%h1 Log In!
+- unless current_user
+  %h1 Log In!
 
-= form_tag session_path do
-  = text_field_tag :user_email
-  = password_field_tag :user_password
-  = submit_tag 'Log in!'
+  = form_tag session_path do
+    = text_field_tag :user_email
+    = password_field_tag :user_password
+    = submit_tag 'Log in!'

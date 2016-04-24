@@ -2,6 +2,7 @@
   %h4= post.title
   %time= post.humanized_post_date
   %p= post.body
+  %p= display_tags(post.tags)
 - if current_user
   = "(#{post.humanized_status})"
   = link_to 'Edit post', edit_post_path(post)

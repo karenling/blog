@@ -1,1 +1,4 @@
+%h2 All Tags
+= display_tags(admin.posts.tag_counts_on(:tags))
+%h2 Posts
 = render partial: 'post', collection: @posts
