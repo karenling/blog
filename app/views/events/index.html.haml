@@ -1,0 +1,17 @@
+#events
+  %h1 Events
+
+  = link_to 'View All', events_path
+  = '/'
+  = link_to 'Filter', events_path(filter: true)
+  %table.table.table-condensed.table-bordered
+    %thead
+      %tr
+        %th ID
+        %th User
+        %th Session ID
+        %th Request URL
+        %th Referrer URL
+        %th Request User Agent
+    %thead
+      = render @events

@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :admin
 
+  before_filter :log_event!
+
   def login!(user)
     @current_user = user
     session[:session_token] = user.session_token
@@ -28,5 +30,15 @@ class ApplicationController < ActionController::Base
 
   def admin
     User.first
+  end
+
+  def log_event!
+    event = Event.new
+    event.user_id = current_user.try(:id)
+    event.session_id = session[:session_id]
+    event.request_url = request.url
+    event.referrer_url = request.referrer
+    event.request_user_agent = request.user_agent
+    event.save
   end
 end

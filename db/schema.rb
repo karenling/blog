@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160424031950) do
+ActiveRecord::Schema.define(version: 20160424044206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "events", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "session_id",         default: ""
+    t.text     "request_url",        default: ""
+    t.text     "referrer_url",       default: ""
+    t.text     "request_user_agent", default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "photos", force: :cascade do |t|
     t.text     "url"
