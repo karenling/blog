@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
+  root 'posts#index'
   resources :users, only: [:new, :create, :show]
   resource :session, only: [:new, :create, :destroy]
   resources :posts, only: [:new, :create, :show, :index, :edit, :update]
+  get 'posts/tagged/:tag_name' => 'posts#tagged', as: 'tagged_posts'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

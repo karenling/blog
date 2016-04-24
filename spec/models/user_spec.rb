@@ -36,4 +36,14 @@ describe User do
       expect(User.new.session_token).to_not be("")
     end
   end
+
+  describe 'dependent destroy' do
+    it 'should destroy all of users post if user is destroyed' do
+      5.times { FactoryGirl.create(:post, author: @user) }
+      expect(@user.posts.count).to eq(5)
+      expect(Post.count).to eq(5)
+      @user.destroy
+      expect(Post.count).to eq(0)
+    end
+  end
 end

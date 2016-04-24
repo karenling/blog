@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 
     if user
       login!(user)
-      redirect_to user_path(user)
+      redirect_to posts_path
     else
       render json: 'Credentials were wrong'
     end

@@ -12,4 +12,10 @@ module PostsHelper
     end
     time.strftime('%Y-%m-%dT%H:%M')
   end
+
+  def display_tags(tags)
+    tags.map do |tag|
+      link_to(tag.name, tagged_posts_path(tag.name))
+    end.join(', ').html_safe
+  end
 end
