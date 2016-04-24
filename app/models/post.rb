@@ -22,4 +22,8 @@ class Post < ActiveRecord::Base
     when Post::PUBLIC then 'Public'
     end
   end
+
+  def public?
+    status == Post::PUBLIC
+  end
 end

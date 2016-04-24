@@ -19,6 +19,10 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    if !current_user && !@post.public?
+      flash[:alert] = 'Must be author.'
+      redirect_to posts_path
+    end
   end
 
   def index
@@ -43,11 +47,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    if params[:post][:post_date].blank?
-      params[:post][:post_date] = Time.now
-    else
-      params[:post][:post_date] = Time.parse(params[:post][:post_date])
-    end
     params.require(:post).permit(:title, :body, :status, :post_date)
   end
 end
