@@ -1,7 +1,7 @@
 %article
   %h4= post.title
   %time= post.humanized_post_date
-  %p= post.body
+  %p= post.humanized_body
   %p= display_tags(post.tags)
 - if current_user
   = "(#{post.humanized_status})"

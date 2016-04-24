@@ -1,5 +1,11 @@
-= form_for @photo do |f|
-  = f.file_field :url
-  = f.submit
-
-= render partial: @photos
+.row
+  .col-xs-12
+    = form_for @photo do |f|
+      .form-group
+        = f.label :url
+        = f.file_field :url, class: 'form-control'
+      .form-group
+        = f.submit nil, class: 'btn btn-primary'
+.row
+  .col-xs-12
+    = render partial: @photos

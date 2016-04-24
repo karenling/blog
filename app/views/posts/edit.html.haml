@@ -1,14 +1,23 @@
-= form_for @post do |f|
-  = f.label :title
-  = f.text_field :title
-  = f.label :body
-  = f.text_area :body
-  = f.label :status
-  = f.select :status, options_for_select(post_status_options)
-  = f.label :post_date
-  = f.text_field :post_date, value: set_post_date(@post), type: 'datetime-local'
-  = f.label :tag_list
-  = f.text_field :tag_list
-  = f.submit
-
-= link_to 'View All Posts', posts_path
+.row
+  .col-xs-12.col-sm-6.col-sm-offset-3
+    = form_for @post do |f|
+      .form-group
+        = f.label :title
+        = f.text_field :title, class: 'form-control'
+      .form-group
+        = f.label :body
+        = f.text_area :body, rows: 5, cols: 100, class: 'form-control'
+      .form-group
+        = f.label :status
+        = f.select :status, options_for_select(post_status_options), class: 'form-control'
+      .form-group
+        = f.label :post_date
+        = f.text_field :post_date, value: set_post_date(@post), type: 'datetime-local', class: 'form-control'
+      .form-group
+        = f.label :tag_list
+        = f.text_field :tag_list, class: 'form-control'
+      .form-group
+        = f.submit nil, class: 'btn btn-primary'
+.row
+  .col-xs-12.col-sm-6.col-sm-offset-3
+    = link_to 'View All Posts', posts_path
