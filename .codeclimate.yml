@@ -37,3 +37,4 @@ exclude_paths:
 - db/
 - test/
 - vendor/
+- spec/
