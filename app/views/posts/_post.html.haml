@@ -4,7 +4,7 @@
     %time= post.humanized_post_date
   .body
     - if @truncate && post.humanized_body.length > 250
-      = post.humanized_body.truncate(250, separate: ' ').html_safe
+      = post.post.humanized_body_truncated
       = link_to 'Read Full Post', post_path(post), class: 'read-full'
     - else
       = post.humanized_body

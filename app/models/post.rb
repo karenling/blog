@@ -37,4 +37,8 @@ class Post < ActiveRecord::Base
   def humanized_body
     @@markdown.render(body).html_safe
   end
+
+  def humanized_body_truncated
+    @@markdown.render(body).truncate(250, separate: ' ').html_safe
+  end
 end
