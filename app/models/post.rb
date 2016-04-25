@@ -40,6 +40,6 @@ class Post < ActiveRecord::Base
   end
 
   def humanized_body_truncated
-    @@markdown.render(body).truncate(250, separate: ' ').html_safe
+    Nokogiri::HTML::DocumentFragment.parse(@@markdown.render(body).truncate(250, separate: ' ')).to_html.html_safe
   end
 end
