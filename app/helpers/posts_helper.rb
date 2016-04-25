@@ -8,7 +8,7 @@ module PostsHelper
     if post.new_record?
       time = Time.current.in_time_zone('Pacific Time (US & Canada)')
     else
-      time = post.post_date
+      time = post.post_date.in_time_zone('Pacific Time (US & Canada)')
     end
     time.strftime('%Y-%m-%dT%H:%M')
   end

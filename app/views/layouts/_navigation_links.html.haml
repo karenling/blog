@@ -1,0 +1,10 @@
+.inner-nav
+  .title= link_to 'twinkie and karen', root_path
+  %ul
+    %li= link_to 'Home', root_path
+    %li= link_to 'About', about_path
+    %li= link_to 'Contact', contact_path
+    - if current_user
+      %li= link_to 'Photos', photos_path
+      %li= link_to 'Events', events_path
+      %li= link_to 'New Post', new_post_path

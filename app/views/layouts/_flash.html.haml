@@ -1,5 +1,18 @@
 - if flash[:notice] || flash[:error] || flash[:alert]
-  .row#notice.collapsed.in{ class: flash_class }
+  .row#flash.collapsed.in{ class: flash_class }
     .col-xs-12.text-center
       = flash[:notice] || flash[:error] || flash[:alert]
-      .pull-right= link_to ('&#x2715;').html_safe, '#notice', 'data-toggle' => 'collapse'
+      .pull-right= link_to ('&#x2715;').html_safe, '#flash', 'data-toggle' => 'collapse'
+
+:javascript
+  $(window).load(function () {
+    $(window).scroll(function () {
+      var navigationBottom = $('.navigation:not(.scrolled)').offset().top + $('.navigation:not(.scrolled)').height() + 30;
+      var windowScrollTop = $(window).scrollTop();
+      if (windowScrollTop > navigationBottom) {
+        $('.navigation.scrolled').slideDown();
+      } else {
+        $('.navigation.scrolled').slideUp();
+      };
+    });
+  });
