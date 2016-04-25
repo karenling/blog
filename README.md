@@ -18,5 +18,6 @@ Haven't thought this out completely yet...
 - [x] RedCarpet or some other markdown parser
 - [x] Paginate
 - [x] RSS Feed
+- [x] Contact
 - [ ] Cucumber
 - [ ] Styling!

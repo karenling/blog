@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
   Post::PUBLIC = 2
 
   default_scope { order('post_date DESC') }
-  scope :public_posts, -> { where('posts.status = ?', Post::PUBLIC) }
+  scope :public_posts, -> { where('posts.status = ? AND posts.post_date <= ?', Post::PUBLIC, Time.current) }
 
   @@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, strikethrough: true)
 

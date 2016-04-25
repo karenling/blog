@@ -36,12 +36,25 @@ body {
   padding: 30px;
   margin: 30px 0;
   background-color: white;
+  .title-wrapper {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
   .title {
     font: 15px 'Montserrat', sans-serif;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     a {
       color: $default-color;
+    }
+  }
+  .body {
+    p {
+      padding: 10px 0;
     }
   }
 }
@@ -56,6 +69,7 @@ body {
   background-color: white;
   position: fixed;
   width: 100%;
+  z-index: 1;
   &.add-shadow {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
@@ -168,7 +182,7 @@ footer {
         max-width: Calc(100% + 60px);
       }
     }
-    #left .white-box {
+    #left {
       width: 100%;
     }
     #right {
@@ -193,7 +207,7 @@ footer {
         max-width: 600px;
       }
     }
-    #left .white-box {
+    #left {
       width: 600px;
     }
     #right {
