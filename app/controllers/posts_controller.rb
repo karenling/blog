@@ -19,9 +19,15 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
-    @title = @post.title
-    if !current_user && !@post.public?
+    if current_user
+      @post = Post.find_by_id(params[:id])
+    else
+      @post = Post.public_posts.find_by_id(params[:id])
+    end
+
+    @title = @post.try(:title)
+
+    unless @post
       flash[:alert] = 'Must be author.'
       redirect_to posts_path
     end
