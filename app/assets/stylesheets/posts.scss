@@ -20,6 +20,9 @@ article.post {
         color: $teal;
       }
     }
+    p {
+      overflow: scroll;
+    }
   }
   .tags {
     @include tag-formatting;

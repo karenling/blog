@@ -11,5 +11,5 @@
 .item.white-box
   .title Tags
   %ul.tags
-    - display_tags(admin.posts.public_posts.tag_counts_on(:tags)).each do |tag|
+    - display_tags(all_tags).each do |tag|
       %li= tag.html_safe

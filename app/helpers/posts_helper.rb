@@ -18,4 +18,12 @@ module PostsHelper
       link_to(tag.name, tagged_posts_path(tag.name))
     end
   end
+
+  def all_tags
+    if current_user
+      admin.posts.tag_counts_on(:tags)
+    else
+      admin.posts.public_posts.tag_counts_on(:tags)
+    end
+  end
 end

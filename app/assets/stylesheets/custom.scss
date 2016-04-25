@@ -188,6 +188,9 @@ footer {
     }
     #left {
       width: 100%;
+      .title-wrapper {
+        flex-direction: column;
+      }
     }
     #right {
       width: 100%;
