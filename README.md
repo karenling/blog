@@ -19,5 +19,5 @@ Haven't thought this out completely yet...
 - [x] Paginate
 - [x] RSS Feed
 - [x] Contact
+- [x] Styling!
 - [ ] Cucumber
-- [ ] Styling!

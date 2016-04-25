@@ -1,9 +1,15 @@
 .white-box
-  = form_for @photo do |f|
-    .form-group
-      = f.label :url
-      = f.file_field :url, class: 'form-control'
-    .form-group
-      = f.submit nil, class: 'btn btn-primary'
+  .title-wrapper
+    .title Upload Photo
+  .body
+    = form_for @photo do |f|
+      .form-group
+        = f.label :url
+        = f.file_field :url, class: 'form-control'
+      .form-group
+        = f.submit nil, class: 'btn btn-primary'
 .white-box.clearfix
-  = render partial: @photos
+  .title-wrapper
+    .title Photos
+  .body
+    = render partial: @photos

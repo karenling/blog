@@ -3,7 +3,6 @@ class PagesController < ApplicationController
   end
 
   def contact
-    @contact = {}
   end
 
   def send_contact
