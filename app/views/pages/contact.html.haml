@@ -1,0 +1,20 @@
+#contact.white-box
+  .title-wrapper
+    .title Contact
+  .body
+    .row
+      = form_tag send_contact_path do
+        .col-xs-6
+          .form-group
+            = label_tag :name
+            = text_field_tag :name, params[:name], class: 'form-control', placeholder: 'Jane'
+        .col-xs-6
+          .form-group
+            = label_tag :email
+            = text_field_tag :email, params[:email], class: 'form-control', placeholder: 'jane@mail.com'
+        .col-xs-12
+          .form-group
+            = label_tag :message
+            = text_area_tag :message, params[:message], class: 'form-control', placeholder: 'Hi Twinkie and Karen!...'
+          .form-group.text-right.send-button-wrapper
+            = submit_tag 'Send', class: 'send-button'
