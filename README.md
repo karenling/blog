@@ -1,10 +1,8 @@
 [![Code Climate](https://codeclimate.com/github/karenling/blog/badges/gpa.svg)](https://codeclimate.com/github/karenling/blog) [![Build Status](https://semaphoreci.com/api/v1/karenling/blog/branches/master/badge.svg)](https://semaphoreci.com/karenling/blog)
 
-# blog
+# Personal Blog
 
-Building a blog...making sure I know Rails 4.
-
-Visit [my tumblr](http://blog.karenling.net) until this is ready. =]
+Just a personal blog to keep my thoughts and write about my adventures with Twinkie.
 
 ### To Do
 Haven't thought this out completely yet...
@@ -21,3 +19,4 @@ Haven't thought this out completely yet...
 - [x] Contact
 - [x] Styling!
 - [ ] Cucumber
+- [ ] Rollbar

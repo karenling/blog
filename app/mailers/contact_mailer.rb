@@ -4,6 +4,6 @@ class ContactMailer < ApplicationMailer
     @email = email
     @message = message
 
-    mail to: ENV['EMAIL_ADDRESS'], subject: 'Something'
+    mail to: ENV['EMAIL_ADDRESS'], subject: 'Twinkie and Karen'
   end
 end
