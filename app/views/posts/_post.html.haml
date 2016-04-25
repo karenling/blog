@@ -5,7 +5,6 @@
   .body
     - if @truncate && post.humanized_body.length > 250
       = post.humanized_body_truncated
-      %p.text-right= link_to 'Read Full Post', post_path(post), class: 'read-full'
     - else
       = post.humanized_body
   - unless post.tags.empty?
