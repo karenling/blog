@@ -17,7 +17,7 @@
         = f.text_field :post_date, value: set_post_date(@post), type: 'datetime-local', class: 'form-control'
       .form-group
         = f.label :tag_list
-        = f.text_field :tag_list, class: 'form-control'
+        = f.text_field :tag_list, class: 'form-control', value: @post.tag_list.to_s
       .form-group
         = f.submit nil, class: 'btn btn-primary'
 .white-box.text-center
