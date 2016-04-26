@@ -15,7 +15,7 @@ class Post < ActiveRecord::Base
   default_scope { order('post_date DESC') }
   scope :public_posts, -> { where('posts.status = ? AND posts.post_date <= ?', Post::PUBLIC, Time.current) }
 
-  @@markdown = Redcarpet::Markdown.new(TargetBlankRenderer, autolink: true, strikethrough: true)
+  @@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(hard_wrap: true, link_attributes: { target: '_blank' }), hard_wrap: true, autolink: true, strikethrough: true)
 
   def humanized_post_date
     post_date
