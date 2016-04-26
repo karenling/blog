@@ -16,3 +16,12 @@
         %th Date
     %thead
       = render @events
+
+  .text-center= will_paginate @events
+:css
+  #left {
+    width: 100% !important;
+  }
+  #right {
+    display: none;
+  }

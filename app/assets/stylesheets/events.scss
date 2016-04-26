@@ -3,6 +3,10 @@
   table {
     td {
       overflow: scroll;
+      word-break: break-all;
+      &:first-child {
+        word-break: inherit;
+      }
     }
   }
 }
