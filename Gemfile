@@ -38,6 +38,7 @@ gem 'redcarpet'
 gem 'font-awesome-sass', '~> 4.5.0'
 gem 'will_paginate', '~> 3.1.0'
 gem 'mailgun_rails'
+gem 'friendly_id', '~> 5.1.0'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

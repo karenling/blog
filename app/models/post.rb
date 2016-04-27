@@ -1,4 +1,7 @@
 class Post < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :friendly_name, use: :slugged
+
   belongs_to :author, class_name: 'User', foreign_key: :user_id
   acts_as_taggable_on :tags
 
@@ -41,5 +44,11 @@ class Post < ActiveRecord::Base
 
   def humanized_body_truncated
     Nokogiri::HTML::DocumentFragment.parse(@@markdown.render(body).truncate(250, separate: ' ', omission: "<a href='/posts/#{id}' class='read-full'>...Read Full Post</a>")).to_html.html_safe
+  end
+
+  def set_friendly_name!
+    self.friendly_name = self.post_date.in_time_zone('Pacific Time (US & Canada)').strftime('%Y-%m-%d') + '-' + self.title.parameterize
+    self.slug = nil
+    self.save
   end
 end
