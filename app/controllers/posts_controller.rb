@@ -10,7 +10,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    if @post.save && @post.set_friendly_name!
+    if @post.save
       flash[:notice] = 'Post created!'
       redirect_to post_path(@post)
     else
@@ -61,7 +61,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find_by_friendly_name(params[:id])
-    if @post.update(post_params) && @post.set_friendly_name!
+    if @post.update(post_params)
       flash[:notice] = 'Post updated!'
       redirect_to post_path(@post)
     else

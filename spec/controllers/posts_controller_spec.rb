@@ -49,11 +49,11 @@ describe PostsController do
     describe 'when post is public' do
       specify 'logged in' do
         login_as(@user)
-        get :show, id: @private_post.id
+        get :show, id: @private_post.slug
         expect(response).to render_template(:show)
       end
       specify 'not logged in' do
-        get :show, id: @private_post.id
+        get :show, id: @private_post.slug
         expect(response).to redirect_to(posts_path)
         expect(flash[:alert]).to eq('Must be author.')
       end
@@ -62,11 +62,11 @@ describe PostsController do
     describe 'when post is draft' do
       specify 'logged in' do
         login_as(@user)
-        get :show, id: @draft_post.id
+        get :show, id: @draft_post.slug
         expect(response).to render_template(:show)
       end
       specify 'not logged in' do
-        get :show, id: @draft_post.id
+        get :show, id: @draft_post.slug
         expect(response).to redirect_to(posts_path)
         expect(flash[:alert]).to eq('Must be author.')
       end
@@ -75,11 +75,11 @@ describe PostsController do
     describe 'when post is public' do
       specify 'logged in' do
         login_as(@user)
-        get :show, id: @public_post.id
+        get :show, id: @public_post.slug
         expect(response).to render_template(:show)
       end
       specify 'not logged in' do
-        get :show, id: @public_post.id
+        get :show, id: @public_post.slug
         expect(response).to render_template(:show)
       end
     end
@@ -90,20 +90,20 @@ describe PostsController do
 
   describe 'edit' do
     specify 'when non-logged in' do
-      get :edit, id: @public_post.id
+      get :edit, id: @public_post.slug
       expect(response).to redirect_to(new_session_path)
       expect(flash[:alert]).to eq('Must be logged in.')
     end
     specify 'when logged in' do
       login_as(@user)
-      get :edit, id: @public_post.id
+      get :edit, id: @public_post.slug
       expect(response).to render_template(:edit)
     end
   end
 
   describe 'update' do
     before :each do
-      @post_params = { id: @public_post.id,
+      @post_params = { id: @public_post.slug,
                       post: {
                         title: 'Some post title',
                         body: 'body here',
@@ -120,7 +120,7 @@ describe PostsController do
     specify 'when logged in' do
       login_as(@user)
       patch :update, @post_params
-      expect(response).to redirect_to(post_path(@public_post))
+      expect(response).to redirect_to(post_path(@public_post.reload))
       expect(@public_post.reload.title).to eq('Some post title')
       expect(flash[:notice]).to eq('Post updated!')
     end

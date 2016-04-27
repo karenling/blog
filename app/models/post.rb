@@ -18,6 +18,8 @@ class Post < ActiveRecord::Base
   default_scope { order('post_date DESC') }
   scope :public_posts, -> { where('posts.status = ? AND posts.post_date <= ?', Post::PUBLIC, Time.current) }
 
+  before_save :set_friendly_name!
+
   @@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(hard_wrap: true, link_attributes: { target: '_blank' }), hard_wrap: true, autolink: true, strikethrough: true)
 
   def humanized_post_date
@@ -48,7 +50,6 @@ class Post < ActiveRecord::Base
 
   def set_friendly_name!
     self.friendly_name = self.post_date.in_time_zone('Pacific Time (US & Canada)').strftime('%Y-%m-%d') + '-' + self.title.parameterize
-    self.slug = nil
-    self.save
+    self.slug = self.friendly_name
   end
 end
