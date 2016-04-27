@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
   before_filter :require_current_user!
+  skip_before_filter :log_event!
 
   def create
     @photo = Photo.new(photo_params)

@@ -1,9 +1,9 @@
 #events.white-box
-  .title Events
+  .title= "Events (#{@events.count})"
 
-  = link_to 'View All', events_path
+  = link_to 'Filtered', events_path
   = '|'
-  = link_to 'Filter', events_path(filter: true)
+  = link_to 'View All', events_path(all: true)
   %table.table.table-condensed.table-bordered
     %thead
       %tr

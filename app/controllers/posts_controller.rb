@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_filter :require_current_user!, only: [:new, :create, :edit, :update]
+  skip_before_filter :log_event!, only: [:new, :create, :edit, :update]
 
   def new
     @title = 'New Post'
