@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_filter :log_event!
+  
   def create
     user = User.find_by_credentials(
       params[:user_email],
