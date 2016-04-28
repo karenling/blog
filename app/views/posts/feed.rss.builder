@@ -16,7 +16,7 @@ xml.rss :version => "2.0" do
         xml.pubDate post.post_date.to_s(:rfc822)
         xml.link post_url(post)
         xml.guid post.id
-        xml.description post.humanized_body_truncated + ' ' + link_to('Read Full Post', post_url(post))
+        xml.description post.humanized_body_truncated
         xml.copyright copyright_text
       end
     end
