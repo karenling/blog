@@ -40,6 +40,7 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'mailgun_rails'
 gem 'friendly_id', '~> 5.1.0'
 gem 'rollbar'
+gem 'newrelic_rpm'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
