@@ -36,6 +36,7 @@ class ApplicationController < ActionController::Base
   def log_event!
     event = Event.new
     event.user_id = current_user.try(:id)
+    session[:init] = true if !session.loaded?
     event.session_id = session[:session_id]
     event.request_url = request.url
     event.referrer_url = request.referrer
