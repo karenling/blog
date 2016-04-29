@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
 
   def require_current_user!
     unless current_user
+      store_location
       flash[:alert] = 'Must be logged in.'
       redirect_to new_session_path
     end
@@ -40,5 +41,9 @@ class ApplicationController < ActionController::Base
     event.referrer_url = request.referrer
     event.request_user_agent = request.user_agent
     event.save
+  end
+
+  def store_location
+    session[:forwarding_url] = request.url
   end
 end
