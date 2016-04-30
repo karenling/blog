@@ -45,7 +45,7 @@ class Post < ActiveRecord::Base
   end
 
   def humanized_body_truncated
-    Nokogiri::HTML::DocumentFragment.parse(@@markdown.render(body).truncate(250, separate: ' ', omission: "<a href='/posts/#{slug}' class='read-full'>...Read Full Post</a>")).to_html.html_safe
+    Nokogiri::HTML::DocumentFragment.parse(@@markdown.render(body).truncate(350, separate: ' ', omission: "<a href='/posts/#{slug}' class='read-full'>...Read Full Post</a>")).to_html.html_safe
   end
 
   def set_friendly_name!
