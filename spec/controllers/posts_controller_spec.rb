@@ -3,9 +3,10 @@ include RspecLoginHelper
 describe PostsController do
   before :each do
     @user = FactoryGirl.create(:user)
-    @private_post = FactoryGirl.create(:post, author: @user, status: Post::PRIVATE)
-    @draft_post = FactoryGirl.create(:post, author: @user, status: Post::DRAFT)
-    @public_post = FactoryGirl.create(:post, author: @user, status: Post::PUBLIC)
+    @private_post = FactoryGirl.create(:post, author: @user, status: Post::PRIVATE, post_date: Time.now)
+    @draft_post = FactoryGirl.create(:post, author: @user, status: Post::DRAFT, post_date: Time.now - 1.day)
+    @public_post = FactoryGirl.create(:post, author: @user, status: Post::PUBLIC, post_date: Time.now - 2.day)
+    @future_public_post = FactoryGirl.create(:post, author: @user, status: Post::PUBLIC, post_date: Time.now + 3.days)
   end
 
   describe 'new' do
@@ -81,6 +82,19 @@ describe PostsController do
       specify 'not logged in' do
         get :show, id: @public_post.slug
         expect(response).to render_template(:show)
+      end
+    end
+
+    describe 'when post is public but in future' do
+      specify 'logged in' do
+        login_as(@user)
+        get :show, id: @future_public_post.slug
+        expect(response).to render_template(:show)
+      end
+      specify 'not logged in' do
+        get :show, id: @future_public_post.slug
+        expect(response).to redirect_to(posts_path)
+        expect(flash[:alert]).to eq('Must be author.')
       end
     end
   end
