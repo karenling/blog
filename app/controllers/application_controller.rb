@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :admin
 
-  before_filter :log_event!
+  before_filter :log_event!, :session_timezone
 
   def login!(user)
     @current_user = user
@@ -33,6 +33,10 @@ class ApplicationController < ActionController::Base
     User.first
   end
 
+  def session_timezone
+    @session_timezone = session[:timezone]
+  end
+
   def log_event!
     event = Event.new
     event.user_id = current_user.try(:id)
@@ -41,6 +45,8 @@ class ApplicationController < ActionController::Base
     event.request_url = request.url
     event.referrer_url = request.referrer
     event.request_user_agent = request.user_agent
+    event.timezone = session_timezone
+    Event.where(session_id: event.session_id).update_all(timezone: event.timezone)
     event.save
   end
 

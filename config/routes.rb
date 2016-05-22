@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :posts, only: [:new, :create, :show, :index, :edit, :update]
   resources :photos, only: [:create, :index]
-  resources :events, only: [:index]
+  resources :events, only: [:index] do
+    collection do
+      post 'set_timezone'
+    end
+  end
 
   get 'feed' => 'posts#feed', as: 'posts_feed', format: 'rss'
   get 'posts/tagged/:tag_name' => 'posts#tagged', as: 'tagged_posts'
