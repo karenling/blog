@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
     event.referrer_url = request.referrer
     event.request_user_agent = request.user_agent
     event.timezone = session_timezone
-    Event.where(session_id: event.session_id).update_all(timezone: event.timezone)
+    Event.where(session_id: event.session_id).update_all(timezone: event.timezone, user_id: event.user_id)
     event.save
   end
 
