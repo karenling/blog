@@ -21,9 +21,9 @@ class PostsController < ApplicationController
 
   def show
     if current_user
-      @post = Post.find_by_friendly_name(params[:id])
+      @post = Post.includes(:tags).find_by_friendly_name(params[:id])
     else
-      @post = Post.public_posts.find_by_friendly_name(params[:id])
+      @post = Post.includes(:tags).public_posts.find_by_friendly_name(params[:id])
     end
 
     @title = @post.try(:title)
@@ -38,23 +38,23 @@ class PostsController < ApplicationController
     @title = 'All Posts'
     @truncate = true
     if current_user
-      @posts = Post.paginate(:page => params[:page])
+      @posts = Post.includes(:tags).paginate(:page => params[:page])
     else
-      @posts = Post.public_posts.paginate(:page => params[:page])
+      @posts = Post.includes(:tags).public_posts.paginate(:page => params[:page])
     end
   end
 
   def edit
-    @post = Post.find_by_friendly_name(params[:id])
+    @post = Post.includes(:tags).find_by_friendly_name(params[:id])
     @title = "Edit #{@post.title}"
   end
 
   def tagged
     @title = "Posts tagged with #{params[:tag_name]}"
     if current_user
-      @posts = Post.tagged_with(params[:tag_name]).paginate(:page => params[:page])
+      @posts = Post.includes(:tags).tagged_with(params[:tag_name]).paginate(:page => params[:page])
     else
-      @posts = Post.public_posts.tagged_with(params[:tag_name]).paginate(:page => params[:page])
+      @posts = Post.includes(:tags).public_posts.tagged_with(params[:tag_name]).paginate(:page => params[:page])
     end
     render :index
   end
