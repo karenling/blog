@@ -52,11 +52,16 @@ describe PostsController do
         login_as(@user)
         get :show, id: @private_post.slug
         expect(response).to render_template(:show)
+        expect(Event.count).to eq(1)
+        expect(Event.last.request_url).to eq(post_url(@private_post))
       end
       specify 'not logged in' do
         get :show, id: @private_post.slug
         expect(response).to redirect_to(posts_path)
         expect(flash[:alert]).to eq('Must be author.')
+        # since the event logger is a before_filter, we do log this event
+        expect(Event.count).to eq(1)
+        expect(Event.last.request_url).to eq(post_url(@private_post))
       end
     end
 
@@ -65,11 +70,15 @@ describe PostsController do
         login_as(@user)
         get :show, id: @draft_post.slug
         expect(response).to render_template(:show)
+        expect(Event.count).to eq(1)
+        expect(Event.last.request_url).to eq(post_url(@draft_post))
       end
       specify 'not logged in' do
         get :show, id: @draft_post.slug
         expect(response).to redirect_to(posts_path)
         expect(flash[:alert]).to eq('Must be author.')
+        expect(Event.count).to eq(1)
+        expect(Event.last.request_url).to eq(post_url(@draft_post))
       end
     end
 
@@ -78,10 +87,14 @@ describe PostsController do
         login_as(@user)
         get :show, id: @public_post.slug
         expect(response).to render_template(:show)
+        expect(Event.count).to eq(1)
+        expect(Event.last.request_url).to eq(post_url(@public_post))
       end
       specify 'not logged in' do
         get :show, id: @public_post.slug
         expect(response).to render_template(:show)
+        expect(Event.count).to eq(1)
+        expect(Event.last.request_url).to eq(post_url(@public_post))
       end
     end
 
@@ -90,16 +103,33 @@ describe PostsController do
         login_as(@user)
         get :show, id: @future_public_post.slug
         expect(response).to render_template(:show)
+        expect(Event.count).to eq(1)
+        expect(Event.last.request_url).to eq(post_url(@future_public_post))
       end
       specify 'not logged in' do
         get :show, id: @future_public_post.slug
         expect(response).to redirect_to(posts_path)
         expect(flash[:alert]).to eq('Must be author.')
+        expect(Event.count).to eq(1)
+        expect(Event.last.request_url).to eq(post_url(@future_public_post))
       end
     end
   end
 
   describe 'index' do
+    specify 'when logged in user views index' do
+      login_as(@user)
+      get :index
+      expect(assigns(:posts)).to match_array([@private_post, @draft_post, @public_post, @future_public_post])
+      expect(Event.count).to eq(1)
+      expect(Event.last.request_url).to eq(root_url)
+    end
+    specify 'when non-logged in user views index' do
+      get :index
+      expect(assigns(:posts)).to match_array([@public_post])
+      expect(Event.count).to eq(1)
+      expect(Event.last.request_url).to eq(root_url)
+    end
   end
 
   describe 'edit' do
