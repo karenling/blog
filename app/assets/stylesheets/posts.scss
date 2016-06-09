@@ -3,7 +3,7 @@ article.post {
     time {
       font-size: 11px;
       letter-spacing: 0.5px;
-      color: $light-gray;
+      color: #aaa;
     }
   }
   .body {
@@ -31,8 +31,8 @@ article.post {
   .tags {
     @include tag-formatting;
     text-align: center;
-    border-top: 1px solid #eee;
-    padding-top: 20px;
+    border-top: 1px solid $light-gray;
+    padding: 10px 30px 30px 30px;
     margin-bottom: -10px;
   }
   .admin-buttons {

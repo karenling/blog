@@ -1,6 +1,6 @@
 $default-color: #414141;
-$bg-color: #f4f1eb;
-$light-gray: #aaa;
+$bg-color: #f4f4f4;
+$light-gray: #eee;
 $teal: #88d1c8;
 
 body {
@@ -20,6 +20,9 @@ body {
     }
   }
 }
+.padding-30 {
+  padding: 30px;
+}
 .clearfix {
   display: block;
   clear: both;
@@ -32,11 +35,12 @@ body {
   letter-spacing: 1px;
 }
 .white-box {
-  padding: 30px;
   margin: 30px 0;
   background-color: white;
+  border: 1px solid $light-gray;
   .title-wrapper {
-    border-bottom: 1px solid #eee;
+    padding: 30px;
+    border-bottom: 1px solid $light-gray;
     padding-bottom: 20px;
     margin-bottom: 10px;
     display: flex;
@@ -52,6 +56,7 @@ body {
     }
   }
   .body {
+    padding: 30px;
     p {
       padding: 10px 0;
     }
