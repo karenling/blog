@@ -56,7 +56,7 @@ body {
     }
   }
   .body {
-    padding: 30px;
+    padding: 50px;
     p {
       padding: 10px 0;
     }
@@ -210,14 +210,15 @@ footer {
   }
 
   #main-wrapper {
-    width: 880px;
+    width: 1190px;
     article.post {
       .body img {
-        max-width: 600px;
+        max-width: 800px;
+        min-width: 800px;
       }
     }
     #left {
-      width: 600px;
+      width: 900px;
     }
     #right {
       width: 250px;
