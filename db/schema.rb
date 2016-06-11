@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160522054725) do
+ActiveRecord::Schema.define(version: 20160611075219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20160522054725) do
     t.datetime "updated_at"
     t.string   "friendly_name"
     t.string   "slug"
+    t.string   "header_image"
   end
 
   add_index "posts", ["friendly_name"], name: "index_posts_on_friendly_name", unique: true, using: :btree
