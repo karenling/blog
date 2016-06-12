@@ -32,13 +32,20 @@ class PostsController < ApplicationController
       flash[:alert] = 'Must be author.'
       redirect_to posts_path
     end
+
+    @path = request.path
+
+    respond_to do |format|
+      format.html { render 'show' }
+      format.js { render 'show', formats: [:js], handlers: [:erb] }
+    end
   end
 
   def index
     @title = 'All Posts'
     @truncate = true
     if current_user
-      @posts = Post.includes(:tags).paginate(:page => params[:page])
+      @posts = Post.includes(:tags).page(params[:page])
     else
       @posts = Post.includes(:tags).public_posts.paginate(:page => params[:page])
     end
@@ -52,9 +59,9 @@ class PostsController < ApplicationController
   def tagged
     @title = "Posts tagged with #{params[:tag_name]}"
     if current_user
-      @posts = Post.includes(:tags).tagged_with(params[:tag_name]).paginate(:page => params[:page])
+      @posts = Post.includes(:tags).tagged_with(params[:tag_name]).page(params[:page])
     else
-      @posts = Post.includes(:tags).public_posts.tagged_with(params[:tag_name]).paginate(:page => params[:page])
+      @posts = Post.includes(:tags).public_posts.tagged_with(params[:tag_name]).page(params[:page])
     end
     render :index
   end

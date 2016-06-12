@@ -5,9 +5,9 @@ class EventsController < ApplicationController
   def index
     @title = 'Events'
     if params[:all]
-      @events = Event.paginate(:page => params[:page])
+      @events = Event.page(params[:page])
     else
-      @events = Event.where('user_id IS NULL').paginate(:page => params[:page])
+      @events = Event.where('user_id IS NULL').page(params[:page])
     end
   end
 
