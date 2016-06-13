@@ -323,7 +323,6 @@ GEM
       trollop
     rdoc (4.2.2)
       json (~> 1.4)
-    redcarpet (3.3.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rollbar (2.10.0)
@@ -416,7 +415,6 @@ DEPENDENCIES
   pg
   pry-rails
   rails (= 4.2.6)
-  redcarpet
   rollbar
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)

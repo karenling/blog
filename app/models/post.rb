@@ -20,8 +20,6 @@ class Post < ActiveRecord::Base
 
   before_save :set_friendly_name!
 
-  @@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(hard_wrap: true, link_attributes: { target: '_blank' }), hard_wrap: true, autolink: true, strikethrough: true)
-
   def humanized_post_date
     post_date
       .in_time_zone('Pacific Time (US & Canada)')
@@ -41,12 +39,12 @@ class Post < ActiveRecord::Base
   end
 
   def humanized_body
-    @@markdown.render(body).html_safe
+    body.html_safe
   end
 
   def humanized_body_truncated
     length_of_imgs_links = self.body.scan(/!?\[.*\]\(([^)]+)\)/).join.length
-    Nokogiri::HTML::DocumentFragment.parse(@@markdown.render(body).truncate(length_of_imgs_links + 300, separate: ' ', omission: "<a href='/posts/#{slug}' class='read-full'>...Read Full Post</a>")).to_html.html_safe
+    Nokogiri::HTML::DocumentFragment.parse(body.truncate(length_of_imgs_links + 300, separate: ' ', omission: "<a href='/posts/#{slug}' class='read-full'>...Read Full Post</a>")).to_html.html_safe
   end
 
   def set_friendly_name!
