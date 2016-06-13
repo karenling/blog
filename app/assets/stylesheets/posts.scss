@@ -147,6 +147,9 @@ article.post-item {
     margin-top: 0;
     margin-bottom: 15px;
     padding-bottom: 0px;
+    &.hide-main-wrapper {
+      overflow: hidden;
+    }
   }
   .spacer {
     display: none;
