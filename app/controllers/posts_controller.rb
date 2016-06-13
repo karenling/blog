@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  include ApplicationHelper
+  
   before_filter :require_current_user!, only: [:new, :create, :edit, :update]
   skip_before_filter :log_event!, only: [:new, :create, :edit, :update]
 
@@ -35,9 +37,10 @@ class PostsController < ApplicationController
 
     @path = request.path
 
+    @disable_link = true
     respond_to do |format|
-      format.html { render 'show' }
-      format.js { render 'show', formats: [:js], handlers: [:erb] }
+      format.html { render 'show' && return }
+      format.js { @show_close = true; render 'show' && return, formats: [:js], handlers: [:erb] }
     end
   end
 
@@ -51,6 +54,8 @@ class PostsController < ApplicationController
       @posts = Post.includes(:tags).public_posts.page(params[:page])
       @more_posts = !Post.includes(:tags).public_posts.page(params[:page].to_i + 1).empty?
     end
+
+    ajax_response('index')
   end
 
   def edit
@@ -65,7 +70,8 @@ class PostsController < ApplicationController
     else
       @posts = Post.includes(:tags).public_posts.tagged_with(params[:tag_name]).page(params[:page])
     end
-    render :index
+
+    ajax_response('index')
   end
 
   def update
