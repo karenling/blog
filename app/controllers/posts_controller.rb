@@ -46,8 +46,10 @@ class PostsController < ApplicationController
     @truncate = true
     if current_user
       @posts = Post.includes(:tags).page(params[:page])
+      @more_posts = !Post.includes(:tags).page(params[:page].to_i + 1).empty?
     else
-      @posts = Post.includes(:tags).public_posts.paginate(:page => params[:page])
+      @posts = Post.includes(:tags).public_posts.page(params[:page])
+      @more_posts = !Post.includes(:tags).public_posts.page(params[:page].to_i + 1).empty?
     end
   end
 

@@ -6,8 +6,7 @@ class Post < ActiveRecord::Base
   acts_as_taggable_on :tags
 
   # default pagination
-  Post::PER_PAGE = 5
-  self.per_page = Post::PER_PAGE
+  paginates_per 3
 
   validates_presence_of :title, :body, :status, :post_date, :user_id
 
