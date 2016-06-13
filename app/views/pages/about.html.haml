@@ -1,8 +1,16 @@
-#about.white-box
-  .title-wrapper
-    .title Get to know me
-  .body
-    %p
-      = "Hi! My name is <b>Karen</b>. Previously a Berkeley biology grad, and now a <b>software engineer</b>, and I could not be happier coding all day and all night (well, except to hang out with my amazing friend/dog, <b>Twinkie</b>!). Currently, I’m working in Berkeley, California, as a full-stack dev. I think <b>focaccia bread</b> is fantastic, I’ve never turned down a <b>red velvet cupcake</b> or <b>banana cream pie</b>, and I love <b>Japanese ramen</b>. I think carbs are amazing. Feel free to".html_safe
-      = link_to 'send me a message here', contact_path
-      = '.'
+#main-wrapper
+  %article.post-item
+    = link_to '', about_path, class: enable_link(true), style: "background-image: url('//images.twinkieandkaren.com/blog/2016-06-12-flowers.jpg')"
+    .title-container
+      .title= link_to 'Twinkie and Karen', about_path
+      %time= 'Friday, Janauary 1, 2016'
+  .post-body-wrapper
+    .post-body
+      = image_tag('//images.twinkieandkaren.com/blog/2016-04-24-2016-02-25.jpg', class: 'profile-pic')
+      = "<span class='dropcap'>H</span>i! My name is <b>Karen</b>. Previously a Berkeley biology grad, and now a <b>software engineer</b>, and I could not be happier coding all day and all night (well, except to hang out with my amazing friend/dog, <b>Twinkie</b>!). Currently, I’m working in Berkeley, California, as a full-stack dev. I think <b>focaccia bread</b> is fantastic, I’ve never turned down a <b>red velvet cupcake</b> or <b>banana cream pie</b>, and I love <b>Japanese ramen</b>. I think carbs are amazing. Feel free to #{link_to 'send me a message here', contact_path}.".html_safe
+      .social-media
+        = link_to icon('linkedin'), 'https://www.linkedin.com/in/karensling', target: '_blank'
+        = link_to icon('github'), 'https://github.com/karenling', target: '_blank'
+        = link_to icon('instagram'), 'https://www.instagram.com/hellotwinkie/', target: '_blank'
+        = link_to icon('envelope'), contact_path, target: '_blank'
+        = link_to icon('rss'), posts_feed_path, target: '_blank'
