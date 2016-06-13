@@ -1,19 +1,53 @@
-article.post {
-  .title-wrapper {
-    time {
-      font-size: 11px;
-      letter-spacing: 0.5px;
-      color: #aaa;
-    }
+
+.spacer {
+  margin: 15px;
+  min-width: 1px;
+}
+.link-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  transition: all 300ms ease-in-out;
+  &.disabled-link {
+    pointer-events: none;
+    cursor: default;
   }
-  .body {
-    .read-full {
-      color: $default-color;
-      font: 13px 'Montserrat';
-      text-transform: uppercase;
-      &:hover {
-        color: $teal;
-      }
+}
+
+.pagination {
+  display: none;
+}
+@mixin div-sizing {
+  position: relative;
+  width: Calc(50vw - 45px);
+  min-width: Calc(50vw - 45px);
+  margin: 0 15px;
+}
+.post-body-wrapper {
+  font: 16px serif;
+  line-height: 30px;
+  .post-body {
+    overflow: scroll;
+    height: 100%;
+    text-align: justify;
+    p {
+      margin-bottom: 20px;
+    }
+    .dropcap {
+      font-size: 105px;
+      float: left;
+      line-height: 89px;
+      padding-right: 8px;
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      margin: 15px auto;
     }
     code {
       max-width: 100%;
@@ -24,15 +58,158 @@ article.post {
       line-height: 14px;
     }
   }
-  .tags {
-    @include tag-formatting;
+}
+article.post-item {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  &:hover {
+    .link-overlay {
+      -ms-transform: scale(1.05, 1.05); /* IE 9 */
+      -webkit-transform: scale(1.05, 1.05); /* Safari */
+      transform: scale(1.05, 1.05);
+    }
+  }
+  img {
+    max-width: 100%;
+  }
+  .title-container {
+    width: 100%;
+    position: relative;
+    font-family: 'Playfair Display', serif;
+    color: white;
     text-align: center;
-    border-top: 1px solid $light-gray;
-    padding: 10px 30px 30px 30px;
-    margin-bottom: -10px;
+    padding: 50px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    .title a {
+      color: white;
+    }
+    time {
+      font-size: 14px;
+      padding-top: 14px;
+      line-height: 18px;
+    }
+    .tags {
+      a {
+        color: white;
+        font-style: italic;
+        font-size: 18px;
+        line-height: 18px;
+      }
+    }
+    a:hover {
+      color: rgba(255, 255, 255, 0.5);
+    }
   }
   .admin-buttons {
     margin-top: 10px;
     text-align: center;
+  }
+}
+#main-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 30px 0;
+  margin: 30px;
+  background-color: white;
+  &.hide-main-wrapper {
+    height: 0px;
+    padding: 0;
+    margin: 0;
+  }
+}
+#show-wrapper {
+  background-color: white;
+  padding: 30px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  // display: flex;
+  align-items: center;
+  display: none;
+  z-index: 2;
+}
+.show-close {
+  position: absolute;
+  line-height: 15px;
+  font-weight: 100;
+  font-size: 20px;
+  cursor: pointer;
+  &:hover {
+    color: #999;
+  }
+}
+@media (max-width: 768px) {
+  #main-wrapper {
+    flex-direction: column;
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 0px;
+  }
+  .spacer {
+    display: none;
+  }
+  #show-wrapper {
+    flex-direction: column;
+    position: relative;
+  }
+  .show-close {
+    top: 40px;
+    right: 40px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .post-body-wrapper {
+    padding: 30px 0 0 0;
+  }
+  article.post-item {
+    position: relative;
+    width: 100%;
+    min-width: 100%;
+    height: Calc(75vh - 60px);
+    min-height: 300px;
+    margin: 15px;
+    &:first-child {
+      margin: 0;
+    }
+    .title-container {
+      .title a {
+        font-size: 8.5vw;
+        line-height: 9vw;
+      }
+    }
+  }
+}
+@media (min-width: 768px) {
+  #main-wrapper {
+    height: Calc(100vh - 60px);
+  }
+  #show-wrapper {
+    position: fixed;
+  }
+  .show-close {
+    top: 30px;
+    right: 30px;
+  }
+  .post-body-wrapper {
+    @include div-sizing;
+    padding: 60px;
+    .post-body {
+      max-height: Calc(100vh - 180px);
+    }
+  }
+  article.post-item {
+    @include div-sizing;
+    height: Calc(100vh - 60px);
+    &:first-child {
+      margin-left: 0;
+    }
+    .title-container {
+      .title a {
+        font-size: 4.5vw;
+        line-height: 5vw;
+      }
+    }
   }
 }
