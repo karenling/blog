@@ -87,9 +87,9 @@ navigation {
 }
 
 .social-media {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(center);
   max-width: 350px;
   margin: auto;
   padding-top: 30px;
