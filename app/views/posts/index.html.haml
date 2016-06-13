@@ -1,6 +1,6 @@
 #main-wrapper
   = render partial: 'posts/post', collection: @posts
-  .pagination= link_to_next_page @posts, 'Next', remote: true
+  .posts-pagination= link_to_next_page @posts, 'Next', remote: true
   .spacer
 
 #show-wrapper
@@ -19,7 +19,7 @@
       var largeWindow = $(window).width() > 768;
       var hitRightBorder = $(window).scrollLeft() >= $(document).width() - $(window).width();
       var hitBottomBorder = $(window).scrollTop() >= $(document).height() - $(window).height();
-      var postsPath = $('.pagination a').attr('href');
+      var postsPath = $('.posts-pagination a').attr('href');
       if ((largeWindow && postsPath && hitRightBorder) || (!largeWindow && postsPath && hitBottomBorder)) {
         loadMore(postsPath);
       }

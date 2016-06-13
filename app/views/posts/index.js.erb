@@ -1,5 +1,5 @@
-$('#main-wrapper .pagination').before('<%= escape_javascript(render @posts) %>');
-$('.pagination').html('<%= escape_javascript(link_to_next_page @posts, 'Next', remote: true) %>');
+$('#main-wrapper .posts-pagination').before('<%= escape_javascript(render @posts) %>');
+$('.posts-pagination').html('<%= escape_javascript(link_to_next_page @posts, 'Next', remote: true) %>');
 <% unless @more_posts %>
-  $('.pagination').remove();
+  $('.posts-pagination').remove();
 <% end %>
