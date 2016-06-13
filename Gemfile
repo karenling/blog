@@ -38,6 +38,7 @@ gem 'mailgun_rails'
 gem 'friendly_id', '~> 5.1.0'
 gem 'rollbar'
 gem 'newrelic_rpm'
+gem 'flexbox-sass'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
