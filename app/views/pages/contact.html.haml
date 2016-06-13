@@ -1,8 +1,11 @@
-#contact.white-box
-  .title-wrapper
-    .title Contact
-  .body
-    .row
+#main-wrapper
+  %article.post-item
+    = link_to '', about_path, class: enable_link(true), style: "background-image: url('//images.twinkieandkaren.com/blog/2016-06-12-flowers.jpg')"
+    .title-container
+      .title= link_to 'Contact', contact_path
+      %time= 'Friday, Janauary 1, 2016'
+  .post-body-wrapper
+    #contact.post-body
       = form_tag send_contact_path do
         .col-xs-6
           .form-group
