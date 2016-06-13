@@ -1,0 +1,11 @@
+= render partial: 'posts/post', locals: { post: post }
+.post-body-wrapper
+  .post-body= post.humanized_body
+- if @show_close
+  .show-close= raw('&#x2715;')
+  :javascript
+    $('.show-close').click(function() {
+      $('#show-wrapper').html('').hide();
+      $('#main-wrapper').removeClass('hide-main-wrapper');
+      history.pushState({}, null, '/');
+    })
