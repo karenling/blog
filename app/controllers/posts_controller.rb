@@ -86,7 +86,7 @@ class PostsController < ApplicationController
   end
 
   def feed
-    @posts = Post.public_posts
+    @posts = Post.public_posts.limit(10)
     respond_to do |format|
       format.rss { render layout: false }
     end
