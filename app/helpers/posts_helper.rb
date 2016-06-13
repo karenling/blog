@@ -26,4 +26,12 @@ module PostsHelper
       admin.posts.public_posts.tag_counts_on(:tags)
     end
   end
+
+  def enable_link(disable_link)
+    if disable_link
+      'link-overlay disabled-link'
+    else
+      'link-overlay'
+    end
+  end
 end
