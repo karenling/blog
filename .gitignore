@@ -23,3 +23,8 @@ application.yml
 
 # Ignore simplecov coverage files
 coverage
+
+# Ignore buildable React files
+bundle.js
+bundle.js.map
+node_modules
