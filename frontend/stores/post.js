@@ -4,6 +4,7 @@ var PostStore = new Store(dispatcher);
 var PostConstants = require('../constants/postConstants');
 
 var _posts = {};
+var _fullPosts = {}
 
 PostStore.all = function() {
   return Object.keys(_posts).map(function(key) {
@@ -19,7 +20,7 @@ PostStore.__onDispatch = function(payload) {
       PostStore.__emitChange();
       break;
     case PostConstants.POST_RECEIVED:
-      resetPost(payload.post)
+      resetFullPost(payload.post)
       PostStore.__emitChange();
       break;
   }
@@ -30,7 +31,7 @@ PostStore.totalPosts = function(totalPosts) {
 };
 
 PostStore.findByFriendlyName = function(friendlyName) {
-  return _posts[friendlyName];
+  return _fullPosts[friendlyName];
 };
 
 var addPosts = function(payloadPosts) {
@@ -39,8 +40,8 @@ var addPosts = function(payloadPosts) {
   });
 };
 
-var resetPost = function(payloadPost) {
-  _posts[payloadPost.friendly_name] = payloadPost;
+var resetFullPost = function(payloadPost) {
+  _fullPosts[payloadPost.friendly_name] = payloadPost;
 };
 
 module.exports = PostStore;
