@@ -1,13 +1,14 @@
 var ServerActions = require('../actions/serverActions');
 
 var ApiUtil = {
-  fetchAllPosts: function() {
+  fetchPosts: function(limit) {
     $.ajax({
       type: 'GET',
       url: '/api/posts',
       dataType: 'JSON',
+      data: { limit: limit },
       success: function(posts) {
-        ServerActions.receiveAllPosts(posts);
+        ServerActions.receivePosts(posts);
       }
     });
   }

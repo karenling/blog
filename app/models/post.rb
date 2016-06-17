@@ -14,6 +14,8 @@ class Post < ActiveRecord::Base
   Post::DRAFT = 1
   Post::PUBLIC = 2
 
+  PER_PAGE = 1
+
   default_scope { order('post_date DESC') }
   scope :public_posts, -> { where('posts.status = ? AND posts.post_date <= ?', Post::PUBLIC, Time.current) }
 

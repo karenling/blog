@@ -6,7 +6,8 @@ var PostIndexItem = require('./indexItem');
 var PostIndex = React.createClass({
   getInitialState: function() {
     return({
-      posts: PostStore.all()
+      posts: PostStore.all(),
+      limit: parseInt(TwinkieandKaren.PER_PAGE)
     })
   },
   _onChange: function() {
@@ -16,10 +17,16 @@ var PostIndex = React.createClass({
   },
   componentDidMount: function() {
     this.listener = PostStore.addListener(this._onChange);
-    ClientActions.fetchAllPosts();
+    ClientActions.fetchPosts(this.state.limit);
   },
   componentWillUnmount: function() {
     this.listener.remove();
+  },
+  loadMorePosts: function() {
+    this.setState({
+      limit: this.state.limit += parseInt(TwinkieandKaren.PER_PAGE)
+    })
+    ClientActions.fetchPosts(this.state.limit);
   },
   render: function() {
     return(
@@ -27,6 +34,7 @@ var PostIndex = React.createClass({
         { this.state.posts.map(function(post, idx) {
           return <PostIndexItem key={ idx } post={ post }/>
         })}
+        <div onClick={ this.loadMorePosts }>Load More</div>
       </div>
     )
   }

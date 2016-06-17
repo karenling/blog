@@ -3,28 +3,23 @@ var dispatcher = require('../dispatcher/dispatcher');
 var PostStore = new Store(dispatcher);
 var PostConstants = require('../constants/postConstants');
 
-var _posts = {};
+var _posts = [];
 
 PostStore.all = function() {
-  return Object.keys(_posts).map(function(key) {
-    return _posts[key];
-  });
+  return _posts;
 };
 
 PostStore.__onDispatch = function(payload) {
   switch(payload.actionType) {
     case PostConstants.POSTS_RECEIVED:
-      resetPosts(payload.posts);
+      addPosts(payload.posts);
       PostStore.__emitChange();
       break;
   }
 };
 
-var resetPosts = function(posts) {
-  _posts = {};
-  posts.forEach(function(post) {
-    _posts[post.id] = post;
-  });
+var addPosts = function(payloadPosts) {
+  _posts = _posts.concat(payloadPosts);
 };
 
 module.exports = PostStore;

@@ -10,6 +10,10 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+
+    :javascript
+      TwinkieandKaren.PER_PAGE = "#{Post::PER_PAGE}"
+
 %body
 
   #root

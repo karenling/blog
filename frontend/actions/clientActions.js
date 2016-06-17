@@ -1,8 +1,8 @@
 var ApiUtil = require('../util/apiUtil');
 
 var ClientActions = {
-  fetchAllPosts: function() {
-    ApiUtil.fetchAllPosts();
+  fetchPosts: function(limit) {
+    ApiUtil.fetchPosts(limit);
   }
 };
 

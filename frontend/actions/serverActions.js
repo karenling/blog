@@ -3,7 +3,7 @@ var PostConstants = require('../constants/postConstants');
 var posts = require('../stores/post');
 
 var ServerActions = {
-  receiveAllPosts: function(posts) {
+  receivePosts: function(posts) {
     dispatcher.dispatch({
       actionType: PostConstants.POSTS_RECEIVED,
       posts: posts
