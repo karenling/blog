@@ -10,7 +10,6 @@ var PostShow = React.createClass({
     })
   },
   componentWillReceiveProps: function() {
-    debugger
     ClientActions.fetchOnePost(this.props.params.friendlyName);
   },
   _onChange: function() {
@@ -29,7 +28,11 @@ var PostShow = React.createClass({
     if (this.state.post === undefined) {
       return <div></div>
     } else {
-      return <PostIndexItem post={ this.state.post }></PostIndexItem>
+      return(
+        <div id='react-post'>
+          <PostIndexItem post={ this.state.post }></PostIndexItem>
+        </div>
+      )
     }
   }
 })

@@ -14,7 +14,8 @@ PostStore.all = function() {
 PostStore.__onDispatch = function(payload) {
   switch(payload.actionType) {
     case PostConstants.POSTS_RECEIVED:
-      addPosts(payload.posts);
+      addPosts(payload.posts.current_posts);
+      PostStore.totalPosts(payload.posts.total_posts);
       PostStore.__emitChange();
       break;
     case PostConstants.POST_RECEIVED:
@@ -22,6 +23,10 @@ PostStore.__onDispatch = function(payload) {
       PostStore.__emitChange();
       break;
   }
+};
+
+PostStore.totalPosts = function(totalPosts) {
+  return totalPosts;
 };
 
 PostStore.findByFriendlyName = function(friendlyName) {

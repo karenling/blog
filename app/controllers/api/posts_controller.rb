@@ -7,6 +7,7 @@ class Api::PostsController < ApplicationController
       posts = Post.includes(:tags).public_posts.limit(limit)
     end
     @posts = posts[(limit - Post::PER_PAGE)..limit]
+    @totalCount = Post.count
   end
 
   def show

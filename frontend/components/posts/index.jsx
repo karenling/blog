@@ -7,7 +7,8 @@ var PostIndex = React.createClass({
   getInitialState: function() {
     return({
       posts: PostStore.all(),
-      limit: parseInt(TwinkieandKaren.PER_PAGE)
+      limit: parseInt(TwinkieandKaren.PER_PAGE),
+      totalCount: PostStore.totalPosts()
     })
   },
   _onChange: function() {
@@ -27,6 +28,14 @@ var PostIndex = React.createClass({
       limit: this.state.limit += parseInt(TwinkieandKaren.PER_PAGE)
     })
     ClientActions.fetchPosts(this.state.limit);
+
+  },
+  loadMoreButton: function() {
+    if (this.state.limit >= this.state.total) {
+      return( <div>hi hi</div>)
+    } else {
+      return( <div onClick={ this.loadMorePosts }>Load More</div> )
+    }
   },
   render: function() {
     return(
@@ -34,7 +43,7 @@ var PostIndex = React.createClass({
         { this.state.posts.map(function(post, idx) {
           return <PostIndexItem key={ idx } post={ post }/>
         })}
-        <div onClick={ this.loadMorePosts }>Load More</div>
+        { this.loadMoreButton() }
       </div>
     )
   }
