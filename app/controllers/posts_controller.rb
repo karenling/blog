@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   include ApplicationHelper
-  
+
   before_filter :require_current_user!, only: [:new, :create, :edit, :update]
   skip_before_filter :log_event!, only: [:new, :create, :edit, :update]
 
@@ -23,9 +23,9 @@ class PostsController < ApplicationController
 
   def show
     if current_user
-      @post = Post.includes(:tags).find_by_friendly_name(params[:id])
+      @post = Post.includes(:tags).friendly.find(params[:id])
     else
-      @post = Post.includes(:tags).public_posts.find_by_friendly_name(params[:id])
+      @post = Post.includes(:tags).public_posts.friendly.find(params[:id])
     end
 
     @title = @post.try(:title)
