@@ -11,6 +11,16 @@ var ApiUtil = {
         ServerActions.receivePosts(posts);
       }
     });
+  },
+  fetchOnePost: function(friendlyName) {
+    $.ajax({
+      type: 'GET',
+      url: 'api/posts/' + friendlyName,
+      dataType: 'JSON',
+      success: function(post) {
+        ServerActions.receiveOnePost(post);
+      }
+    });
   }
 };
 

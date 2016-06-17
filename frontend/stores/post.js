@@ -3,10 +3,12 @@ var dispatcher = require('../dispatcher/dispatcher');
 var PostStore = new Store(dispatcher);
 var PostConstants = require('../constants/postConstants');
 
-var _posts = [];
+var _posts = {};
 
 PostStore.all = function() {
-  return _posts;
+  return Object.keys(_posts).map(function(key) {
+    return _posts[key];
+  });
 };
 
 PostStore.__onDispatch = function(payload) {
@@ -15,11 +17,25 @@ PostStore.__onDispatch = function(payload) {
       addPosts(payload.posts);
       PostStore.__emitChange();
       break;
+    case PostConstants.POST_RECEIVED:
+      resetPost(payload.post)
+      PostStore.__emitChange();
+      break;
   }
 };
 
+PostStore.findByFriendlyName = function(friendlyName) {
+  return _posts[friendlyName];
+};
+
 var addPosts = function(payloadPosts) {
-  _posts = _posts.concat(payloadPosts);
+  payloadPosts.forEach(function(post) {
+    _posts[post.friendly_name] = post;
+  });
+};
+
+var resetPost = function(payloadPost) {
+  _posts[payloadPost.friendly_name] = payloadPost;
 };
 
 module.exports = PostStore;

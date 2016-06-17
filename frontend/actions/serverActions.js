@@ -8,6 +8,12 @@ var ServerActions = {
       actionType: PostConstants.POSTS_RECEIVED,
       posts: posts
     });
+  },
+  receiveOnePost: function(post) {
+    dispatcher.dispatch({
+      actionType: PostConstants.POST_RECEIVED,
+      post: post
+    });
   }
 };
 

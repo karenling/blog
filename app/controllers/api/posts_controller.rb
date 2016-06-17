@@ -11,9 +11,9 @@ class Api::PostsController < ApplicationController
 
   def show
     if current_user
-      @post = Post.includes(:tags).find_by_id(params[:id])
+      @post = Post.includes(:tags).friendly.find(params[:id])
     else
-      @post = Post.includes(:tags).public_posts.find_by_id(params[:id])
+      @post = Post.includes(:tags).public_posts.friendly.find(params[:id])
     end
 
     unless @post
