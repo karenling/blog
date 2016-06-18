@@ -1,7 +1,7 @@
 class Api::PostsController < ApplicationController
   before_filter :require_current_user!, only: [:new, :create, :edit, :update]
   skip_before_filter :log_event!, only: [:new, :create, :edit, :update]
-  
+
   def index
     limit = params[:limit].to_i
     if current_user
@@ -25,4 +25,33 @@ class Api::PostsController < ApplicationController
     end
   end
 
+  def create
+    @post = current_user.posts.new(post_params)
+    if @post.save
+      render json: @post
+      # flash[:notice] = 'Post created!'
+      # redirect_to post_path(@post)
+    else
+      render json: @post.errors.full_messages.to_sentence, status: :unprocessable_enitty
+
+    end
+  end
+
+  # def update
+  #   @post = Post.find_by_friendly_name(params[:id])
+  #   debugger
+  #   if @post.update(post_params)
+  #     render json: @post
+  #   else
+  #     render json: "Please enter .", status: :unprocessable_entity
+  #   end
+  # end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :header_image, :body, :status, :post_date, :tag_list)
+    # params[:post][:post_date] = ActiveSupport::TimeZone.new('Pacific Time (US & Canada)').parse(params[:post][:post_date]).utc
+    # params.require(:post).permit(:title, :header_image, :body, :status, :post_date, :tag_list)
+  end
 end

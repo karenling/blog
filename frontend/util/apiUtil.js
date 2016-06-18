@@ -22,6 +22,21 @@ var ApiUtil = {
       }
     });
   },
+  createPost: function(params) {
+    $.ajax({
+      type: 'POST',
+      url: '/api/posts',
+      dataType: 'JSON',
+      data: { post: params },
+      success: function(payload) {
+        debugger
+        ServerActions.receiveOnePost(post);
+      },
+      error: function(response, status) {
+        debugger
+      }
+    });
+  },
   sendMessage: function(params, callback) {
     $.ajax({
       type: 'POST',

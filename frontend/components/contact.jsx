@@ -64,7 +64,7 @@ var Contact = React.createClass({
               <form className='new-message' onSubmit={ this.onSubmit } >
                 <input type='text' onChange={ this.handleChange } name='name' value={ this.state.name } placeholder='Name'/>
                 <input type='text' onChange={ this.handleChange } name='email' value={ this.state.email } placeholder='Email'/>
-                <textarea type='text' onChange={ this.handleChange } name='message' value={ this.state.message } placeholder='Message'></textarea>
+                <textarea onChange={ this.handleChange } name='message' value={ this.state.message } placeholder='Message'></textarea>
                 <div className='submit-wrapper'>
                   <button><i className='fa fa-paper-plane'></i>Send</button>
                 </div>
