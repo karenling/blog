@@ -11,8 +11,8 @@ var Navigation = React.createClass({
   render: function() {
     return(
       <div>
-        { Object.keys(this.state).map(function(name) {
-          return( <NavLink name={ name } route={ this.state[name] }/>)
+        { Object.keys(this.state).map(function(name, idx) {
+          return( <NavLink key={ idx } name={ name } route={ this.state[name] }/>)
         }.bind(this))}
       </div>
     )
