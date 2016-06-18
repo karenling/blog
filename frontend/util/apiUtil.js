@@ -15,12 +15,26 @@ var ApiUtil = {
   fetchOnePost: function(friendlyName) {
     $.ajax({
       type: 'GET',
-      url: 'api/posts/' + friendlyName,
+      url: '/api/posts/' + friendlyName,
       dataType: 'JSON',
       success: function(post) {
         ServerActions.receiveOnePost(post);
       }
     });
+  },
+  sendMessage: function(params, callback) {
+    $.ajax({
+      type: 'POST',
+      url: '/api/send_contact',
+      dataType: 'JSON',
+      data: params,
+      success: function(payload) {
+        callback(payload.status, payload.message)
+      },
+      error: function(response, status) {
+        callback(status, response.responseText)
+      }
+    })
   }
 };
 

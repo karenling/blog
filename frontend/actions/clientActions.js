@@ -6,6 +6,9 @@ var ClientActions = {
   },
   fetchOnePost: function(friendlyName) {
     ApiUtil.fetchOnePost(friendlyName);
+  },
+  sendMessage: function(params, callback) {
+    ApiUtil.sendMessage(params, callback);
   }
 };
 

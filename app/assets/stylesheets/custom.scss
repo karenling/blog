@@ -27,6 +27,9 @@ body {
     }
   }
 }
+input:focus, textarea:focus, button:focus {
+  outline: none;
+}
 #root {
   padding: 30px;
   #react-main {
@@ -112,7 +115,7 @@ body {
         margin: 40px auto;
         a {
           border: 1px solid #ddd;
-          border-radius: 1px;
+          border-radius: 2px;
           padding: 10px 15px;
           color: #aaa;
           font-size: 10px;
@@ -134,9 +137,79 @@ body {
         max-width: 100%;
       }
     }
+  }
+}
+#contact {
+  max-width: 400px;
+  margin: auto;
+  box-shadow: 0 10px 48px rgba(0, 0, 0, 0.20);
+  background-color: white;
+  .exit-bar {
+    background-color: $accent;
+    text-align: right;
+    color: white;
+    padding: 6px 12px;
+    cursor: pointer;
+    &:hover {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+  .message-body {
+    padding: 50px;
+    text-align: right;
+    .message-intro {
+      text-align: left;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: $med-gray;
+    }
+    .error-message {
+      color: red;
+      font-size: 12px;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+    textarea[name=message] {
+      resize: none;
+      height: 100px;
+    }
+    input[name=name], input[name=email], textarea[name=message] {
+      width: 100%;
+      display: block;
+      margin-top: 20px;
+      border: 1px solid #ddd;
+      padding: 8px;
+      font-size: 14px;
+      border-radius: 2px;
+    }
+    button {
+      margin-top: 20px;
+      background-color: $accent;
+      border: 0;
+      color: white;
+      border-radius: 2px;
+      padding: 10px 17px;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      transition: color 500ms linear;
+      transition: background 500ms linear;
+      i {
+        margin-right: 10px;
+      }
+      &:hover {
+        padding: 9px 16px;
+        border: 1px solid #ddd;
+        color: #aaa;
+        background-color: white;
+      }
+      &:focus {
+        background-color: $light-gray;
+      }
+    }
 
   }
-
 }
 #footer {
   width: 100%;

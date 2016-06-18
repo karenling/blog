@@ -15,7 +15,6 @@ var routes = (
     <IndexRoute component={ PostIndex } />
     <Route path="/posts/:friendlyName" component={ PostShow }></Route>
     <Route path="/about" component={ About }></Route>
-    <Route path="/contact" component={ Contact }></Route>
   </Route>
 );
 

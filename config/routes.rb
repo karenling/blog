@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   namespace :api , defaults: { format: :json } do
     resources :posts, only: [:new, :create, :show, :index, :edit, :update]
+    post 'send_contact' => 'pages#send_contact', as: 'send_contact'
   end
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
