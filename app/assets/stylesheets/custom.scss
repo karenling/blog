@@ -33,7 +33,7 @@ body {
   #react-main {
     background-color: white;
     box-shadow: 0 10px 48px rgba(0, 0, 0, 0.25);
-    padding: 0 30px 30px 30px;
+    padding: 0 30px;
   }
   #navigation {
     width: 100%;
@@ -41,37 +41,37 @@ body {
     height: 64px;
     @include flexbox;
     @include align-items(center);
-    a {
-      color: $light-gray;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      &:hover {
-        @include dotted-hover;
-      }
-    }
+    @include justify-content(space-between);
     ul#navigation-links {
-      margin-top: auto;
-      margin-bottom: auto;
-      margin-left: auto;
       padding: 0;
+      margin: 0;
       li {
         display: inline;
         margin-left: 32px;
+        a {
+          color: $light-gray;
+          font-size: 12px;
+          &.active {
+            color: $gradient-1;
+          }
+          &:hover {
+            color: $gradient-2;
+          }
+        }
       }
     }
   }
-  #react-posts, #react-post {
+  #react-posts, #react-post, #about {
     max-width: 600px;
     margin: auto;
     article {
       margin: 60px auto;
       border-bottom: 1px solid #ddd;
-      padding-bottom: 60px;
+      padding: 30px 0;
       &:last-child {
         border: 0;
       }
-      .post-title {
+      .post-title, .about-title {
         font-size: 50px;
         font-weight: 100;
         text-align: center;
@@ -99,10 +99,10 @@ body {
           color: $light-gray;
         }
       }
-      .post-body {
+      .post-body, .about-body {
         text-align: justify;
         line-height: 36px;
-        padding: 30px 0;
+        padding-top: 30px;
         a:hover {
           @include dotted-hover;
           color: $gradient-1;
@@ -110,7 +110,7 @@ body {
       }
       .post-more {
         text-align: center;
-        margin-top: 10px;
+        margin: 40px auto;
         a {
           border: 1px solid #ddd;
           border-radius: 1px;
@@ -139,8 +139,31 @@ body {
   }
 
 }
-footer {
+#footer {
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  height: 64px;
   font-size: 12px;
   color: $light-gray;
   text-align: center;
+  @include flexbox;
+  @include align-items(center);
+  @include justify-content(center);
+}
+@media (max-width: 758px) {
+  #root {
+    #react-posts, #react-post, #about {
+      article {
+        padding: 0 0 30px 0;
+        .post-title, .about-title {
+          font-size: 6vw;
+          line-height: 36px;
+        }
+        .post-body, .about-body {
+          font-size: 12px;
+          line-height: 27px;
+        }
+      }
+    }
+  }
 }
