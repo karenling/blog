@@ -1,7 +1,7 @@
 $light-gray: #b8c0c2;
 $med-gray: #888d8f;
 $dark-gray: #575b5c;
-$accent: #f55467;
+$accent: #fa5568;
 $gradient-1: #36a6c2;
 $gradient-2: #3cd3c3;
 
@@ -26,6 +26,9 @@ body {
       text-decoration: none;
     }
   }
+}
+b, strong {
+  font-weight: 600;
 }
 input:focus, textarea:focus, button:focus {
   outline: none;

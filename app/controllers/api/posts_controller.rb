@@ -1,4 +1,7 @@
 class Api::PostsController < ApplicationController
+  before_filter :require_current_user!, only: [:new, :create, :edit, :update]
+  skip_before_filter :log_event!, only: [:new, :create, :edit, :update]
+  
   def index
     limit = params[:limit].to_i
     if current_user
