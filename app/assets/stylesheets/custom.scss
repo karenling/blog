@@ -173,9 +173,26 @@ input:focus, textarea:focus, button:focus {
   }
   .message-body {
     padding: 50px;
-    text-align: right;
+    &.center {
+      text-align: center;
+    }
+    .fa-heart {
+      font-size: 70px;
+      color: $accent;
+      margin-bottom: 20px;
+    }
+    @-webkit-keyframes beating {
+      from{
+        -webkit-transform: scale(0.9);
+      }
+      to{
+        -webkit-transform: scale(1);
+      }
+    }
+    .fa-heart {
+      -webkit-animation: beating 0.7s ease 0s infinite normal;
+    }
     .message-intro {
-      text-align: left;
       margin-bottom: 20px;
       font-size: 12px;
       color: $med-gray;
@@ -199,31 +216,35 @@ input:focus, textarea:focus, button:focus {
       font-size: 14px;
       border-radius: 2px;
     }
-    button {
-      margin-top: 20px;
-      background-color: $accent;
-      border: 0;
-      color: white;
-      border-radius: 2px;
-      padding: 10px 17px;
-      font-size: 12px;
-      text-transform: uppercase;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      transition: color 500ms linear;
-      transition: background 500ms linear;
-      i {
-        margin-right: 10px;
+    .submit-wrapper {
+      text-align: right;
+      button {
+        margin-top: 20px;
+        background-color: $accent;
+        border: 0;
+        color: white;
+        border-radius: 2px;
+        padding: 10px 17px;
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        transition: color 500ms linear;
+        transition: background 500ms linear;
+        i {
+          margin-right: 10px;
+        }
+        &:hover {
+          padding: 9px 16px;
+          border: 1px solid #ddd;
+          color: #aaa;
+          background-color: white;
+        }
+        &:focus {
+          background-color: $light-gray;
+        }
       }
-      &:hover {
-        padding: 9px 16px;
-        border: 1px solid #ddd;
-        color: #aaa;
-        background-color: white;
-      }
-      &:focus {
-        background-color: $light-gray;
-      }
+
     }
 
   }

@@ -19,8 +19,8 @@ var Contact = React.createClass({
   },
   handleMessage: function(status, message) {
     if (status === 'successful') {
-      this.setState({ successMessage: message })
       this.setState(this.blankState);
+      this.setState({ successMessage: message })
     } else {
       this.setState({ errorMessage: message })
     }
@@ -36,7 +36,17 @@ var Contact = React.createClass({
     if (this.state.successMessage.length > 0) {
       return(
         <div id='contact-wrapper'>
-          <div id='contact'>{ this.state.successMessage }</div>
+          <div id='contact'>
+            <div className='exit-bar' onClick={ this.closeContactModal }>
+              <i className='fa fa-close'></i>
+            </div>
+            <div className='message-body center'>
+              <i className='fa fa-heart'></i>
+              <div className='message-intro'>
+                { this.state.successMessage }
+              </div>
+            </div>
+          </div>
         </div>
       )
     } else {
@@ -55,7 +65,9 @@ var Contact = React.createClass({
                 <input type='text' onChange={ this.handleChange } name='name' value={ this.state.name } placeholder='Name'/>
                 <input type='text' onChange={ this.handleChange } name='email' value={ this.state.email } placeholder='Email'/>
                 <textarea type='text' onChange={ this.handleChange } name='message' value={ this.state.message } placeholder='Message'></textarea>
-                <button><i className='fa fa-paper-plane'></i>Send</button>
+                <div className='submit-wrapper'>
+                  <button><i className='fa fa-paper-plane'></i>Send</button>
+                </div>
               </form>
             </div>
           </div>
