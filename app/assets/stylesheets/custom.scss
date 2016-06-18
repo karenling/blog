@@ -50,7 +50,7 @@ input:focus, textarea:focus, button:focus {
       li {
         display: inline;
         margin-left: 32px;
-        font-size: 12px;
+        font-size: 16px;
         color: $light-gray;
         .fa {
           cursor: pointer;
@@ -276,4 +276,27 @@ input:focus, textarea:focus, button:focus {
       }
     }
   }
+}
+
+// for contact modal
+.auto-enter {
+ opacity: 0.01;
+ transform: translateY(-200%);
+}
+
+.auto-enter.auto-enter-active {
+ opacity: 1;
+ transform: translateY(0);
+ transition: opacity 500ms, transform 500ms;
+}
+
+.auto-leave {
+ opacity: 1;
+ transform: translateY(0);
+}
+
+.auto-leave.auto-leave-active {
+ opacity: 0.01;
+ transform: translateY(-200%);
+ transition: opacity 500ms, transform 500ms;
 }
