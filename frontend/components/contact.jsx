@@ -1,5 +1,6 @@
 var React = require('react');
 var ClientActions = require('../actions/clientActions');
+
 var Contact = React.createClass({
   getInitialState: function() {
     return this.blankState;
@@ -28,26 +29,35 @@ var Contact = React.createClass({
     e.preventDefault();
     ClientActions.sendMessage(this.state, this.handleMessage)
   },
+  closeContactModal: function() {
+    this.props.updateformDisplay(false);
+  },
   render: function() {
     if (this.state.successMessage.length > 0) {
       return(
-        <div id='contact'>{ this.state.successMessage }</div>
+        <div id='contact-wrapper'>
+          <div id='contact'>{ this.state.successMessage }</div>
+        </div>
       )
     } else {
       return(
-        <div id='contact'>
-          <div className='exit-bar'><i className='fa fa-close'></i></div>
-          <div className='message-body'>
-            <div className='message-intro'>
-              Feel free to send me a comment, question, anything!
+        <div id='contact-wrapper'>
+          <div id='contact'>
+            <div className='exit-bar' onClick={ this.closeContactModal }>
+              <i className='fa fa-close'></i>
             </div>
-            <div className='error-message'>{ this.state.errorMessage }</div>
-            <form className='new-message' onSubmit={ this.onSubmit } >
-              <input type='text' onChange={ this.handleChange } name='name' value={ this.state.name } placeholder='Name'/>
-              <input type='text' onChange={ this.handleChange } name='email' value={ this.state.email } placeholder='Email'/>
-              <textarea type='text' onChange={ this.handleChange } name='message' value={ this.state.message } placeholder='Message'></textarea>
-              <button><i className='fa fa-paper-plane'></i>Send</button>
-            </form>
+            <div className='message-body'>
+              <div className='message-intro'>
+                Feel free to send me a comment, question, anything!
+              </div>
+              <div className='error-message'>{ this.state.errorMessage }</div>
+              <form className='new-message' onSubmit={ this.onSubmit } >
+                <input type='text' onChange={ this.handleChange } name='name' value={ this.state.name } placeholder='Name'/>
+                <input type='text' onChange={ this.handleChange } name='email' value={ this.state.email } placeholder='Email'/>
+                <textarea type='text' onChange={ this.handleChange } name='message' value={ this.state.message } placeholder='Message'></textarea>
+                <button><i className='fa fa-paper-plane'></i>Send</button>
+              </form>
+            </div>
           </div>
         </div>
       )
