@@ -30,7 +30,7 @@ var PostShow = React.createClass({
     } else {
       return(
         <div id='react-post'>
-          <PostIndexItem post={ this.state.post }></PostIndexItem>
+          <PostIndexItem post={ this.state.post } showMoreButton={ false }></PostIndexItem>
         </div>
       )
     }
