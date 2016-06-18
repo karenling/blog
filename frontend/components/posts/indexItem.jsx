@@ -17,8 +17,6 @@ var PostIndexItem = React.createClass({
       editLink = <span>| <Link to={ editLink }>Edit</Link></span>
     }
 
-
-
     var moreButton;
     if (this.props.showMoreButton) {
       moreButton = <div className='post-more'><Link to={ postLink }>Read More</Link></div>

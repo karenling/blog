@@ -18,7 +18,7 @@ var Contact = React.createClass({
     this.setState(change)
   },
   handleMessage: function(status, message) {
-    if (status === 'successful') {
+    if (status === 'success') {
       this.setState(this.blankState);
       this.setState({ successMessage: message })
     } else {

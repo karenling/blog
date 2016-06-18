@@ -8,7 +8,7 @@ class Api::PagesController < ApplicationController
     end
 
     ContactMailer.contact(params[:name], params[:email], params[:message]).deliver_now
-    render json: { status: 'successful', message: 'Message sent! I\'ll get back to you as soon as I can!' }
+    render json: { status: 'success', message: 'Message sent! I\'ll get back to you as soon as I can!' }
   end
 
   def validate_contact

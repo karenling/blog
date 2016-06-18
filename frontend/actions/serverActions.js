@@ -14,6 +14,12 @@ var ServerActions = {
       actionType: PostConstants.POST_RECEIVED,
       post: post
     });
+  },
+  createPost: function(post) {
+    dispatcher.dispatch({
+      actionType: PostConstants.CREATE_POST,
+      post: post
+    });
   }
 };
 

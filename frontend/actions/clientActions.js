@@ -7,8 +7,8 @@ var ClientActions = {
   fetchOnePost: function(friendlyName) {
     ApiUtil.fetchOnePost(friendlyName);
   },
-  createPost: function(params) {
-    ApiUtil.createPost(params);
+  createPost: function(params, callback) {
+    ApiUtil.createPost(params, callback);
   },
   sendMessage: function(params, callback) {
     ApiUtil.sendMessage(params, callback);

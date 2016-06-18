@@ -27,13 +27,11 @@ class Api::PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    if @post.save
-      render json: @post
-      # flash[:notice] = 'Post created!'
-      # redirect_to post_path(@post)
-    else
-      render json: @post.errors.full_messages.to_sentence, status: :unprocessable_enitty
 
+    if @post.save
+      render :new_post
+    else
+      render json: @post.errors.full_messages.to_sentence, status: :unprocessable_entity
     end
   end
 

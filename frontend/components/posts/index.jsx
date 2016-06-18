@@ -47,8 +47,8 @@ var PostIndex = React.createClass({
   render: function() {
     return(
       <div id='react-posts'>
-        { this.state.posts.map(function(post, idx) {
-          return <PostIndexItem key={ idx } post={ post } showMoreButton={ true }/>
+        { this.state.posts.map(function(post) {
+          return <PostIndexItem key={ post.friendly_name } post={ post } showMoreButton={ true }/>
         })}
       </div>
     )

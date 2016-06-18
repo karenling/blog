@@ -303,3 +303,10 @@ input:focus, textarea:focus, button:focus {
  transform: translateY(-200%);
  transition: opacity 500ms, transform 500ms;
 }
+
+.new-post {
+  .error-message {
+    color: red;
+    font-size: 12px;
+  }
+}

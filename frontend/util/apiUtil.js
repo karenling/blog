@@ -22,18 +22,18 @@ var ApiUtil = {
       }
     });
   },
-  createPost: function(params) {
+  createPost: function(params, callback) {
     $.ajax({
       type: 'POST',
       url: '/api/posts',
       dataType: 'JSON',
       data: { post: params },
-      success: function(payload) {
-        debugger
-        ServerActions.receiveOnePost(post);
+      success: function(post, status) {
+        ServerActions.createPost(post);
+        callback(status)
       },
       error: function(response, status) {
-        debugger
+        callback(status, response.responseText)
       }
     });
   },

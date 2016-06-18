@@ -8,7 +8,7 @@ var _fullPosts = {}
 var _totalPosts;
 
 PostStore.all = function() {
-  return Object.keys(_posts).map(function(key) {
+  return Object.keys(_posts).sort().reverse().map(function(key) {
     return _posts[key];
   });
 };
@@ -22,6 +22,11 @@ PostStore.__onDispatch = function(payload) {
       break;
     case PostConstants.POST_RECEIVED:
       resetFullPost(payload.post)
+      PostStore.__emitChange();
+      break;
+    case PostConstants.CREATE_POST:
+      addPost(payload.post.truncated_post);
+      resetFullPost(payload.post.full_post);
       PostStore.__emitChange();
       break;
   }
@@ -43,6 +48,10 @@ var addPosts = function(payloadPosts) {
   payloadPosts.forEach(function(post) {
     _posts[post.friendly_name] = post;
   });
+};
+
+var addPost = function(payloadPost) {
+  _posts[payloadPost.friendly_name] = payloadPost;
 };
 
 var resetFullPost = function(payloadPost) {

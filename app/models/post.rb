@@ -9,6 +9,7 @@ class Post < ActiveRecord::Base
   paginates_per 3
 
   validates_presence_of :title, :body, :status, :post_date, :user_id
+  validates_uniqueness_of :friendly_name, :slug
 
   Post::PRIVATE = 0
   Post::DRAFT = 1
