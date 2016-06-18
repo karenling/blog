@@ -30,7 +30,7 @@ var Contact = React.createClass({
     ClientActions.sendMessage(this.state, this.handleMessage)
   },
   closeContactModal: function() {
-    this.props.updateformDisplay(false);
+    this.props.updateContactForm(false);
   },
   render: function() {
     if (this.state.successMessage.length > 0) {

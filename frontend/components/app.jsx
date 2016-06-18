@@ -3,7 +3,7 @@ var Navigation = require('./layout/navigation');
 var Footer = require('./layout/footer');
 var Contact = require('./contact');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
-var PostNew = require('./posts/new');
+var NewPostForm = require('./posts/new');
 
 var App = React.createClass({
   getInitialState: function() {
@@ -20,13 +20,13 @@ var App = React.createClass({
   },
   render: function() {
     if (this.state.showContactForm) {
-      contact = <Contact updateformDisplay={ this.handleUpdateFormDisplay }></Contact>
+      contact = <Contact updateContactForm={ this.handleUpdateFormDisplay }></Contact>
     } else {
       contact = null
     }
 
     if (this.state.showPostNewForm) {
-      postForm = <PostNew updatePostNewForm={ this.handleShowPostNewForm }></PostNew>
+      postForm = <NewPostForm updatePostNewForm={ this.handleShowPostNewForm }></NewPostForm>
     } else {
       postForm = null
     }
@@ -34,7 +34,7 @@ var App = React.createClass({
     return(
       <div id='react-main'>
         { postForm }
-        <Navigation updatePostNewForm={ this.handleShowPostNewForm } updateformDisplay={ this.handleUpdateFormDisplay }></Navigation>
+        <Navigation updatePostNewForm={ this.handleShowPostNewForm } updateContactForm={ this.handleUpdateFormDisplay }></Navigation>
         { this.props.children }
         <Footer></Footer>
         <ReactCSSTransitionGroup transitionName='auto' transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>{ contact }</ReactCSSTransitionGroup>

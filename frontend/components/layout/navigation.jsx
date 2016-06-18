@@ -4,7 +4,7 @@ var IndexLink = require('react-router').IndexLink
 
 var Navigation = React.createClass({
   displayContactForm: function() {
-    this.props.updateformDisplay(true);
+    this.props.updateContactForm(true);
   },
   displayPostNewForm: function() {
     this.props.updatePostNewForm(true);
