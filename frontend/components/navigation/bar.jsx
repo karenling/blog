@@ -5,10 +5,12 @@ var IndexLink = require('react-router').IndexLink
 var Navigation = React.createClass({
   render: function() {
     return(
-      <div>
-        <IndexLink to='/' activeClassName="active">Home</IndexLink>
-        <Link to='/about/' activeClassName="active">About</Link>
-        <Link to='/contact/' activeClassName="active">Contact</Link>
+      <div id="navigation">
+        <ul id="navigation-links">
+          <li><IndexLink to='/' activeClassName="active">Home</IndexLink></li>
+          <li><Link to='/about/' activeClassName="active">About</Link></li>
+          <li><Link to='/contact/' activeClassName="active">Contact</Link></li>
+        </ul>
       </div>
     )
   }

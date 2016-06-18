@@ -1,11 +1,9 @@
 var React = require('react');
+var Link = require('react-router').Link;
 
 var PostIndexItem = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
-  },
-  showIndividualPost: function() {
-    this.context.router.push('/posts/' + this.props.post.friendly_name)
   },
   createMarkup: function() {
     return { __html: this.props.post.body }
@@ -13,16 +11,15 @@ var PostIndexItem = React.createClass({
   render: function() {
     var status;
     if (this.props.post.status) {
-      status = <div>{ this.props.post.status }</div>
+      status = <span className='post-status'> | { this.props.post.status }</span>
     }
-
+    var postLink = "/posts/" + this.props.post.friendly_name
     return(
       <article>
-        <div className='post-title' onClick={ this.showIndividualPost }>{ this.props.post.title }</div>
-        <div className='post-header-img'><img src={ this.props.post.header_image }></img></div>
-        <div dangerouslySetInnerHTML={ this.createMarkup() } />
-        <div>{ this.props.post.post_date }</div>
-        { status }
+        <div className='post-title'><Link to={ postLink }>{ this.props.post.title }</Link></div>
+        <div className='post-detail'><em>By</em> Karen <em>on</em> { this.props.post.post_date } { status }</div>
+        <div className='post-body' dangerouslySetInnerHTML={ this.createMarkup() } />
+        <div className='post-more'><Link to={ postLink }>Read More</Link></div>
       </article>
     )
   }
