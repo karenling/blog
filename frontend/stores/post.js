@@ -5,6 +5,7 @@ var PostConstants = require('../constants/postConstants');
 
 var _posts = {};
 var _fullPosts = {}
+var _totalPosts;
 
 PostStore.all = function() {
   return Object.keys(_posts).map(function(key) {
@@ -16,7 +17,7 @@ PostStore.__onDispatch = function(payload) {
   switch(payload.actionType) {
     case PostConstants.POSTS_RECEIVED:
       addPosts(payload.posts.current_posts);
-      PostStore.totalPosts(payload.posts.total_posts);
+      setTotalPosts(payload.posts.total_posts);
       PostStore.__emitChange();
       break;
     case PostConstants.POST_RECEIVED:
@@ -27,11 +28,15 @@ PostStore.__onDispatch = function(payload) {
 };
 
 PostStore.totalPosts = function(totalPosts) {
-  return totalPosts;
+  return _totalPosts;
 };
 
 PostStore.findByFriendlyName = function(friendlyName) {
   return _fullPosts[friendlyName];
+};
+
+var setTotalPosts = function(payloadTotalPosts) {
+  _totalPosts = payloadTotalPosts;
 };
 
 var addPosts = function(payloadPosts) {

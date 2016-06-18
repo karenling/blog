@@ -8,16 +8,19 @@ var PostIndex = React.createClass({
     return({
       posts: PostStore.all(),
       limit: parseInt(TwinkieandKaren.PER_PAGE),
-      totalCount: PostStore.totalPosts()
+      totalCount: PostStore.totalPosts(),
+      safeToFetch: true
     })
   },
   _onChange: function() {
     this.setState({
-      posts: PostStore.all()
+      posts: PostStore.all(),
+      totalCount: PostStore.totalPosts(),
+      safeToFetch: true
     })
   },
   thresholdCallback: function() {
-    var thresholdOfLoader = document.getElementById('loadThreshold').getBoundingClientRect().top + document.body.scrollTop;
+    var thresholdOfLoader = document.getElementById('footer').getBoundingClientRect().top + document.body.scrollTop;
     var bottomOfPage = window.pageYOffset + window.innerHeight;
     if (bottomOfPage > thresholdOfLoader) {
       this.loadMorePosts();
@@ -33,16 +36,12 @@ var PostIndex = React.createClass({
     window.removeEventListener('scroll', this.thresholdCallback);
   },
   loadMorePosts: function() {
-    this.setState({
-      limit: this.state.limit += parseInt(TwinkieandKaren.PER_PAGE)
-    })
-    ClientActions.fetchPosts(this.state.limit);
-  },
-  loadMoreButton: function() {
-    if (this.state.limit >= this.state.total) {
-      return( <div></div>)
-    } else {
-      return( <div id='loadThreshold'></div> )
+    if (this.state.safeToFetch) {
+      this.setState({
+        limit: this.state.limit += parseInt(TwinkieandKaren.PER_PAGE),
+        safeToFetch: false
+      })
+      ClientActions.fetchPosts(this.state.limit);
     }
   },
   render: function() {
@@ -51,7 +50,6 @@ var PostIndex = React.createClass({
         { this.state.posts.map(function(post, idx) {
           return <PostIndexItem key={ idx } post={ post } showMoreButton={ true }/>
         })}
-        { this.loadMoreButton() }
       </div>
     )
   }

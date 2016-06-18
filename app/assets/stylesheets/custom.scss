@@ -68,7 +68,7 @@ body {
       margin: 60px auto;
       border-bottom: 1px solid #ddd;
       padding-bottom: 60px;
-      &:nth-last-child(2) {
+      &:last-child {
         border: 0;
       }
       .post-title {
@@ -141,6 +141,6 @@ body {
 }
 footer {
   font-size: 12px;
-  color: $med-gray;
+  color: $light-gray;
   text-align: center;
 }
