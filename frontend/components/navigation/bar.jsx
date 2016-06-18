@@ -1,19 +1,14 @@
 var React = require('react');
-var NavLink = require('./navLink');
+var Link = require('react-router').Link
+var IndexLink = require('react-router').IndexLink
 
 var Navigation = React.createClass({
-  getInitialState: function() {
-    return({
-      'Home': '/',
-      'About': '/about'
-    })
-  },
   render: function() {
     return(
       <div>
-        { Object.keys(this.state).map(function(name, idx) {
-          return( <NavLink key={ idx } name={ name } route={ this.state[name] }/>)
-        }.bind(this))}
+        <IndexLink to='/' activeClassName="active">Home</IndexLink>
+        <Link to='/about/' activeClassName="active">About</Link>
+        <Link to='/contact/' activeClassName="active">Contact</Link>
       </div>
     )
   }
