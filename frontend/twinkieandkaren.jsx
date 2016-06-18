@@ -7,14 +7,12 @@ var IndexRoute = require('react-router').IndexRoute;
 var App = require('./components/app');
 var PostIndex = require('./components/posts/index');
 var PostShow = require('./components/posts/show');
-var PostNew = require('./components/posts/new');
 var PostEdit = require('./components/posts/edit')
 var About = require('./components/about');
 
 var routes = (
   <Route path="/" component={App}>
     <IndexRoute component={ PostIndex } />
-    <Route path="/posts/new" component={ PostNew }></Route>
     <Route path="/posts/:friendlyName/edit" component={ PostEdit }></Route>
     <Route path="/posts/:friendlyName" component={ PostShow }></Route>
     <Route path="/about" component={ About }></Route>

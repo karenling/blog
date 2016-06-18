@@ -6,6 +6,9 @@ var Navigation = React.createClass({
   displayContactForm: function() {
     this.props.updateformDisplay(true);
   },
+  displayPostNewForm: function() {
+    this.props.updatePostNewForm(true);
+  },
   render: function() {
     return(
       <div id="navigation">
@@ -20,6 +23,7 @@ var Navigation = React.createClass({
             </Link>
           </li>
           <li onClick={ this.displayContactForm }><i className="fa fa-envelope"></i></li>
+          <li onClick={ this.displayPostNewForm }><i className="fa fa-pencil"></i></li>
         </ul>
       </div>
     )
