@@ -16,25 +16,33 @@ var PostIndex = React.createClass({
       posts: PostStore.all()
     })
   },
+  thresholdCallback: function() {
+    var thresholdOfLoader = document.getElementById('loadThreshold').getBoundingClientRect().top + document.body.scrollTop;
+    var bottomOfPage = window.pageYOffset + window.innerHeight;
+    if (bottomOfPage > thresholdOfLoader) {
+      this.loadMorePosts();
+    }
+  },
   componentDidMount: function() {
     this.listener = PostStore.addListener(this._onChange);
     ClientActions.fetchPosts(this.state.limit);
+    window.addEventListener('scroll', this.thresholdCallback);
   },
   componentWillUnmount: function() {
     this.listener.remove();
+    window.removeEventListener('scroll', this.thresholdCallback);
   },
   loadMorePosts: function() {
     this.setState({
       limit: this.state.limit += parseInt(TwinkieandKaren.PER_PAGE)
     })
     ClientActions.fetchPosts(this.state.limit);
-
   },
   loadMoreButton: function() {
     if (this.state.limit >= this.state.total) {
-      return( <div>hi hi</div>)
+      return( <div></div>)
     } else {
-      return( <div onClick={ this.loadMorePosts }>Load More</div> )
+      return( <div id='loadThreshold'></div> )
     }
   },
   render: function() {

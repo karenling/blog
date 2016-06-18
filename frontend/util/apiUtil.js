@@ -1,7 +1,13 @@
 var ServerActions = require('../actions/serverActions');
 
+_block = false; // use block to make sure requests don't go on infinitely
+
 var ApiUtil = {
   fetchPosts: function(limit) {
+    if (_block) {
+      return;
+    }
+    _block = true;
     $.ajax({
       type: 'GET',
       url: '/api/posts',
@@ -9,6 +15,7 @@ var ApiUtil = {
       data: { limit: limit },
       success: function(posts) {
         ServerActions.receivePosts(posts);
+        _block = false;
       }
     });
   },

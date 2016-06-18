@@ -23,7 +23,7 @@ body {
   a {
     color: $accent;
     transition: color 200ms linear;
-    &:focus {
+    &:hover, &:focus {
       text-decoration: none;
     }
   }
@@ -68,6 +68,9 @@ body {
       margin: 60px auto;
       border-bottom: 1px solid #ddd;
       padding-bottom: 60px;
+      &:nth-last-child(2) {
+        border: 0;
+      }
       .post-title {
         font-size: 50px;
         font-weight: 100;
