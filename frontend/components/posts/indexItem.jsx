@@ -3,9 +3,6 @@ var Link = require('react-router').Link;
 var PostEdit = require('./edit');
 
 var PostIndexItem = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.object.isRequired
-  },
   getInitialState: function() {
     return({
       showEdit: false
@@ -37,7 +34,7 @@ var PostIndexItem = React.createClass({
     if (this.state.showEdit) {
       view = <PostEdit key={ this.props.post.friendly_name + 'edit' } post={ this.props.post } toggleView={ this.toggleView }/>
     }
-    
+
     return(
       <article>
         <div className='post-title'><Link to={ postLink }>{ this.props.post.title }</Link></div>

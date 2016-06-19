@@ -24,6 +24,7 @@ var Navigation = React.createClass({
           </li>
           <li onClick={ this.displayContactForm }><i className="fa fa-envelope"></i></li>
           <li onClick={ this.displayPostNewForm }><i className="fa fa-pencil"></i></li>
+          <Link to='/login/' activeClassName="active">Login</Link>
         </ul>
       </div>
     )

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'posts/tagged/:tag_name' => 'posts#tagged', as: 'tagged_posts'
   get 'about' => 'pages#about', as: 'about'
   get 'contact' => 'pages#contact', as: 'contact'
+  get 'login' => 'pages#login', as: 'login'
   post 'send_contact' => 'pages#send_contact', as: 'send_contact'
 
   namespace :api , defaults: { format: :json } do

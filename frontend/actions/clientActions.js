@@ -17,11 +17,11 @@ var ClientActions = {
   sendMessage: function(params, callback) {
     ApiUtil.sendMessage(params, callback);
   },
-  login: function(params) {
-    SessionApiUtil.login(params);
+  login: function(params, callback) {
+    SessionApiUtil.login(params, callback);
   },
-  logout: function() {
-    SessionApiUtil.logout();
+  logout: function(callback) {
+    SessionApiUtil.logout(callback);
   }
 };
 

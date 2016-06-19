@@ -9,6 +9,7 @@ var PostIndex = require('./components/posts/index');
 var PostShow = require('./components/posts/show');
 var PostEdit = require('./components/posts/edit')
 var About = require('./components/about');
+var LoginForm = require('./components/login');
 
 var routes = (
   <Route path="/" component={App}>
@@ -16,6 +17,7 @@ var routes = (
     <Route path="/posts/:friendlyName/edit" component={ PostEdit }></Route>
     <Route path="/posts/:friendlyName" component={ PostShow }></Route>
     <Route path="/about" component={ About }></Route>
+    <Route path="/login" component={ LoginForm }></Route>
   </Route>
 );
 

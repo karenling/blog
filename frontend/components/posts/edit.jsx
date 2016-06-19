@@ -46,7 +46,7 @@ var PostNew = React.createClass({
           </div>
           <div className='new-post-body'>
             { errorMessage }
-            <form class='edit-post' onSubmit={ this.onSubmit }>
+            <form className='edit-post' onSubmit={ this.onSubmit }>
               <input type='text' onChange={ this.handleChange } name='title' value={ this.state.title } placeholder='Title' />
               <input type='text' onChange={ this.handleChange } name='header_image' value={ this.state.header_image } placeholder='Header Image' />
               <textarea onChange={ this.handleChange } name='body' value={ this.state.body } placeholder='Body'></textarea>

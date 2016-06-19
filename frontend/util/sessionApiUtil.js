@@ -9,20 +9,20 @@ var SessionApiUtil = {
       success: function(user) {
         ServerActions.receiveCurrentUser(user);
       },
-      error: function(response) {
-        console.log(response.responseJSON.base)
-      } 
+      error: function(response, status) {
+        callback(status, response.responseJSON.base)
+      }
     });
   },
-  fetchCurrentUser: function() {
+  fetchCurrentUser: function(callback) {
     $.ajax({
       type: 'GET',
       url: '/api/session',
       success: function(user) {
         ServerActions.receiveCurrentUser(user);
       },
-      error: function(response) {
-        console.log(response.responseJSON.base)
+      error: function(response, status) {
+        callback(status, response.responseJSON.base)
       }
     });
   },
@@ -32,9 +32,10 @@ var SessionApiUtil = {
       url: '/api/session',
       success: function(user) {
         ServerActions.receiveCurrentUser(user);
+        console.log('logged out')
       },
-      error: function(response) {
-        console.log(response.responseJSON.base)
+      error: function(response, status) {
+        callback(status, response.responseJSON.base);
       }
     });
   }

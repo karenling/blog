@@ -28,4 +28,7 @@ class PagesController < ApplicationController
     error_message << 'a message' if params[:message].blank?
     error_message
   end
+
+  def login
+  end
 end

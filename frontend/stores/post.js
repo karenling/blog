@@ -52,7 +52,14 @@ PostStore.totalPosts = function(totalPosts) {
 };
 
 PostStore.findByFriendlyName = function(friendlyName) {
-  return _fullPosts[friendlyName];
+  var post;
+  Object.keys(_fullPosts).forEach(function(id) {
+    if (_fullPosts[id].friendly_name === friendlyName) {
+      post = _fullPosts[id];
+      return;
+    }
+  })
+  return post;
 };
 
 var setTotalPosts = function(payloadTotalPosts) {
