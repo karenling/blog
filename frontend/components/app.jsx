@@ -33,11 +33,16 @@ var App = React.createClass({
 
     return(
       <div id='react-main'>
-        { postForm }
         <Navigation updatePostNewForm={ this.handleShowPostNewForm } updateContactForm={ this.handleUpdateFormDisplay }></Navigation>
         { this.props.children }
         <Footer></Footer>
-        <ReactCSSTransitionGroup transitionName='auto' transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>{ contact }</ReactCSSTransitionGroup>
+
+        <ReactCSSTransitionGroup transitionName='auto' transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
+          { contact }
+        </ReactCSSTransitionGroup>
+        <ReactCSSTransitionGroup transitionName='auto' transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
+          { postForm }
+        </ReactCSSTransitionGroup>
       </div>
     )
   }
