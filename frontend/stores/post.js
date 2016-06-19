@@ -21,7 +21,6 @@ PostStore.all = function() {
   return Object.keys(_posts).map(function(key) {
     return _posts[key];
   }).sort(_compare);
-
 };
 
 PostStore.__onDispatch = function(payload) {
@@ -32,7 +31,7 @@ PostStore.__onDispatch = function(payload) {
       PostStore.__emitChange();
       break;
     case PostConstants.POST_RECEIVED:
-      resetFullPost(payload.post)
+      resetFullPost(payload.post);
       PostStore.__emitChange();
       break;
     case PostConstants.CREATE_POST:
