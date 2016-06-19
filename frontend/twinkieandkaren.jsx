@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var BrowserHistory = require('react-router').browserHistory;
+var BrowserHistory = require('react-router').hashHistory;
 var Router = require('react-router').Router;
 var Route = require('react-router').Route;
 var IndexRoute = require('react-router').IndexRoute;
@@ -30,9 +30,8 @@ var _ensureLoggedIn = function(nextState, replace) {
 var routes = (
   <Route path="/" component={ App } onEnter={ _ensureUserFetched }>
     <IndexRoute component={ PostIndex } />
-    <Route path="/posts/:friendlyName/edit" component={ PostEdit }></Route>
     <Route path="/posts/:friendlyName" component={ PostShow }></Route>
-    <Route path="/about" component={ About } onEnter={ _ensureLoggedIn }></Route>
+    <Route path="/about" component={ About }></Route>
     <Route path="/login" component={ LoginForm }></Route>
   </Route>
 );

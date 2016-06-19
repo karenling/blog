@@ -2,6 +2,7 @@ var React = require('react');
 var Link = require('react-router').Link
 var IndexLink = require('react-router').IndexLink
 var SessionStore = require('../../stores/session');
+var SessionActions = require('../../actions/sessionActions');
 
 var Navigation = React.createClass({
   displayContactForm: function() {
@@ -10,11 +11,15 @@ var Navigation = React.createClass({
   displayPostNewForm: function() {
     this.props.updatePostNewForm(true);
   },
+  logout: function() {
+    SessionActions.logout();
+  },
   render: function() {
-    var loggedIn;
-
+    var newPostLink;
+    var signOutLink;
     if (SessionStore.isUserLoggedIn()) {
-      loggedIn = <div>logged in</div>
+      newPostLink = <li onClick={ this.displayPostNewForm }><i className="fa fa-pencil"></i></li>
+      signOutLink = <li onClick={ this.logout }><i className='fa fa-sign-out'></i></li>
     }
 
     return(
@@ -30,11 +35,9 @@ var Navigation = React.createClass({
             </Link>
           </li>
           <li onClick={ this.displayContactForm }><i className="fa fa-envelope"></i></li>
-          <li onClick={ this.displayPostNewForm }><i className="fa fa-pencil"></i></li>
-          <Link to='/login/' activeClassName="active">Login</Link>
+          { newPostLink }
+          { signOutLink }
         </ul>
-
-        { loggedIn }
       </div>
     )
   }

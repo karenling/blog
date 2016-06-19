@@ -21,9 +21,6 @@ var LoginForm = React.createClass({
     e.preventDefault();
     SessionActions.login(this.state);
   },
-  logout: function() {
-    SessionActions.logout();
-  },
   _onChange: function() {
     if (SessionStore.isUserLoggedIn()) {
       this.context.router.push('/');
@@ -43,7 +40,6 @@ var LoginForm = React.createClass({
           <input type='text' onChange={ this.handleChange } name='user_password' value={ this.state.user_password } />
           <button>Login</button>
         </form>
-        <div onClick={ this.logout }>Logout</div>
       </div>
     )
   }

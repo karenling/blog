@@ -26,7 +26,7 @@ var App = React.createClass({
       contact = null
     }
 
-    if (this.state.showPostNewForm) {
+    if (SessionStore.isUserLoggedIn() && this.state.showPostNewForm) {
       postForm = <NewPostForm updatePostNewForm={ this.handleShowPostNewForm }></NewPostForm>
     } else {
       postForm = null

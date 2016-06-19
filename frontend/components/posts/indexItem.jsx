@@ -1,6 +1,7 @@
 var React = require('react');
 var Link = require('react-router').Link;
 var PostEdit = require('./edit');
+var SessionStore = require('../../stores/session');
 
 var PostIndexItem = React.createClass({
   getInitialState: function() {
@@ -18,7 +19,7 @@ var PostIndexItem = React.createClass({
   },
   render: function() {
     var postLink = "/posts/" + this.props.post.friendly_name
-    var editLink = "/posts/"  + this.props.post.friendly_name + "/edit"
+    var editLink;
     var status;
     if (this.props.post.status) {
       status = <span className='post-status'> | { this.props.post.status }</span>
@@ -31,7 +32,7 @@ var PostIndexItem = React.createClass({
     }
 
     var view;
-    if (this.state.showEdit) {
+    if (SessionStore.isUserLoggedIn() && this.state.showEdit) {
       view = <PostEdit key={ this.props.post.friendly_name + 'edit' } post={ this.props.post } toggleView={ this.toggleView }/>
     }
 
@@ -40,7 +41,7 @@ var PostIndexItem = React.createClass({
         <div className='post-title'><Link to={ postLink }>{ this.props.post.title }</Link></div>
         <div className='post-detail'>
           <em>By</em> Karen <em>on</em> { this.props.post.post_date }
-          { status } {editLink }
+          { status } { editLink }
         </div>
         <div className='post-body' dangerouslySetInnerHTML={ this.createMarkup() } />
         { moreButton }

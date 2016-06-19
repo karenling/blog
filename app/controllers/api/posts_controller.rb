@@ -14,14 +14,14 @@ class Api::PostsController < ApplicationController
   end
 
   def show
-    if current_user
-      @post = Post.includes(:tags).friendly.find(params[:id])
-    else
-      @post = Post.includes(:tags).public_posts.friendly.find(params[:id])
-    end
-
-    unless @post
-      render json: 'Must be author', status: :unprocessable_entity
+    begin
+      if current_user
+        @post = Post.includes(:tags).friendly.find(params[:id])
+      else
+        @post = Post.includes(:tags).public_posts.friendly.find(params[:id])
+      end
+    rescue ActiveRecord::RecordNotFound => e
+      render json: { base: 'Must be author' }, status: :unprocessable_entity
     end
   end
 

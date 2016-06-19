@@ -22,26 +22,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    if current_user
-      @post = Post.includes(:tags).friendly.find(params[:id])
-    else
-      @post = Post.includes(:tags).public_posts.friendly.find(params[:id])
-    end
-
-    @title = @post.try(:title)
-
-    unless @post
-      flash[:alert] = 'Must be author.'
-      redirect_to posts_path
-    end
-
-    @path = request.path
-
-    @disable_link = true
-    respond_to do |format|
-      format.html { render 'show' && return }
-      format.js { @show_close = true; render 'show' && return, formats: [:js], handlers: [:erb] }
-    end
   end
 
   def index

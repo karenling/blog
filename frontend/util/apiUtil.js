@@ -1,5 +1,6 @@
 var ServerActions = require('../actions/serverActions');
 
+
 var ApiUtil = {
   fetchPosts: function(limit) {
     $.ajax({
@@ -12,13 +13,17 @@ var ApiUtil = {
       }
     });
   },
-  fetchOnePost: function(friendlyName) {
+  fetchOnePost: function(friendlyName, errorCallback) {
     $.ajax({
       type: 'GET',
       url: '/api/posts/' + friendlyName,
       dataType: 'JSON',
       success: function(post) {
         ServerActions.receiveOnePost(post);
+      },
+      error: function(response) {
+        console.log(response.responseJSON.base);
+        errorCallback();
       }
     });
   },
