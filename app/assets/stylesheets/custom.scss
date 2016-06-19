@@ -10,18 +10,22 @@ $gradient-2: #3cd3c3;
   border-bottom: 1px dotted #ddd;
   padding-bottom: 3px;
 }
+@mixin gradient($color-1, $color-2) {
+  background: $color-1; /* Old browsers */
+  background: -moz-linear-gradient(left,  $color-1 0%, $color-2 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  $color-1 0%,$color-2 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  $color-1 0%,$color-2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=#{$color-1}, endColorstr=#{$color-2},GradientType=1 ); /* IE6-9 */
+}
 
 body {
   font: 16px 'Open Sans', sans-serif;
   color: $dark-gray;
-  background: $gradient-1; /* Old browsers */
-  background: -moz-linear-gradient(left,  $gradient-1 0%, $gradient-2 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left,  $gradient-1 0%,$gradient-2 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right,  $gradient-1 0%,$gradient-2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#36a6c2', endColorstr='#3cd3c3',GradientType=1 ); /* IE6-9 */
-  a {
+  @include gradient($gradient-1, $gradient-2);
+  a, .link-style {
     color: $accent;
     transition: color 200ms linear;
+    cursor: pointer;
     &:hover, &:focus {
       text-decoration: none;
     }
@@ -114,7 +118,7 @@ input:focus, textarea:focus, button:focus {
         text-align: justify;
         line-height: 36px;
         padding-top: 30px;
-        a:hover {
+        a:hover, .link-style:hover {
           @include dotted-hover;
           color: $gradient-1;
         }
@@ -312,26 +316,22 @@ input:focus, textarea:focus, button:focus {
   }
 }
 
-// for contact modal
+// modal animation
 .auto-enter {
  opacity: 0.01;
- transform: translateY(-200%);
 }
 
 .auto-enter.auto-enter-active {
  opacity: 1;
- transform: translateY(0);
  transition: opacity 500ms, transform 500ms;
 }
 
 .auto-leave {
  opacity: 1;
- transform: translateY(0);
 }
 
 .auto-leave.auto-leave-active {
  opacity: 0.01;
- transform: translateY(-200%);
  transition: opacity 500ms, transform 500ms;
 }
 

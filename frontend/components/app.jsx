@@ -34,7 +34,9 @@ var App = React.createClass({
     return(
       <div id='react-main'>
         <Navigation updatePostNewForm={ this.handleShowPostNewForm } updateContactForm={ this.handleUpdateFormDisplay }></Navigation>
-        { this.props.children }
+
+        <div>{React.cloneElement(this.props.children, { updateContactForm: this.handleUpdateFormDisplay })}</div>
+
         <Footer></Footer>
 
         <ReactCSSTransitionGroup transitionName='auto' transitionEnterTimeout={ 500 } transitionLeaveTimeout={ 500 }>
