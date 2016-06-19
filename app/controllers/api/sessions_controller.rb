@@ -15,11 +15,19 @@ class Api::SessionsController < ApplicationController
 
 
   def destroy
-    logout!
-    render json: { base: "You've been logged out!" }
+    if current_user
+      logout!
+      render json: {}
+    else
+      render json: { base: "Not Found" }, status: 404
+    end
   end
 
   def show
-    render json: { email: @current_user.email } || {}
+    if current_user
+      render json: { email: @current_user.email }
+    else
+      render json: { base: "Not Found" }, status: 404
+    end
   end
 end
