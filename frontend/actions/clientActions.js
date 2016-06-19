@@ -1,5 +1,5 @@
 var ApiUtil = require('../util/apiUtil');
-var BrowserHistory = require('react-router').hashHistory;
+var BrowserHistory = require('react-router').browserHistory;
 
 var ClientActions = {
   fetchPosts: function(limit) {

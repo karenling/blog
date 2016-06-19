@@ -1,7 +1,7 @@
 var SessionApiUtil = require('../util/sessionApiUtil');
 var SessionConstants = require('../constants/sessionConstants');
 var dispatcher = require('../dispatcher/dispatcher');
-var BrowserHistory = require('react-router').hashHistory;
+var BrowserHistory = require('react-router').browserHistory;
 
 var SessionActions = {
   login: function(params) {
