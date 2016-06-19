@@ -1,41 +1,45 @@
-var ServerActions = require('../actions/serverActions');
+var ClientActions = require('../actions/clientActions');
 
 var SessionApiUtil = {
-  login: function(params, callback) {
+  login: function(params, successCallback) {
     $.ajax({
       type: 'POST',
       url: '/api/session',
       data: params,
       success: function(user) {
-        ServerActions.receiveCurrentUser(user);
+        successCallback();
+        console.log('loggedin ')
       },
       error: function(response, status) {
         callback(status, response.responseJSON.base)
       }
     });
   },
-  fetchCurrentUser: function(callback) {
+  fetchCurrentUser: function(successCallback, complete) {
     $.ajax({
       type: 'GET',
       url: '/api/session',
       success: function(user) {
-        ServerActions.receiveCurrentUser(user);
+        successCallback();
+      },
+      complete: function() {
+        complete()
       },
       error: function(response, status) {
-        callback(status, response.responseJSON.base)
+        console.log(response.responseJSON.base);
       }
     });
   },
-  logout: function(callback) {
+  logout: function(success) {
     $.ajax({
       type: 'DELETE',
       url: '/api/session',
       success: function(user) {
-        ServerActions.receiveCurrentUser(user);
+        success();
         console.log('logged out')
       },
       error: function(response, status) {
-        callback(status, response.responseJSON.base);
+        console.log(response.responseJSON.base)
       }
     });
   }

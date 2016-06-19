@@ -1,5 +1,4 @@
 var ApiUtil = require('../util/apiUtil');
-var SessionApiUtil = require('../util/sessionApiUtil');
 
 var ClientActions = {
   fetchPosts: function(limit) {
@@ -16,12 +15,6 @@ var ClientActions = {
   },
   sendMessage: function(params, callback) {
     ApiUtil.sendMessage(params, callback);
-  },
-  login: function(params, callback) {
-    SessionApiUtil.login(params, callback);
-  },
-  logout: function(callback) {
-    SessionApiUtil.logout(callback);
   }
 };
 

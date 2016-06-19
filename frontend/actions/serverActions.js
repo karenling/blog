@@ -1,7 +1,5 @@
 var dispatcher = require('../dispatcher/dispatcher');
 var PostConstants = require('../constants/postConstants');
-var SessionConstants = require('../constants/sessionConstants');
-
 var posts = require('../stores/post');
 
 var ServerActions = {
@@ -27,12 +25,6 @@ var ServerActions = {
     dispatcher.dispatch({
       actionType: PostConstants.UPDATE_POST,
       post: post
-    });
-  },
-  receiveCurrentUser: function(user) {
-    dispatcher.dispatch({
-      actionType: SessionConstants.RECEIVE_CURRENT_USER,
-      user: user
     });
   }
 };

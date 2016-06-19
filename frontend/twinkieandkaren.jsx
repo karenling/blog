@@ -10,9 +10,19 @@ var PostShow = require('./components/posts/show');
 var PostEdit = require('./components/posts/edit')
 var About = require('./components/about');
 var LoginForm = require('./components/login');
+var SessionStore = require('./stores/session');
+var SessionActions = require('./actions/sessionActions');
+
+var _ensureUserFetched = function(nextState, replace, asyncDoneCallback) {
+  if (SessionStore.currentUserHasBeenFetched()) {
+    asyncDoneCallback();
+  } else {
+    SessionActions.fetchCurrentUser(asyncDoneCallback);
+  }
+}
 
 var routes = (
-  <Route path="/" component={App}>
+  <Route path="/" component={App} onEnter={ _ensureUserFetched }>
     <IndexRoute component={ PostIndex } />
     <Route path="/posts/:friendlyName/edit" component={ PostEdit }></Route>
     <Route path="/posts/:friendlyName" component={ PostShow }></Route>
