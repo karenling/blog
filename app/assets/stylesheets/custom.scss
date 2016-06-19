@@ -151,7 +151,7 @@ input:focus, textarea:focus, button:focus {
 #contact-wrapper, #new-post-wrapper {
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   @include flexbox;

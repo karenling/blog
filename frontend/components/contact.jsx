@@ -32,6 +32,17 @@ var Contact = React.createClass({
   closeContactModal: function() {
     this.props.updateContactForm(false);
   },
+  closeOnEsc: function(e) {
+    if (e.key === "Escape") {
+      this.closeContactModal();
+    }
+  },
+  componentDidMount: function() {
+    document.addEventListener('keydown', this.closeOnEsc);
+  },
+  componentWillUnmount: function() {
+    document.removeEventListener('keydown', this.closeOnEsc)
+  },
   render: function() {
     if (this.state.successMessage.length > 0) {
       return(
