@@ -1,12 +1,23 @@
 var React = require('react');
 var Link = require('react-router').Link;
+var PostEdit = require('./edit');
 
 var PostIndexItem = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
+  getInitialState: function() {
+    return({
+      showEdit: false
+    })
+  },
   createMarkup: function() {
     return { __html: this.props.post.body }
+  },
+  toggleView: function() {
+    this.setState({
+      showEdit: !this.state.showEdit
+    })
   },
   render: function() {
     var postLink = "/posts/" + this.props.post.friendly_name
@@ -14,7 +25,7 @@ var PostIndexItem = React.createClass({
     var status;
     if (this.props.post.status) {
       status = <span className='post-status'> | { this.props.post.status }</span>
-      editLink = <span>| <Link to={ editLink }>Edit</Link></span>
+      editLink = <span>| <span className='link-style' onClick={ this.toggleView }>Edit</span></span>
     }
 
     var moreButton;
@@ -22,15 +33,25 @@ var PostIndexItem = React.createClass({
       moreButton = <div className='post-more'><Link to={ postLink }>Read More</Link></div>
     }
 
+    if (this.state.showEdit) {
+      view = <PostEdit key={ this.props.post.friendly_name + 'edit' } post={ this.props.post } toggleView={ this.toggleView }/>
+    } else {
+      view = (
+        <div>
+          <div className='post-title'><Link to={ postLink }>{ this.props.post.title }</Link></div>
+          <div className='post-detail'>
+            <em>By</em> Karen <em>on</em> { this.props.post.post_date }
+            { status } {editLink }
+          </div>
+          <div className='post-body' dangerouslySetInnerHTML={ this.createMarkup() } />
+          { moreButton }
+        </div>
+      )
+    }
     return(
       <article>
-        <div className='post-title'><Link to={ postLink }>{ this.props.post.title }</Link></div>
-        <div className='post-detail'>
-          <em>By</em> Karen <em>on</em> { this.props.post.post_date }
-          { status } {editLink }
-        </div>
-        <div className='post-body' dangerouslySetInnerHTML={ this.createMarkup() } />
-        { moreButton }
+
+        { view }
       </article>
     )
   }
