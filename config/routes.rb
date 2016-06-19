@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   post 'send_contact' => 'pages#send_contact', as: 'send_contact'
 
   namespace :api , defaults: { format: :json } do
+    resource :session, only: [:show, :create, :destroy]
     resources :posts, only: [:new, :create, :show, :index, :edit, :update]
     post 'send_contact' => 'pages#send_contact', as: 'send_contact'
   end
