@@ -98,7 +98,7 @@ input:focus, textarea:focus, button:focus {
           }
         }
       }
-      a {
+      a, .link-style {
         border-bottom: 1px dotted #ddd;
         padding-bottom: 3px;
         &:hover {
