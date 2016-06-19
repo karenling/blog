@@ -37,11 +37,18 @@ var Contact = React.createClass({
       this.closeContactModal();
     }
   },
+  closeOnOutsideClick: function(e) {
+    if (e.target.id === 'contact-wrapper') {
+      this.closeContactModal();
+    }
+  },
   componentDidMount: function() {
     document.addEventListener('keydown', this.closeOnEsc);
+    document.addEventListener('click', this.closeOnOutsideClick);
   },
   componentWillUnmount: function() {
-    document.removeEventListener('keydown', this.closeOnEsc)
+    document.removeEventListener('keydown', this.closeOnEsc);
+    document.removeEventListener('clck', this.closeOnOutsideClick);
   },
   render: function() {
     if (this.state.successMessage.length > 0) {
