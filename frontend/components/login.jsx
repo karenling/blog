@@ -9,8 +9,7 @@ var LoginForm = React.createClass({
   getInitialState: function() {
     return({
       user_email: '',
-      user_password: '',
-      errorMessage: ''
+      user_password: ''
     })
   },
   handleChange: function(e) {
