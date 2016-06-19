@@ -13,8 +13,8 @@ var LoginForm = require('./components/login');
 var SessionStore = require('./stores/session');
 var SessionActions = require('./actions/sessionActions');
 
-var _ensureUserFetched = function(nextState, replace, asyncDoneCallback) {
-  if (SessionStore.currentUserHasBeenFetched()) {
+function _ensureUserFetched(nextState, replace, asyncDoneCallback){
+  if ( SessionStore.currentUserHasBeenFetched() ) {
     asyncDoneCallback();
   } else {
     SessionActions.fetchCurrentUser(asyncDoneCallback);
@@ -22,7 +22,7 @@ var _ensureUserFetched = function(nextState, replace, asyncDoneCallback) {
 }
 
 var routes = (
-  <Route path="/" component={App} onEnter={ _ensureUserFetched }>
+  <Route path="/" component={ App } onEnter={ _ensureUserFetched }>
     <IndexRoute component={ PostIndex } />
     <Route path="/posts/:friendlyName/edit" component={ PostEdit }></Route>
     <Route path="/posts/:friendlyName" component={ PostShow }></Route>
