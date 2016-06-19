@@ -4,6 +4,7 @@ var Footer = require('./layout/footer');
 var Contact = require('./contact');
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 var NewPostForm = require('./posts/new');
+var SessionStore = require('../stores/session');
 
 var App = React.createClass({
   getInitialState: function() {

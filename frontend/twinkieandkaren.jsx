@@ -21,12 +21,18 @@ function _ensureUserFetched(nextState, replace, asyncDoneCallback){
   }
 }
 
+var _ensureLoggedIn = function(nextState, replace) {
+  if (!SessionStore.isUserLoggedIn()) {
+    replace('/login')
+  }
+}
+
 var routes = (
   <Route path="/" component={ App } onEnter={ _ensureUserFetched }>
     <IndexRoute component={ PostIndex } />
     <Route path="/posts/:friendlyName/edit" component={ PostEdit }></Route>
     <Route path="/posts/:friendlyName" component={ PostShow }></Route>
-    <Route path="/about" component={ About }></Route>
+    <Route path="/about" component={ About } onEnter={ _ensureLoggedIn }></Route>
     <Route path="/login" component={ LoginForm }></Route>
   </Route>
 );

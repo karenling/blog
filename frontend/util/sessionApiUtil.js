@@ -1,26 +1,26 @@
 var ClientActions = require('../actions/clientActions');
 
 var SessionApiUtil = {
-  login: function(params, successCallback) {
+  login: function(params, success) {
     $.ajax({
       type: 'POST',
       url: '/api/session',
       data: params,
       success: function(user) {
-        successCallback();
-        console.log('loggedin ')
+        success(user);
       },
       error: function(response, status) {
-        callback(status, response.responseJSON.base)
+        console.log(response.responseJSON.base)
       }
     });
   },
-  fetchCurrentUser: function(successCallback, complete) {
+  fetchCurrentUser: function(success, complete) {
+
     $.ajax({
       type: 'GET',
       url: '/api/session',
       success: function(user) {
-        successCallback();
+        success(user);
       },
       complete: function() {
         complete()
@@ -34,9 +34,8 @@ var SessionApiUtil = {
     $.ajax({
       type: 'DELETE',
       url: '/api/session',
-      success: function(user) {
+      success: function() {
         success();
-        console.log('logged out')
       },
       error: function(response, status) {
         console.log(response.responseJSON.base)

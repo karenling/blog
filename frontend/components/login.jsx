@@ -29,8 +29,11 @@ var LoginForm = React.createClass({
       this.context.router.push('/');
     }
   },
-  componentDidMount: function() {
-    SessionStore.addListener(this._onChange);
+  componentDidMount: function () {
+    this.sessionListener = SessionStore.addListener(this._onChange);
+  },
+  componentWillUnmount: function() {
+    this.sessionListener.remove();
   },
   render: function() {
     return(

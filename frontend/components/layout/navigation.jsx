@@ -1,6 +1,7 @@
 var React = require('react');
 var Link = require('react-router').Link
 var IndexLink = require('react-router').IndexLink
+var SessionStore = require('../../stores/session');
 
 var Navigation = React.createClass({
   displayContactForm: function() {
@@ -10,6 +11,12 @@ var Navigation = React.createClass({
     this.props.updatePostNewForm(true);
   },
   render: function() {
+    var loggedIn;
+
+    if (SessionStore.isUserLoggedIn()) {
+      loggedIn = <div>logged in</div>
+    }
+
     return(
       <div id="navigation">
         <div></div>
@@ -26,6 +33,8 @@ var Navigation = React.createClass({
           <li onClick={ this.displayPostNewForm }><i className="fa fa-pencil"></i></li>
           <Link to='/login/' activeClassName="active">Login</Link>
         </ul>
+
+        { loggedIn }
       </div>
     )
   }

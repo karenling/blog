@@ -20,7 +20,7 @@ SessionStore.__onDispatch = function(payload) {
 };
 
 var _login = function(user) {
-  _currentUuser = user;
+  _currentUser = user;
   _currentUserHasBeenFetched = true;
 }
 
@@ -37,7 +37,7 @@ SessionStore.currentUser = function() {
 };
 
 SessionStore.isUserLoggedIn = function() {
-  return !!_currentUser;
+  return !!_currentUser.email;
 };
 
 module.exports = SessionStore;
