@@ -1,15 +1,17 @@
+var ServerActions = require('../actions/serverActions');
+
 var SessionApiUtil = {
-  login: function(params) {
+  login: function(params, callback) {
     $.ajax({
       type: 'POST',
       url: '/api/session',
       data: params,
       success: function(user) {
-        console.log(user.email);
+        ServerActions.receiveCurrentUser(user);
       },
       error: function(response) {
         console.log(response.responseJSON.base)
-      }
+      } 
     });
   },
   fetchCurrentUser: function() {
@@ -17,19 +19,19 @@ var SessionApiUtil = {
       type: 'GET',
       url: '/api/session',
       success: function(user) {
-        console.log(user.email);
+        ServerActions.receiveCurrentUser(user);
       },
       error: function(response) {
         console.log(response.responseJSON.base)
       }
     });
   },
-  logout: function() {
+  logout: function(callback) {
     $.ajax({
       type: 'DELETE',
       url: '/api/session',
-      success: function() {
-        console.log(arguments);
+      success: function(user) {
+        ServerActions.receiveCurrentUser(user);
       },
       error: function(response) {
         console.log(response.responseJSON.base)
