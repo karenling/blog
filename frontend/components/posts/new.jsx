@@ -36,6 +36,10 @@ var PostEdit = React.createClass({
   },
   render: function() {
 
+    if (this.state.errorMessage.length > 0) {
+      var errorMessage = <div className='error-message'>{ this.state.errorMessage.slice(0, 200) }</div>;
+    }
+    
     return(
       <div id='new-post-wrapper'>
         <div id='new-post'>
@@ -43,7 +47,7 @@ var PostEdit = React.createClass({
             <i className='fa fa-close'></i>
           </div>
           <div className='new-post-body'>
-            <div className='error-message'>{ this.state.errorMessage.slice(0, 200) }</div>
+            { errorMessage }
             <form class='new-post' onSubmit={ this.onSubmit }>
               <input type='text' onChange={ this.handleChange } name='title' value={ this.state.title } placeholder='Title' />
               <input type='text' onChange={ this.handleChange } name='header_image' value={ this.state.header_image } placeholder='Header Image' />

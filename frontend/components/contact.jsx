@@ -68,6 +68,11 @@ var Contact = React.createClass({
         </div>
       )
     } else {
+
+      if (this.state.errorMessage.length > 0) {
+        var errorMessage = <div className='error-message'>{ this.state.errorMessage }</div>;
+      }
+
       return(
         <div id='contact-wrapper'>
           <div id='contact'>
@@ -78,7 +83,7 @@ var Contact = React.createClass({
               <div className='message-intro'>
                 Feel free to send me a comment, question, anything!
               </div>
-              <div className='error-message'>{ this.state.errorMessage }</div>
+              { errorMessage }
               <form className='new-message' onSubmit={ this.onSubmit } >
                 <input type='text' onChange={ this.handleChange } name='name' value={ this.state.name } placeholder='Name'/>
                 <input type='text' onChange={ this.handleChange } name='email' value={ this.state.email } placeholder='Email'/>
