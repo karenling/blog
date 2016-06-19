@@ -30,10 +30,24 @@ var ApiUtil = {
       data: { post: params },
       success: function(post, status) {
         ServerActions.createPost(post);
-        callback(status)
+        callback(status);
       },
       error: function(response, status) {
-        callback(status, response.responseText)
+        callback(status, response.responseText);
+      }
+    });
+  },
+  updatePost: function(params) {
+    $.ajax({
+      type: 'PUT',
+      url: 'api/posts/' + params.friendly_name,
+      dataType: 'JSON',
+      data: { post: params },
+      success: function(post) {
+        ServerActions.updatePost(post)
+      },
+      error: function() {
+        debugger;
       }
     });
   },
@@ -44,12 +58,12 @@ var ApiUtil = {
       dataType: 'JSON',
       data: params,
       success: function(payload) {
-        callback(payload.status, payload.message)
+        callback(payload.status, payload.message);
       },
       error: function(response, status) {
-        callback(status, response.responseText)
+        callback(status, response.responseText);
       }
-    })
+    });
   }
 };
 

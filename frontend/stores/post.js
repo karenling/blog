@@ -29,6 +29,11 @@ PostStore.__onDispatch = function(payload) {
       resetFullPost(payload.post.full_post);
       PostStore.__emitChange();
       break;
+    case PostConstants.UPDATE_POST:
+      addPost(payload.post.truncated_post);
+      resetFullPost(payload.post.full_post);
+      PostStore.__emitChange();
+      break;
   }
 };
 

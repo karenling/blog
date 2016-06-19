@@ -12,7 +12,7 @@ var Navigation = React.createClass({
   render: function() {
     return(
       <div id="navigation">
-        <div>Twinkie and Karen</div>
+        <div></div>
         <ul id="navigation-links">
           <li><IndexLink to='/' activeClassName="active">
               <i className="fa fa-home"></i>

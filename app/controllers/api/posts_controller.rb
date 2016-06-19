@@ -29,21 +29,20 @@ class Api::PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
 
     if @post.save
-      render :new_post
+      render :post
     else
       render json: @post.errors.full_messages.to_sentence, status: :unprocessable_entity
     end
   end
 
-  # def update
-  #   @post = Post.find_by_friendly_name(params[:id])
-  #   debugger
-  #   if @post.update(post_params)
-  #     render json: @post
-  #   else
-  #     render json: "Please enter .", status: :unprocessable_entity
-  #   end
-  # end
+  def update
+    @post = Post.friendly.find(params[:id])
+    if @post.update(post_params)
+      render :post
+    else
+      render json: @post.errors.full_messages.to_sentence, status: :unprocessable_entity
+    end
+  end
 
   private
 

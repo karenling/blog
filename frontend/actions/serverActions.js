@@ -20,6 +20,12 @@ var ServerActions = {
       actionType: PostConstants.CREATE_POST,
       post: post
     });
+  },
+  updatePost: function(post) {
+    dispatcher.dispatch({
+      actionType: PostConstants.UPDATE_POST,
+      post: post
+    });
   }
 };
 
