@@ -25,6 +25,4 @@ application.yml
 coverage
 
 # Ignore buildable React files
-bundle.js
-bundle.js.map
 node_modules
