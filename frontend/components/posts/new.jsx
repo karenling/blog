@@ -24,7 +24,8 @@ var PostEdit = React.createClass({
   },
   handleMessage: function(status, message) {
     if (status === 'success') {
-      // this.setState(this.blankState);
+      this.setState(this.blankState);
+      this.props.updatePostNewForm(false);
     } else {
       this.setState({ errorMessage: message })
     }
@@ -41,7 +42,7 @@ var PostEdit = React.createClass({
           <div className='exit-bar' onClick={ this.closeNewPostModal }>
             <i className='fa fa-close'></i>
           </div>
-          <div className='new-post-body center'>
+          <div className='new-post-body'>
             <div className='error-message'>{ this.state.errorMessage.slice(0, 200) }</div>
             <form class='new-post' onSubmit={ this.onSubmit }>
               <input type='text' onChange={ this.handleChange } name='title' value={ this.state.title } placeholder='Title' />
@@ -55,7 +56,7 @@ var PostEdit = React.createClass({
               <input type='datetime-local' onChange={ this.handleChange } name='post_date' value={ this.state.post_date } placeholder='Post Date' />
               <input type='text' onChange={ this.handleChange } name='tag_list' value={ this.state.tag_list } placeholder='Tags List' />
               <div className='submit-wrapper'>
-                <button>Create Post</button>
+                <button><i className='fa fa-pencil'></i>Create Post</button>
               </div>
             </form>
           </div>
