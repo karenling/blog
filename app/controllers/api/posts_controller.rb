@@ -47,8 +47,9 @@ class Api::PostsController < ApplicationController
   private
 
   def post_params
+    params[:post].delete('friendly_name')
+    params[:post].delete('errorMessage')
+    params[:post][:post_date] = ActiveSupport::TimeZone.new('Pacific Time (US & Canada)').parse(params[:post][:post_date]).utc
     params.require(:post).permit(:title, :header_image, :body, :status, :post_date, :tag_list)
-    # params[:post][:post_date] = ActiveSupport::TimeZone.new('Pacific Time (US & Canada)').parse(params[:post][:post_date]).utc
-    # params.require(:post).permit(:title, :header_image, :body, :status, :post_date, :tag_list)
   end
 end

@@ -10,7 +10,8 @@ var PostNew = React.createClass({
       status: this.props.post.status,
       post_date: this.props.post.post_date_for_field,
       tag_list: this.props.post.tag_list,
-      friendly_name: this.props.post.friendly_name
+      friendly_name: this.props.post.friendly_name,
+      errorMessage: ''
     });
   },
   handleChange: function(e) {
@@ -18,15 +19,25 @@ var PostNew = React.createClass({
     change[e.target.name] = e.target.value;
     this.setState(change);
   },
+  handleMessage: function(status, message) {
+    if (status === 'success') {
+      this.toggleView();
+    } else {
+      this.setState({ errorMessage: message })
+    }
+  },
   onSubmit: function(e) {
     e.preventDefault();
-    ClientActions.updatePost(this.state);
-    this.toggleView();
+    ClientActions.updatePost(this.state, this.handleMessage);
   },
   toggleView: function() {
     this.props.toggleView();
   },
   render: function() {
+    if (this.state.errorMessage.length > 0) {
+      var errorMessage = <div className='error-message'>{ this.state.errorMessage.slice(0, 200) }</div>;
+    }
+
     return(
       <div id='edit-post-wrapper'>
         <div id='edit-post'>
@@ -34,6 +45,7 @@ var PostNew = React.createClass({
             <i className='fa fa-close'></i>
           </div>
           <div className='new-post-body'>
+            { errorMessage }
             <form class='edit-post' onSubmit={ this.onSubmit }>
               <input type='text' onChange={ this.handleChange } name='title' value={ this.state.title } placeholder='Title' />
               <input type='text' onChange={ this.handleChange } name='header_image' value={ this.state.header_image } placeholder='Header Image' />

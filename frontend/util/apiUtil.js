@@ -37,17 +37,18 @@ var ApiUtil = {
       }
     });
   },
-  updatePost: function(params) {
+  updatePost: function(params, callback) {
     $.ajax({
       type: 'PUT',
-      url: 'api/posts/' + params.friendly_name,
+      url: '/api/posts/' + params.friendly_name,
       dataType: 'JSON',
       data: { post: params },
-      success: function(post) {
+      success: function(post, status) {
         ServerActions.updatePost(post)
+        callback(status);
       },
-      error: function() {
-        debugger;
+      error: function(response, status) {
+        callback(status, response.responseText);
       }
     });
   },

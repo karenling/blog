@@ -10,8 +10,8 @@ var ClientActions = {
   createPost: function(params, callback) {
     ApiUtil.createPost(params, callback);
   },
-  updatePost: function(params) {
-    ApiUtil.updatePost(params);
+  updatePost: function(params, callback) {
+    ApiUtil.updatePost(params, callback);
   },
   sendMessage: function(params, callback) {
     ApiUtil.sendMessage(params, callback);
