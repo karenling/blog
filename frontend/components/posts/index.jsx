@@ -46,7 +46,7 @@ var PostIndex = React.createClass({
   },
   render: function() {
     var loader;
-    if (true || this.state.limit < this.state.totalCount) {
+    if (this.state.limit < this.state.totalCount) {
       loader = <div className='loader'><div className='dot1'></div><div className='dot2'></div><div className='dot3'></div></div>
     }
     return(

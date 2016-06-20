@@ -34313,7 +34313,7 @@
 	  },
 	  render: function () {
 	    var loader;
-	    if (true) {
+	    if (this.state.limit < this.state.totalCount) {
 	      loader = React.createElement(
 	        'div',
 	        { className: 'loader' },
