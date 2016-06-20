@@ -36,7 +36,7 @@ var PostIndex = React.createClass({
     window.removeEventListener('scroll', this.thresholdCallback);
   },
   loadMorePosts: function() {
-    if (this.state.safeToFetch) {
+    if (this.state.safeToFetch && this.state.limit < this.state.totalCount) {
       this.setState({
         limit: this.state.limit += parseInt(TwinkieandKaren.PER_PAGE),
         safeToFetch: false
@@ -45,11 +45,16 @@ var PostIndex = React.createClass({
     }
   },
   render: function() {
+    var loader;
+    if (true || this.state.limit < this.state.totalCount) {
+      loader = <div className='loader'><div className='dot1'></div><div className='dot2'></div><div className='dot3'></div></div>
+    }
     return(
       <div id='react-posts'>
         { this.state.posts.map(function(post) {
           return <PostIndexItem key={ post.id } post={ post } showMoreButton={ true }/>
         })}
+        { loader }
       </div>
     )
   }

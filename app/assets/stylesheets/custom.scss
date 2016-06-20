@@ -356,6 +356,9 @@ input:focus, textarea:focus, button:focus {
   to{ transform: scale(1); }
 }
 .loader {
+  @include flexbox;
+  @include justify-content(center);
+  margin-bottom: 60px;
   .dot1, .dot2, .dot3 {
     width: 10px;
     height: 10px;
@@ -365,12 +368,15 @@ input:focus, textarea:focus, button:focus {
     margin: auto 5px;
   }
   .dot1 {
+    background-color: $gradient-1;
     animation: loading1 0.9s ease 0s infinite normal;
   }
   .dot2 {
+    background-color: #37BABA;
     animation: loading2 0.9s ease 1s infinite normal;
   }
   .dot3 {
+    background-color: $gradient-2;
     animation: loading3 0.9s ease 2s infinite normal;
   }
 }

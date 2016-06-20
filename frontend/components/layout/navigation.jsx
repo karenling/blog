@@ -24,10 +24,7 @@ var Navigation = React.createClass({
 
     return(
       <div id="navigation">
-        <div className='loader'>
-          <div className='dot1'></div>
-          <div className='dot2'></div>
-          <div className='dot3'></div>
+        <div>
         </div>
         <ul id="navigation-links">
           <li><IndexLink to='/' activeClassName="active">
