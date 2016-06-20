@@ -26009,7 +26009,13 @@
 	    return React.createElement(
 	      'div',
 	      { id: 'navigation' },
-	      React.createElement('div', null),
+	      React.createElement(
+	        'div',
+	        { className: 'loader' },
+	        React.createElement('div', { className: 'dot1' }),
+	        React.createElement('div', { className: 'dot2' }),
+	        React.createElement('div', { className: 'dot3' })
+	      ),
 	      React.createElement(
 	        'ul',
 	        { id: 'navigation-links' },

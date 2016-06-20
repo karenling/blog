@@ -195,6 +195,7 @@ input:focus, textarea:focus, button:focus {
     display: block;
   }
 }
+
 #contact, #new-post, #edit-post {
   margin: 0 30px;
   box-shadow: 0 10px 48px rgba(0, 0, 0, 0.20);
@@ -339,5 +340,37 @@ input:focus, textarea:focus, button:focus {
   .error-message {
     color: red;
     font-size: 12px;
+  }
+}
+
+@keyframes loading1 {
+  from{ transform: scale(0.001); }
+  to{ transform: scale(1); }
+}
+@keyframes loading2 {
+  from{ transform: scale(0.001); }
+  to{ transform: scale(1); }
+}
+@keyframes loading3 {
+  from{ transform: scale(0.001); }
+  to{ transform: scale(1); }
+}
+.loader {
+  .dot1, .dot2, .dot3 {
+    width: 10px;
+    height: 10px;
+    background-color: $accent;
+    border-radius: 50%;
+    float: left;
+    margin: auto 5px;
+  }
+  .dot1 {
+    animation: loading1 0.9s ease 0s infinite normal;
+  }
+  .dot2 {
+    animation: loading2 0.9s ease 1s infinite normal;
+  }
+  .dot3 {
+    animation: loading3 0.9s ease 2s infinite normal;
   }
 }
