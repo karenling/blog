@@ -34353,7 +34353,11 @@
 	    };
 	  },
 	  createMarkup: function () {
-	    return { __html: this.props.post.body };
+	    var image;
+	    if (this.props.post.header_image) {
+	      var image = "<p><img src=" + this.props.post.header_image + "/></p>";
+	    }
+	    return { __html: image + this.props.post.body };
 	  },
 	  toggleView: function () {
 	    this.setState({
