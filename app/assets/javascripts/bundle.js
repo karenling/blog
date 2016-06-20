@@ -32957,8 +32957,8 @@
 	var BrowserHistory = __webpack_require__(168).browserHistory;
 
 	var ClientActions = {
-	  fetchPosts: function (limit) {
-	    ApiUtil.fetchPosts(limit);
+	  fetchPosts: function (page) {
+	    ApiUtil.fetchPosts(page);
 	  },
 	  fetchOnePost: function (friendlyName) {
 	    ApiUtil.fetchOnePost(friendlyName, this.errorRedirect);
@@ -32986,12 +32986,12 @@
 	var ServerActions = __webpack_require__(258);
 
 	var ApiUtil = {
-	  fetchPosts: function (limit) {
+	  fetchPosts: function (page) {
 	    $.ajax({
 	      type: 'GET',
 	      url: '/api/posts',
 	      dataType: 'JSON',
-	      data: { limit: limit },
+	      data: { page: page },
 	      success: function (posts) {
 	        ServerActions.receivePosts(posts);
 	      }
@@ -33120,7 +33120,7 @@
 
 	var _posts = {};
 	var _fullPosts = {};
-	var _totalPosts;
+	var _totalPages;
 
 	function _compare(a, b) {
 	  if (a.friendly_name < b.friendly_name) {
@@ -33142,7 +33142,7 @@
 	  switch (payload.actionType) {
 	    case PostConstants.POSTS_RECEIVED:
 	      addPosts(payload.posts.current_posts);
-	      setTotalPosts(payload.posts.total_posts);
+	      setTotalPages(payload.posts.total_pages);
 	      PostStore.__emitChange();
 	      break;
 	    case PostConstants.POST_RECEIVED:
@@ -33162,8 +33162,8 @@
 	  }
 	};
 
-	PostStore.totalPosts = function (totalPosts) {
-	  return _totalPosts;
+	PostStore.totalPages = function (totalPages) {
+	  return _totalPages;
 	};
 
 	PostStore.findByFriendlyName = function (friendlyName) {
@@ -33177,8 +33177,8 @@
 	  return post;
 	};
 
-	var setTotalPosts = function (payloadTotalPosts) {
-	  _totalPosts = payloadTotalPosts;
+	var setTotalPages = function (payloadTotalPages) {
+	  _totalPages = payloadTotalPages;
 	};
 
 	var addPosts = function (payloadPosts) {
@@ -34274,15 +34274,15 @@
 	  getInitialState: function () {
 	    return {
 	      posts: PostStore.all(),
-	      limit: parseInt(TwinkieandKaren.PER_PAGE),
-	      totalCount: PostStore.totalPosts(),
+	      page: 1,
+	      totalCount: PostStore.totalPages(),
 	      safeToFetch: true
 	    };
 	  },
 	  _onChange: function () {
 	    this.setState({
 	      posts: PostStore.all(),
-	      totalCount: PostStore.totalPosts(),
+	      totalCount: PostStore.totalPages(),
 	      safeToFetch: true
 	    });
 	  },
@@ -34295,7 +34295,7 @@
 	  },
 	  componentDidMount: function () {
 	    this.listener = PostStore.addListener(this._onChange);
-	    ClientActions.fetchPosts(this.state.limit);
+	    ClientActions.fetchPosts(this.state.page);
 	    window.addEventListener('scroll', this.thresholdCallback);
 	  },
 	  componentWillUnmount: function () {
@@ -34303,17 +34303,17 @@
 	    window.removeEventListener('scroll', this.thresholdCallback);
 	  },
 	  loadMorePosts: function () {
-	    if (this.state.safeToFetch && this.state.limit < this.state.totalCount) {
+	    if (this.state.safeToFetch && this.state.page < this.state.totalCount) {
 	      this.setState({
-	        limit: this.state.limit += parseInt(TwinkieandKaren.PER_PAGE),
+	        page: this.state.page += 1,
 	        safeToFetch: false
 	      });
-	      ClientActions.fetchPosts(this.state.limit);
+	      ClientActions.fetchPosts(this.state.page);
 	    }
 	  },
 	  render: function () {
 	    var loader;
-	    if (this.state.limit < this.state.totalCount) {
+	    if (this.state.page < this.state.totalCount) {
 	      loader = React.createElement(
 	        'div',
 	        { className: 'loader' },

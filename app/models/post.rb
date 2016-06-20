@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
   acts_as_taggable_on :tags
 
   # default pagination
-  paginates_per 3
+  paginates_per 2
 
   validates_presence_of :title, :body, :status, :post_date, :user_id
   validates_uniqueness_of :friendly_name, :slug

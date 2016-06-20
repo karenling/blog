@@ -3,14 +3,12 @@ class Api::PostsController < ApplicationController
   skip_before_filter :log_event!, only: [:new, :create, :edit, :update]
 
   def index
-    limit = params[:limit].to_i
     if current_user
-      posts = Post.includes(:tags).limit(limit)
+      @posts = Post.includes(:tags).page(params[:page])
     else
-      posts = Post.includes(:tags).public_posts.limit(limit)
+      @posts = Post.includes(:tags).public_posts.page(params[:page])
     end
-    @posts = posts[(limit - Post::PER_PAGE)..limit]
-    @totalCount = Post.count
+    @totalPages = @posts.total_pages
   end
 
   def show

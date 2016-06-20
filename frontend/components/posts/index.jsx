@@ -7,15 +7,15 @@ var PostIndex = React.createClass({
   getInitialState: function() {
     return({
       posts: PostStore.all(),
-      limit: parseInt(TwinkieandKaren.PER_PAGE),
-      totalCount: PostStore.totalPosts(),
+      page: 1,
+      totalCount: PostStore.totalPages(),
       safeToFetch: true
     })
   },
   _onChange: function() {
     this.setState({
       posts: PostStore.all(),
-      totalCount: PostStore.totalPosts(),
+      totalCount: PostStore.totalPages(),
       safeToFetch: true
     })
   },
@@ -28,7 +28,7 @@ var PostIndex = React.createClass({
   },
   componentDidMount: function() {
     this.listener = PostStore.addListener(this._onChange);
-    ClientActions.fetchPosts(this.state.limit);
+    ClientActions.fetchPosts(this.state.page);
     window.addEventListener('scroll', this.thresholdCallback);
   },
   componentWillUnmount: function() {
@@ -36,17 +36,17 @@ var PostIndex = React.createClass({
     window.removeEventListener('scroll', this.thresholdCallback);
   },
   loadMorePosts: function() {
-    if (this.state.safeToFetch && this.state.limit < this.state.totalCount) {
+    if (this.state.safeToFetch && this.state.page < this.state.totalCount) {
       this.setState({
-        limit: this.state.limit += parseInt(TwinkieandKaren.PER_PAGE),
+        page: this.state.page += 1,
         safeToFetch: false
       })
-      ClientActions.fetchPosts(this.state.limit);
+      ClientActions.fetchPosts(this.state.page);
     }
   },
   render: function() {
     var loader;
-    if (this.state.limit < this.state.totalCount) {
+    if (this.state.page < this.state.totalCount) {
       loader = <div className='loader'><div className='dot1'></div><div className='dot2'></div><div className='dot3'></div></div>
     }
     return(

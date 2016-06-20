@@ -2,8 +2,8 @@ var ApiUtil = require('../util/apiUtil');
 var BrowserHistory = require('react-router').browserHistory;
 
 var ClientActions = {
-  fetchPosts: function(limit) {
-    ApiUtil.fetchPosts(limit);
+  fetchPosts: function(page) {
+    ApiUtil.fetchPosts(page);
   },
   fetchOnePost: function(friendlyName) {
     ApiUtil.fetchOnePost(friendlyName, this.errorRedirect);
