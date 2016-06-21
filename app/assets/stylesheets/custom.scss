@@ -206,6 +206,9 @@ input:focus, textarea:focus, button:focus {
   .note-editor {
     margin: 20px auto 0 auto;
   }
+  .note-editing-area {
+    max-height: 50vh;
+  }
   input, textarea, select {
     margin-top: 20px;
     border: 1px solid #ddd;

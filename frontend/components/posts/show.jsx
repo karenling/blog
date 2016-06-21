@@ -16,6 +16,7 @@ var PostShow = React.createClass({
     this.setState({
       post: PostStore.findByFriendlyName(this.props.params.friendlyName)
     })
+    PR.prettyPrint();
   },
   componentDidMount: function() {
     this.listener = PostStore.addListener(this._onChange);
