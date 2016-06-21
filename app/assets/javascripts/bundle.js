@@ -52,8 +52,8 @@
 	var IndexRoute = __webpack_require__(168).IndexRoute;
 	var App = __webpack_require__(229);
 	var PostIndex = __webpack_require__(271);
-	var PostShow = __webpack_require__(272);
-	var PostEdit = __webpack_require__(274);
+	var PostShow = __webpack_require__(274);
+	var PostEdit = __webpack_require__(273);
 	var About = __webpack_require__(275);
 	var LoginForm = __webpack_require__(276);
 	var SessionStore = __webpack_require__(231);
@@ -34273,7 +34273,7 @@
 	var React = __webpack_require__(1);
 	var ClientActions = __webpack_require__(256);
 	var PostStore = __webpack_require__(260);
-	var PostIndexItem = __webpack_require__(273);
+	var PostIndexItem = __webpack_require__(272);
 
 	var PostIndex = React.createClass({
 	  displayName: 'PostIndex',
@@ -34351,56 +34351,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var ClientActions = __webpack_require__(256);
-	var PostStore = __webpack_require__(260);
-	var PostIndexItem = __webpack_require__(273);
-
-	var PostShow = React.createClass({
-	  displayName: 'PostShow',
-
-	  getInitialState: function () {
-	    return {
-	      post: PostStore.findByFriendlyName(this.props.params.friendlyName)
-	    };
-	  },
-	  componentWillReceiveProps: function () {
-	    ClientActions.fetchOnePost(this.props.params.friendlyName);
-	  },
-	  _onChange: function () {
-	    this.setState({
-	      post: PostStore.findByFriendlyName(this.props.params.friendlyName)
-	    });
-	    PR.prettyPrint();
-	  },
-	  componentDidMount: function () {
-	    this.listener = PostStore.addListener(this._onChange);
-	    ClientActions.fetchOnePost(this.props.params.friendlyName);
-	  },
-	  componentWillUnmount: function () {
-	    this.listener.remove();
-	  },
-	  render: function () {
-	    if (this.state.post === undefined) {
-	      return React.createElement('div', null);
-	    } else {
-	      return React.createElement(
-	        'div',
-	        { id: 'react-post' },
-	        React.createElement(PostIndexItem, { post: this.state.post, showMoreButton: false })
-	      );
-	    }
-	  }
-	});
-
-	module.exports = PostShow;
-
-/***/ },
-/* 273 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
 	var Link = __webpack_require__(168).Link;
-	var PostEdit = __webpack_require__(274);
+	var PostEdit = __webpack_require__(273);
 	var SessionStore = __webpack_require__(231);
 
 	var PostIndexItem = React.createClass({
@@ -34508,7 +34460,7 @@
 	module.exports = PostIndexItem;
 
 /***/ },
-/* 274 */
+/* 273 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -34625,6 +34577,54 @@
 	});
 
 	module.exports = PostNew;
+
+/***/ },
+/* 274 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ClientActions = __webpack_require__(256);
+	var PostStore = __webpack_require__(260);
+	var PostIndexItem = __webpack_require__(272);
+
+	var PostShow = React.createClass({
+	  displayName: 'PostShow',
+
+	  getInitialState: function () {
+	    return {
+	      post: PostStore.findByFriendlyName(this.props.params.friendlyName)
+	    };
+	  },
+	  componentWillReceiveProps: function () {
+	    ClientActions.fetchOnePost(this.props.params.friendlyName);
+	  },
+	  _onChange: function () {
+	    this.setState({
+	      post: PostStore.findByFriendlyName(this.props.params.friendlyName)
+	    });
+	    PR.prettyPrint();
+	  },
+	  componentDidMount: function () {
+	    this.listener = PostStore.addListener(this._onChange);
+	    ClientActions.fetchOnePost(this.props.params.friendlyName);
+	  },
+	  componentWillUnmount: function () {
+	    this.listener.remove();
+	  },
+	  render: function () {
+	    if (this.state.post === undefined) {
+	      return React.createElement('div', null);
+	    } else {
+	      return React.createElement(
+	        'div',
+	        { id: 'react-post' },
+	        React.createElement(PostIndexItem, { post: this.state.post, showMoreButton: false })
+	      );
+	    }
+	  }
+	});
+
+	module.exports = PostShow;
 
 /***/ },
 /* 275 */
