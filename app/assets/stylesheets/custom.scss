@@ -122,8 +122,11 @@ input:focus, textarea:focus, button:focus {
           @include dotted-hover;
           color: $gradient-1;
         }
-        & > p > img {
-          max-width: 100%;
+        & > p {
+          margin: 0 0 30px;
+          & > img {
+            max-width: 100%;
+          }
         }
       }
       .post-more {
