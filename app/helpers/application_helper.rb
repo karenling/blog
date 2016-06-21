@@ -15,4 +15,8 @@ module ApplicationHelper
       format.js { render view_name, formats: [:js], handlers: [:erb] }
     end
   end
+
+  def copyright_text
+    "&copy; Copyright 2016. Karen Ling. All Rights Reserved.".html_safe
+  end
 end
