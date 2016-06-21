@@ -1,7 +1,7 @@
 {
   "name": "karenling-blog",
   "version": "1.0.0",
-  "description": "Twinkie and Karen Blog",
+  "description": "[Twinkie and Karen Blog](http://twinkieandkaren.com)",
   "main": "index.js",
   "directories": {
     "doc": "docs",
@@ -25,5 +25,9 @@
     "react-router": "^2.4.1",
     "webpack": "^1.13.1"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "engines": {
+    "node": "6.2.2",
+    "npm": "3.9.5"
+  }
 }
