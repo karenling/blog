@@ -1,5 +1,4 @@
 var webpack = require("webpack");
-var path = require("path");
 
 module.exports = {
   context: __dirname,
@@ -7,9 +6,6 @@ module.exports = {
   output: {
     path: "./app/assets/javascripts",
     filename: "bundle.js"
-  },
-  resolve: {
-    extensions: ["", ".js", ".jsx"]
   },
   plugins:[
     new webpack.DefinePlugin({
@@ -27,16 +23,16 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules/,
         loader: 'babel',
         query: {
           presets: ['react']
         }
-      },
-      {
-        test: /\.node$/,
-        loader: "node-loader"
       }
     ]
+  },
+  devtool: 'source-map',
+  resolve: {
+    extensions: ["", ".js", ".jsx"]
   }
 };
