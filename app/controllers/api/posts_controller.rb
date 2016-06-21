@@ -5,10 +5,11 @@ class Api::PostsController < ApplicationController
   def index
     if current_user
       @posts = Post.includes(:tags).page(params[:page])
+      @total_posts = Post.count
     else
       @posts = Post.includes(:tags).public_posts.page(params[:page])
+      @total_posts = Post.public_posts.count
     end
-    @total_posts = Post.count
   end
 
   def show
