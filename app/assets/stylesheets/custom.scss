@@ -207,7 +207,11 @@ input:focus, textarea:focus, button:focus {
     margin: 20px auto 0 auto;
   }
   .note-editing-area {
-    max-height: 50vh;
+    max-height: 40vh;
+    overflow: scroll;
+  }
+  .note-codable {
+    height: 40vh !important;
   }
   input, textarea, select {
     margin-top: 20px;
