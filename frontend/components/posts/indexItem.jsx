@@ -12,7 +12,7 @@ var PostIndexItem = React.createClass({
   createMarkup: function() {
     var image;
     if (this.props.post.header_image) {
-      var image = "<p><img src=" + this.props.post.header_image + "/></p>"
+      var image = "<p><img src='" + this.props.post.header_image + "'/></p>"
     } else {
       image = ''
     }
