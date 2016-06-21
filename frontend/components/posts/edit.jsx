@@ -33,6 +33,14 @@ var PostNew = React.createClass({
   toggleView: function() {
     this.props.toggleView();
   },
+  componentDidMount: function() {
+    $('#summernote').summernote();
+    $('.note-editable').on('keydown', function(e) {
+      this.setState({
+        body: e.target.innerHTML
+      })
+    }.bind(this))
+  },
   render: function() {
     if (this.state.errorMessage.length > 0) {
       var errorMessage = <div className='error-message'>{ this.state.errorMessage.slice(0, 200) }</div>;
@@ -49,7 +57,7 @@ var PostNew = React.createClass({
             <form className='edit-post' onSubmit={ this.onSubmit }>
               <input type='text' onChange={ this.handleChange } name='title' value={ this.state.title } placeholder='Title' />
               <input type='text' onChange={ this.handleChange } name='header_image' value={ this.state.header_image } placeholder='Header Image' />
-              <textarea onChange={ this.handleChange } name='body' value={ this.state.body } placeholder='Body'></textarea>
+              <textarea id='summernote' name='body' defaultValue={ this.state.body } placeholder='Body'></textarea>
               <select onChange={ this.handleChange } name='status' value={ this.state.status }>
                 <option value="0">private</option>
                 <option value="1">draft</option>

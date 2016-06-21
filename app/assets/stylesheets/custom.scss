@@ -191,12 +191,6 @@ input:focus, textarea:focus, button:focus {
   input[name=title], input[name=post_date], select[name=status] {
     margin-right: 20px;
   }
-  textarea[name=body] {
-    resize: none;
-    width: 100%;
-    height: 100px;
-    display: block;
-  }
 }
 
 #contact, #new-post, #edit-post {
@@ -208,6 +202,9 @@ input:focus, textarea:focus, button:focus {
   }
   input, select {
     height: 37px;
+  }
+  .note-editor {
+    margin: 20px auto 0 auto;
   }
   input, textarea, select {
     margin-top: 20px;

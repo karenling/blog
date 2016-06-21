@@ -13,6 +13,8 @@ var PostIndexItem = React.createClass({
     var image;
     if (this.props.post.header_image) {
       var image = "<p><img src=" + this.props.post.header_image + "/></p>"
+    } else {
+      image = ''
     }
     return { __html: image + this.props.post.body}
   },
