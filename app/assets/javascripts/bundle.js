@@ -34287,7 +34287,7 @@
 	        'form',
 	        { className: 'login-form', onSubmit: this.onSubmit },
 	        React.createElement('input', { type: 'text', onChange: this.handleChange, name: 'user_email', value: this.state.user_email }),
-	        React.createElement('input', { type: 'text', onChange: this.handleChange, name: 'user_password', value: this.state.user_password }),
+	        React.createElement('input', { type: 'password', onChange: this.handleChange, name: 'user_password', value: this.state.user_password }),
 	        React.createElement(
 	          'button',
 	          null,
