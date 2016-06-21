@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  layout 'without_react'
+  
   before_filter :require_current_user!, only: [:index]
   skip_before_filter :log_event!
 

@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   root 'posts#index'
   # resources :users, only: [:new, :create, :show]
-  resource :session, only: [:new, :create, :destroy]
   resources :posts, only: [:new, :create, :show, :index, :edit, :update]
   resources :photos, only: [:create, :index]
   resources :events, only: [:index] do
