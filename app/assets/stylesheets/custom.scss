@@ -126,6 +126,8 @@ input:focus, textarea:focus, button:focus {
           margin: 0 0 30px;
           & > img {
             max-width: 100%;
+            border: 1px solid #eee;
+            padding: 20px;
           }
         }
       }
