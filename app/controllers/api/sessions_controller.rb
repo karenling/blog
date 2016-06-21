@@ -9,7 +9,7 @@ class Api::SessionsController < ApplicationController
       login!(user)
       render json: { email: @current_user.email }
     else
-      render json: { base: 'Credentials were wrong' }, status: 401
+      render json: { base: ['Credentials were wrong'] }, status: 401
     end
   end
 
@@ -19,7 +19,7 @@ class Api::SessionsController < ApplicationController
       logout!
       render json: {}
     else
-      render json: { base: "Not Found" }, status: 404
+      render json: { base: ['Not Found'] }, status: 404
     end
   end
 
@@ -27,7 +27,7 @@ class Api::SessionsController < ApplicationController
     if current_user
       render json: { email: @current_user.email }
     else
-      render json: { base: "Not Found" }, status: 404
+      render json: {}
     end
   end
 end
