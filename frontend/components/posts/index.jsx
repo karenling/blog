@@ -8,15 +8,15 @@ var PostIndex = React.createClass({
     return({
       posts: PostStore.all(),
       page: 1,
-      totalCount: PostStore.totalPages(),
-      safeToFetch: true
+      safeToFetch: true,
+      allFetched: PostStore.allFetched()
     })
   },
   _onChange: function() {
     this.setState({
       posts: PostStore.all(),
-      totalCount: PostStore.totalPages(),
-      safeToFetch: true
+      safeToFetch: true,
+      allFetched: PostStore.allFetched()
     })
   },
   thresholdCallback: function() {
@@ -36,9 +36,13 @@ var PostIndex = React.createClass({
     window.removeEventListener('scroll', this.thresholdCallback);
   },
   loadMorePosts: function() {
-    if (this.state.safeToFetch && this.state.page < this.state.totalCount) {
+    if (this.state.allFetched) {
+      return;
+    }
+    if (this.state.safeToFetch) {
+      page = parseInt(this.state.page) + 1;
       this.setState({
-        page: this.state.page += 1,
+        page: page,
         safeToFetch: false
       })
       ClientActions.fetchPosts(this.state.page);
@@ -46,7 +50,7 @@ var PostIndex = React.createClass({
   },
   render: function() {
     var loader;
-    if (this.state.page < this.state.totalCount) {
+    if (!this.state.allFetched) {
       loader = <div className='loader'><div className='dot1'></div><div className='dot2'></div><div className='dot3'></div></div>
     }
     return(

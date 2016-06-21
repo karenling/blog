@@ -52,8 +52,8 @@
 	var IndexRoute = __webpack_require__(168).IndexRoute;
 	var App = __webpack_require__(229);
 	var PostIndex = __webpack_require__(271);
-	var PostShow = __webpack_require__(274);
-	var PostEdit = __webpack_require__(273);
+	var PostShow = __webpack_require__(272);
+	var PostEdit = __webpack_require__(274);
 	var About = __webpack_require__(275);
 	var LoginForm = __webpack_require__(276);
 	var SessionStore = __webpack_require__(231);
@@ -33120,7 +33120,7 @@
 
 	var _posts = {};
 	var _fullPosts = {};
-	var _totalPages;
+	var _totalPosts;
 
 	function _compare(a, b) {
 	  if (a.friendly_name < b.friendly_name) {
@@ -33142,7 +33142,7 @@
 	  switch (payload.actionType) {
 	    case PostConstants.POSTS_RECEIVED:
 	      addPosts(payload.posts.current_posts);
-	      setTotalPages(payload.posts.total_pages);
+	      setTotalPosts(payload.posts.total_posts);
 	      PostStore.__emitChange();
 	      break;
 	    case PostConstants.POST_RECEIVED:
@@ -33162,8 +33162,8 @@
 	  }
 	};
 
-	PostStore.totalPages = function (totalPages) {
-	  return _totalPages;
+	PostStore.allFetched = function () {
+	  return Object.keys(_posts).length >= _totalPosts;
 	};
 
 	PostStore.findByFriendlyName = function (friendlyName) {
@@ -33177,8 +33177,8 @@
 	  return post;
 	};
 
-	var setTotalPages = function (payloadTotalPages) {
-	  _totalPages = payloadTotalPages;
+	var setTotalPosts = function (totalPosts) {
+	  _totalPosts = totalPosts;
 	};
 
 	var addPosts = function (payloadPosts) {
@@ -34273,7 +34273,7 @@
 	var React = __webpack_require__(1);
 	var ClientActions = __webpack_require__(256);
 	var PostStore = __webpack_require__(260);
-	var PostIndexItem = __webpack_require__(272);
+	var PostIndexItem = __webpack_require__(273);
 
 	var PostIndex = React.createClass({
 	  displayName: 'PostIndex',
@@ -34282,15 +34282,15 @@
 	    return {
 	      posts: PostStore.all(),
 	      page: 1,
-	      totalCount: PostStore.totalPages(),
-	      safeToFetch: true
+	      safeToFetch: true,
+	      allFetched: PostStore.allFetched()
 	    };
 	  },
 	  _onChange: function () {
 	    this.setState({
 	      posts: PostStore.all(),
-	      totalCount: PostStore.totalPages(),
-	      safeToFetch: true
+	      safeToFetch: true,
+	      allFetched: PostStore.allFetched()
 	    });
 	  },
 	  thresholdCallback: function () {
@@ -34310,9 +34310,13 @@
 	    window.removeEventListener('scroll', this.thresholdCallback);
 	  },
 	  loadMorePosts: function () {
-	    if (this.state.safeToFetch && this.state.page < this.state.totalCount) {
+	    if (this.state.allFetched) {
+	      return;
+	    }
+	    if (this.state.safeToFetch) {
+	      page = parseInt(this.state.page) + 1;
 	      this.setState({
-	        page: this.state.page += 1,
+	        page: page,
 	        safeToFetch: false
 	      });
 	      ClientActions.fetchPosts(this.state.page);
@@ -34320,7 +34324,7 @@
 	  },
 	  render: function () {
 	    var loader;
-	    if (this.state.page < this.state.totalCount) {
+	    if (!this.state.allFetched) {
 	      loader = React.createElement(
 	        'div',
 	        { className: 'loader' },
@@ -34347,8 +34351,55 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
+	var ClientActions = __webpack_require__(256);
+	var PostStore = __webpack_require__(260);
+	var PostIndexItem = __webpack_require__(273);
+
+	var PostShow = React.createClass({
+	  displayName: 'PostShow',
+
+	  getInitialState: function () {
+	    return {
+	      post: PostStore.findByFriendlyName(this.props.params.friendlyName)
+	    };
+	  },
+	  componentWillReceiveProps: function () {
+	    ClientActions.fetchOnePost(this.props.params.friendlyName);
+	  },
+	  _onChange: function () {
+	    this.setState({
+	      post: PostStore.findByFriendlyName(this.props.params.friendlyName)
+	    });
+	  },
+	  componentDidMount: function () {
+	    this.listener = PostStore.addListener(this._onChange);
+	    ClientActions.fetchOnePost(this.props.params.friendlyName);
+	  },
+	  componentWillUnmount: function () {
+	    this.listener.remove();
+	  },
+	  render: function () {
+	    if (this.state.post === undefined) {
+	      return React.createElement('div', null);
+	    } else {
+	      return React.createElement(
+	        'div',
+	        { id: 'react-post' },
+	        React.createElement(PostIndexItem, { post: this.state.post, showMoreButton: false })
+	      );
+	    }
+	  }
+	});
+
+	module.exports = PostShow;
+
+/***/ },
+/* 273 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
 	var Link = __webpack_require__(168).Link;
-	var PostEdit = __webpack_require__(273);
+	var PostEdit = __webpack_require__(274);
 	var SessionStore = __webpack_require__(231);
 
 	var PostIndexItem = React.createClass({
@@ -34456,7 +34507,7 @@
 	module.exports = PostIndexItem;
 
 /***/ },
-/* 273 */
+/* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
@@ -34573,53 +34624,6 @@
 	});
 
 	module.exports = PostNew;
-
-/***/ },
-/* 274 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ClientActions = __webpack_require__(256);
-	var PostStore = __webpack_require__(260);
-	var PostIndexItem = __webpack_require__(272);
-
-	var PostShow = React.createClass({
-	  displayName: 'PostShow',
-
-	  getInitialState: function () {
-	    return {
-	      post: PostStore.findByFriendlyName(this.props.params.friendlyName)
-	    };
-	  },
-	  componentWillReceiveProps: function () {
-	    ClientActions.fetchOnePost(this.props.params.friendlyName);
-	  },
-	  _onChange: function () {
-	    this.setState({
-	      post: PostStore.findByFriendlyName(this.props.params.friendlyName)
-	    });
-	  },
-	  componentDidMount: function () {
-	    this.listener = PostStore.addListener(this._onChange);
-	    ClientActions.fetchOnePost(this.props.params.friendlyName);
-	  },
-	  componentWillUnmount: function () {
-	    this.listener.remove();
-	  },
-	  render: function () {
-	    if (this.state.post === undefined) {
-	      return React.createElement('div', null);
-	    } else {
-	      return React.createElement(
-	        'div',
-	        { id: 'react-post' },
-	        React.createElement(PostIndexItem, { post: this.state.post, showMoreButton: false })
-	      );
-	    }
-	  }
-	});
-
-	module.exports = PostShow;
 
 /***/ },
 /* 275 */

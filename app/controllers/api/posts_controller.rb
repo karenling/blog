@@ -8,7 +8,7 @@ class Api::PostsController < ApplicationController
     else
       @posts = Post.includes(:tags).public_posts.page(params[:page])
     end
-    @totalPages = @posts.total_pages
+    @total_posts = Post.count
   end
 
   def show

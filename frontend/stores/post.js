@@ -5,7 +5,7 @@ var PostConstants = require('../constants/postConstants');
 
 var _posts = {};
 var _fullPosts = {};
-var _totalPages;
+var _totalPosts;
 
 function _compare(a, b) {
   if (a.friendly_name < b.friendly_name) {
@@ -27,7 +27,7 @@ PostStore.__onDispatch = function(payload) {
   switch(payload.actionType) {
     case PostConstants.POSTS_RECEIVED:
       addPosts(payload.posts.current_posts);
-      setTotalPages(payload.posts.total_pages);
+      setTotalPosts(payload.posts.total_posts);
       PostStore.__emitChange();
       break;
     case PostConstants.POST_RECEIVED:
@@ -47,8 +47,9 @@ PostStore.__onDispatch = function(payload) {
   }
 };
 
-PostStore.totalPages = function(totalPages) {
-  return _totalPages;
+
+PostStore.allFetched = function() {
+  return Object.keys(_posts).length >= _totalPosts;
 };
 
 PostStore.findByFriendlyName = function(friendlyName) {
@@ -58,12 +59,12 @@ PostStore.findByFriendlyName = function(friendlyName) {
       post = _fullPosts[id];
       return;
     }
-  })
+  });
   return post;
 };
 
-var setTotalPages = function(payloadTotalPages) {
-  _totalPages = payloadTotalPages;
+var setTotalPosts = function(totalPosts) {
+  _totalPosts = totalPosts;
 };
 
 var addPosts = function(payloadPosts) {
