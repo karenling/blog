@@ -29,7 +29,7 @@ class Api::PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
 
     if @post.save
-      render :post
+      render :show
     else
       render json: @post.errors.full_messages.to_sentence, status: :unprocessable_entity
     end
