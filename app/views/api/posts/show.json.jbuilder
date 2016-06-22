@@ -1,1 +1,1 @@
-json.partial!('post_full', post: @post)
+json.partial!('post', post: @post)

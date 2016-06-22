@@ -4,7 +4,6 @@ var PostStore = new Store(dispatcher);
 var PostConstants = require('../constants/postConstants');
 
 var _posts = {};
-var _fullPosts = {};
 var _totalPosts;
 var _pagesLoaded = 1;
 
@@ -33,17 +32,15 @@ PostStore.__onDispatch = function(payload) {
       PostStore.__emitChange();
       break;
     case PostConstants.POST_RECEIVED:
-      resetFullPost(payload.post);
+      addPost(payload.post);
       PostStore.__emitChange();
       break;
     case PostConstants.CREATE_POST:
-      addPost(payload.post.truncated_post);
-      resetFullPost(payload.post.full_post);
+      addPost(payload.post);
       PostStore.__emitChange();
       break;
     case PostConstants.UPDATE_POST:
-      addPost(payload.post.truncated_post);
-      resetFullPost(payload.post.full_post);
+      addPost(payload.post);
       PostStore.__emitChange();
       break;
   }
@@ -59,9 +56,9 @@ PostStore.allFetched = function() {
 
 PostStore.findByFriendlyName = function(friendlyName) {
   var post;
-  Object.keys(_fullPosts).forEach(function(id) {
-    if (_fullPosts[id].friendly_name === friendlyName) {
-      post = _fullPosts[id];
+  Object.keys(_posts).forEach(function(id) {
+    if (_posts[id].friendly_name === friendlyName) {
+      post = _posts[id];
       return;
     }
   });
@@ -84,10 +81,6 @@ var addPosts = function(payloadPosts) {
 
 var addPost = function(payloadPost) {
   _posts[payloadPost.id] = payloadPost;
-};
-
-var resetFullPost = function(payloadPost) {
-  _fullPosts[payloadPost.id] = payloadPost;
 };
 
 module.exports = PostStore;

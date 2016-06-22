@@ -16,7 +16,7 @@ var PostIndexItem = React.createClass({
     } else {
       image = ''
     }
-    return { __html: image + this.props.post.body}
+    return { __html: image + this.props.postBody}
   },
   toggleView: function() {
     this.setState({

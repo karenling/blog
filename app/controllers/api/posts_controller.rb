@@ -38,7 +38,7 @@ class Api::PostsController < ApplicationController
   def update
     @post = Post.friendly.find(params[:id])
     if @post.update(post_params)
-      render :post
+      render :show
     else
       render json: @post.errors.full_messages.to_sentence, status: :unprocessable_entity
     end

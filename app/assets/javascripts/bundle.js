@@ -32646,7 +32646,6 @@
 	var PostConstants = __webpack_require__(255);
 
 	var _posts = {};
-	var _fullPosts = {};
 	var _totalPosts;
 	var _pagesLoaded = 1;
 
@@ -32675,17 +32674,15 @@
 	      PostStore.__emitChange();
 	      break;
 	    case PostConstants.POST_RECEIVED:
-	      resetFullPost(payload.post);
+	      addPost(payload.post);
 	      PostStore.__emitChange();
 	      break;
 	    case PostConstants.CREATE_POST:
-	      addPost(payload.post.truncated_post);
-	      resetFullPost(payload.post.full_post);
+	      addPost(payload.post);
 	      PostStore.__emitChange();
 	      break;
 	    case PostConstants.UPDATE_POST:
-	      addPost(payload.post.truncated_post);
-	      resetFullPost(payload.post.full_post);
+	      addPost(payload.post);
 	      PostStore.__emitChange();
 	      break;
 	  }
@@ -32701,9 +32698,9 @@
 
 	PostStore.findByFriendlyName = function (friendlyName) {
 	  var post;
-	  Object.keys(_fullPosts).forEach(function (id) {
-	    if (_fullPosts[id].friendly_name === friendlyName) {
-	      post = _fullPosts[id];
+	  Object.keys(_posts).forEach(function (id) {
+	    if (_posts[id].friendly_name === friendlyName) {
+	      post = _posts[id];
 	      return;
 	    }
 	  });
@@ -32726,10 +32723,6 @@
 
 	var addPost = function (payloadPost) {
 	  _posts[payloadPost.id] = payloadPost;
-	};
-
-	var resetFullPost = function (payloadPost) {
-	  _fullPosts[payloadPost.id] = payloadPost;
 	};
 
 	module.exports = PostStore;
@@ -33894,7 +33887,7 @@
 	      'div',
 	      { id: 'react-posts' },
 	      this.state.posts.map(function (post) {
-	        return React.createElement(PostIndexItem, { key: post.id, post: post, showMoreButton: true });
+	        return React.createElement(PostIndexItem, { key: post.id, post: post, postBody: post.body_truncated, showMoreButton: true });
 	      }),
 	      loader
 	    );
@@ -33927,7 +33920,7 @@
 	    } else {
 	      image = '';
 	    }
-	    return { __html: image + this.props.post.body };
+	    return { __html: image + this.props.postBody };
 	  },
 	  toggleView: function () {
 	    this.setState({
@@ -34174,7 +34167,7 @@
 	      return React.createElement(
 	        'div',
 	        { id: 'react-post' },
-	        React.createElement(PostIndexItem, { post: this.state.post, showMoreButton: false })
+	        React.createElement(PostIndexItem, { post: this.state.post, postBody: this.state.post.body, showMoreButton: false })
 	      );
 	    }
 	  }
