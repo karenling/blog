@@ -33910,7 +33910,9 @@
 
 	  getInitialState: function () {
 	    return {
-	      showEdit: false
+	      showEdit: false,
+	      postBody: this.props.postBody,
+	      showMoreButton: this.props.showMoreButton
 	    };
 	  },
 	  createMarkup: function () {
@@ -33920,12 +33922,20 @@
 	    } else {
 	      image = '';
 	    }
-	    return { __html: image + this.props.postBody };
+	    return { __html: image + this.state.postBody };
 	  },
 	  toggleView: function () {
 	    this.setState({
 	      showEdit: !this.state.showEdit
 	    });
+	  },
+	  toggleFullPost: function () {
+	    this.setState({
+	      postBody: this.props.post.body,
+	      showMoreButton: false
+	    });
+	    var route = '/posts/' + this.props.post.friendly_name;
+	    history.replaceState({}, route, route);
 	  },
 	  render: function () {
 	    var postLink = "/posts/" + this.props.post.friendly_name;
@@ -33951,13 +33961,13 @@
 	    }
 
 	    var moreButton;
-	    if (this.props.showMoreButton) {
+	    if (this.state.showMoreButton) {
 	      moreButton = React.createElement(
 	        'div',
 	        { className: 'post-more' },
 	        React.createElement(
-	          Link,
-	          { to: postLink },
+	          'span',
+	          { onClick: this.toggleFullPost },
 	          'Read More'
 	        )
 	      );

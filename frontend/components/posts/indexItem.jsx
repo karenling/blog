@@ -6,7 +6,9 @@ var SessionStore = require('../../stores/session');
 var PostIndexItem = React.createClass({
   getInitialState: function() {
     return({
-      showEdit: false
+      showEdit: false,
+      postBody: this.props.postBody,
+      showMoreButton: this.props.showMoreButton
     })
   },
   createMarkup: function() {
@@ -16,12 +18,20 @@ var PostIndexItem = React.createClass({
     } else {
       image = ''
     }
-    return { __html: image + this.props.postBody}
+    return { __html: image + this.state.postBody}
   },
   toggleView: function() {
     this.setState({
       showEdit: !this.state.showEdit
     })
+  },
+  toggleFullPost: function() {
+    this.setState({
+      postBody: this.props.post.body,
+      showMoreButton: false
+    })
+    var route = '/posts/' + this.props.post.friendly_name;
+    history.replaceState({}, route, route)
   },
   render: function() {
     var postLink = "/posts/" + this.props.post.friendly_name
@@ -33,8 +43,8 @@ var PostIndexItem = React.createClass({
     }
 
     var moreButton;
-    if (this.props.showMoreButton) {
-      moreButton = <div className='post-more'><Link to={ postLink }>Read More</Link></div>
+    if (this.state.showMoreButton) {
+      moreButton = <div className='post-more'><span onClick={ this.toggleFullPost }>Read More</span></div>
     }
 
     var view;
