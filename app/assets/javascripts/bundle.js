@@ -34121,9 +34121,6 @@
 	      post: PostStore.findByFriendlyName(this.props.params.friendlyName)
 	    };
 	  },
-	  componentWillReceiveProps: function () {
-	    ClientActions.fetchOnePost(this.props.params.friendlyName);
-	  },
 	  _onChange: function () {
 	    this.setState({
 	      post: PostStore.findByFriendlyName(this.props.params.friendlyName)
@@ -34132,7 +34129,9 @@
 	  },
 	  componentDidMount: function () {
 	    this.listener = PostStore.addListener(this._onChange);
-	    ClientActions.fetchOnePost(this.props.params.friendlyName);
+	    if (this.state.post == undefined) {
+	      ClientActions.fetchOnePost(this.props.params.friendlyName);
+	    }
 	  },
 	  componentWillUnmount: function () {
 	    this.listener.remove();
