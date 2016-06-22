@@ -45,8 +45,7 @@ class Post < ActiveRecord::Base
   end
 
   def humanized_body_truncated
-    length_of_imgs_links = self.body.scan(/!?\[.*\]\(([^)]+)\)/).join.length
-    Nokogiri::HTML::DocumentFragment.parse(body.truncate(length_of_imgs_links + 300, separate: ' ')).to_html.html_safe
+    Nokogiri::HTML::DocumentFragment.parse(body.truncate(300, separate: ' ')).to_html.html_safe
   end
 
   def set_friendly_name!
