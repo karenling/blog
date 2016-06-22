@@ -33887,7 +33887,7 @@
 	      'div',
 	      { id: 'react-posts' },
 	      this.state.posts.map(function (post) {
-	        return React.createElement(PostIndexItem, { key: post.id, post: post, postBody: post.body_truncated, showMoreButton: true });
+	        return React.createElement(PostIndexItem, { key: post.id, post: post, showMoreButton: true });
 	      }),
 	      loader
 	    );
@@ -33911,7 +33911,7 @@
 	  getInitialState: function () {
 	    return {
 	      showEdit: false,
-	      postBody: this.props.postBody,
+	      postBody: this.props.showMoreButton ? this.props.post.body_truncated : this.props.post.body,
 	      showMoreButton: this.props.showMoreButton
 	    };
 	  },
@@ -34177,7 +34177,7 @@
 	      return React.createElement(
 	        'div',
 	        { id: 'react-post' },
-	        React.createElement(PostIndexItem, { post: this.state.post, postBody: this.state.post.body, showMoreButton: false })
+	        React.createElement(PostIndexItem, { post: this.state.post, showMoreButton: false })
 	      );
 	    }
 	  }

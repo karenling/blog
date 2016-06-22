@@ -7,7 +7,7 @@ var PostIndexItem = React.createClass({
   getInitialState: function() {
     return({
       showEdit: false,
-      postBody: this.props.postBody,
+      postBody: this.props.showMoreButton ? this.props.post.body_truncated : this.props.post.body,
       showMoreButton: this.props.showMoreButton
     })
   },
