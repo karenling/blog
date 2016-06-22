@@ -3,7 +3,25 @@ var ClientActions = require('../../actions/clientActions');
 
 var PostEdit = React.createClass({
   getInitialState: function() {
-    return(this.blankState);
+    initial = this.blankState;
+    initial['post_date'] = this.getCurrentDate();
+    console.log(initial['post_date'])
+    return(initial);
+  },
+  getCurrentDate: function() {
+    var date = new Date();
+    var month = this.leftPad(date.getMonth());
+    var day = this.leftPad(date.getDate());
+    var hours = this.leftPad(date.getHours());
+    var mins = this.leftPad(date.getMinutes());
+
+    return date.getFullYear() + '-' + month + '-' + day + 'T' + hours + ':' + mins;
+  },
+  leftPad: function(date) {
+    if (date < 10) {
+      date = '0' + date;
+    }
+    return date;
   },
   blankState: {
     title: '',

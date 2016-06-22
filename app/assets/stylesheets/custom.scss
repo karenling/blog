@@ -390,3 +390,8 @@ input:focus, textarea:focus, button:focus {
     animation: loading3 0.9s ease 2s infinite normal;
   }
 }
+
+// for summernote modal
+.modal-backdrop {
+  z-index: -1;
+}
