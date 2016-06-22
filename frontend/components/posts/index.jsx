@@ -29,7 +29,7 @@ var PostIndex = React.createClass({
   componentDidMount: function() {
     this.listener = PostStore.addListener(this._onChange);
     if (this.state.posts.length == 0) {
-      ClientActions.fetchPosts(this.state.page);       
+      ClientActions.fetchPosts(this.state.page);
     }
 
     window.addEventListener('scroll', this.thresholdCallback);

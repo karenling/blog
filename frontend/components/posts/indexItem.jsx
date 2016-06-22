@@ -2,6 +2,7 @@ var React = require('react');
 var Link = require('react-router').Link;
 var PostEdit = require('./edit');
 var SessionStore = require('../../stores/session');
+var PostStore = require('../../stores/post');
 
 var PostIndexItem = React.createClass({
   getInitialState: function() {
@@ -32,6 +33,18 @@ var PostIndexItem = React.createClass({
     })
     var route = '/posts/' + this.props.post.friendly_name;
     history.replaceState({}, route, route)
+  },
+  _onChange: function() {
+    var post = PostStore.findByFriendlyName(this.props.post.friendly_name)
+    this.setState({
+      postBody: this.state.showMoreButton ? post.body_truncated : post.body
+    })
+  },
+  componentDidMount: function() {
+    this.listener = PostStore.addListener(this._onChange);
+  },
+  componentWillUnmount: function() {
+    this.listener.remove();
   },
   render: function() {
     var postLink = "/posts/" + this.props.post.friendly_name

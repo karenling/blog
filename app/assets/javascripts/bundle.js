@@ -33904,6 +33904,7 @@
 	var Link = __webpack_require__(164).Link;
 	var PostEdit = __webpack_require__(269);
 	var SessionStore = __webpack_require__(227);
+	var PostStore = __webpack_require__(256);
 
 	var PostIndexItem = React.createClass({
 	  displayName: 'PostIndexItem',
@@ -33936,6 +33937,18 @@
 	    });
 	    var route = '/posts/' + this.props.post.friendly_name;
 	    history.replaceState({}, route, route);
+	  },
+	  _onChange: function () {
+	    var post = PostStore.findByFriendlyName(this.props.post.friendly_name);
+	    this.setState({
+	      postBody: this.state.showMoreButton ? post.body_truncated : post.body
+	    });
+	  },
+	  componentDidMount: function () {
+	    this.listener = PostStore.addListener(this._onChange);
+	  },
+	  componentWillUnmount: function () {
+	    this.listener.remove();
 	  },
 	  render: function () {
 	    var postLink = "/posts/" + this.props.post.friendly_name;
