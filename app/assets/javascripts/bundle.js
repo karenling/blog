@@ -33828,7 +33828,10 @@
 	  },
 	  componentDidMount: function () {
 	    this.listener = PostStore.addListener(this._onChange);
-	    ClientActions.fetchPosts(this.state.page);
+	    if (this.state.posts.length == 0) {
+	      ClientActions.fetchPosts(this.state.page);
+	    }
+
 	    window.addEventListener('scroll', this.thresholdCallback);
 	  },
 	  componentWillUnmount: function () {
