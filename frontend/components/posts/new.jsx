@@ -10,7 +10,7 @@ var PostEdit = React.createClass({
   },
   getCurrentDate: function() {
     var date = new Date();
-    var month = this.leftPad(date.getMonth());
+    var month = this.leftPad(date.getMonth() + 1);
     var day = this.leftPad(date.getDate());
     var hours = this.leftPad(date.getHours());
     var mins = this.leftPad(date.getMinutes());
