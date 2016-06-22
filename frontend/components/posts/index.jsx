@@ -7,7 +7,7 @@ var PostIndex = React.createClass({
   getInitialState: function() {
     return({
       posts: PostStore.all(),
-      page: 1,
+      page: PostStore.pagesLoaded(),
       safeToFetch: true,
       allFetched: PostStore.allFetched()
     })

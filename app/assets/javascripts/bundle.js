@@ -32648,6 +32648,7 @@
 	var _posts = {};
 	var _fullPosts = {};
 	var _totalPosts;
+	var _pagesLoaded = 1;
 
 	function _compare(a, b) {
 	  if (a.friendly_name < b.friendly_name) {
@@ -32670,6 +32671,7 @@
 	    case PostConstants.POSTS_RECEIVED:
 	      addPosts(payload.posts.current_posts);
 	      setTotalPosts(payload.posts.total_posts);
+	      updatePagesLoaded(payload.posts.pages_loaded);
 	      PostStore.__emitChange();
 	      break;
 	    case PostConstants.POST_RECEIVED:
@@ -32689,6 +32691,10 @@
 	  }
 	};
 
+	PostStore.pagesLoaded = function () {
+	  return _pagesLoaded;
+	};
+
 	PostStore.allFetched = function () {
 	  return Object.keys(_posts).length >= _totalPosts;
 	};
@@ -32706,6 +32712,10 @@
 
 	var setTotalPosts = function (totalPosts) {
 	  _totalPosts = totalPosts;
+	};
+
+	var updatePagesLoaded = function (pagesLoaded) {
+	  _pagesLoaded = pagesLoaded;
 	};
 
 	var addPosts = function (payloadPosts) {
@@ -33807,7 +33817,7 @@
 	  getInitialState: function () {
 	    return {
 	      posts: PostStore.all(),
-	      page: 1,
+	      page: PostStore.pagesLoaded(),
 	      safeToFetch: true,
 	      allFetched: PostStore.allFetched()
 	    };

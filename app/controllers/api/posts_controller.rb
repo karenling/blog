@@ -10,6 +10,7 @@ class Api::PostsController < ApplicationController
       @posts = Post.includes(:tags).public_posts.page(params[:page])
       @total_posts = Post.public_posts.count
     end
+    @pages_loaded = params[:page]
   end
 
   def show

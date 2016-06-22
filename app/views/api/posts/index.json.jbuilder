@@ -4,3 +4,4 @@ json.current_posts do
   end
 end
 json.total_posts @total_posts
+json.pages_loaded @pages_loaded
