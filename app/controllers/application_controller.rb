@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     unless current_user
       store_location
       flash[:alert] = 'Must be logged in.'
-      redirect_to new_session_path
+      redirect_to root_path
     end
   end
 

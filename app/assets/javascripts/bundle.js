@@ -65,6 +65,11 @@
 	  } else {
 	    SessionActions.fetchCurrentUser(asyncDoneCallback);
 	  }
+	  $.ajax({
+	    type: 'POST',
+	    data: { location: new Date().toString().match(/\(([A-Za-z\s].*)\)/)[1] },
+	    url: '/events/set_timezone'
+	  });
 	}
 
 	var _ensureLoggedIn = function (nextState, replace) {
