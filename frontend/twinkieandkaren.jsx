@@ -12,6 +12,12 @@ var About = require('./components/about');
 var LoginForm = require('./components/login');
 var SessionStore = require('./stores/session');
 var SessionActions = require('./actions/sessionActions');
+var ReactGA = require('react-ga');
+ReactGA.initialize('UA-4234175-15');
+
+function logPageView() {
+  ReactGA.pageview(window.location.pathname);
+}
 
 function _ensureUserFetched(nextState, replace, asyncDoneCallback){
   if ( SessionStore.currentUserHasBeenFetched() ) {
@@ -33,7 +39,7 @@ var _ensureLoggedIn = function(nextState, replace) {
 }
 
 var routes = (
-  <Route path="/" component={ App } onEnter={ _ensureUserFetched }>
+  <Route path="/" component={ App } onEnter={ _ensureUserFetched } onUpdate={ logPageView }>
     <IndexRoute component={ PostIndex } />
     <Route path="/posts/:friendlyName" component={ PostShow }></Route>
     <Route path="/about" component={ About }></Route>

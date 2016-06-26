@@ -1,4 +1,5 @@
 class PhotosController < ApplicationController
+  layout 'without_react'
   before_filter :require_current_user!
   skip_before_filter :log_event!
 
