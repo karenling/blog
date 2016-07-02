@@ -1,27 +1,20 @@
 $light-gray: #b8c0c2;
 $med-gray: #888d8f;
 $dark-gray: #575b5c;
-$accent: #fa5568;
-$gradient-1: #36a6c2;
-$gradient-2: #3cd3c3;
+$accent: #c9a125;
+$accent-1: #e1ba43;
+$accent-2: #b18a12;
 
 @mixin dotted-hover {
   text-decoration: none;
   border-bottom: 1px dotted #ddd;
   padding-bottom: 3px;
 }
-@mixin gradient($color-1, $color-2) {
-  background: $color-1; /* Old browsers */
-  background: -moz-linear-gradient(left,  $color-1 0%, $color-2 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left,  $color-1 0%,$color-2 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right,  $color-1 0%,$color-2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=#{$color-1}, endColorstr=#{$color-2},GradientType=1 ); /* IE6-9 */
-}
 
 body {
   font: 16px 'Open Sans', sans-serif;
   color: $dark-gray;
-  @include gradient($gradient-1, $gradient-2);
+  background-color: #333;
   a, .link-style {
     color: $accent;
     transition: color 200ms linear;
@@ -64,13 +57,12 @@ input:focus, textarea:focus, button:focus {
           transition: color 200ms linear;
         }
         &:hover, a:hover {
-          color: $gradient-2;
+          color: $accent;
         }
         a {
           color: $light-gray;
-
           &.active {
-            color: $gradient-1;
+            color: $accent-1;
           }
         }
       }
@@ -114,13 +106,40 @@ input:focus, textarea:focus, button:focus {
           color: $light-gray;
         }
       }
+      ul.post-tags {
+        list-style-type: none;
+        padding: 0;
+        text-align: center;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        li {
+          display: inline;
+          a {
+            color: $accent;
+            border: 0;
+          }
+          &:after {
+            content: ' | ';
+            color: #eee;
+          }
+          &:last-child {
+            &:after {
+              content: '';
+            }
+          }
+        }
+      }
       .post-body, .about-body {
+        font-family: 'Crimson Text', serif;
+        text-rendering: geometricPrecision;
         text-align: justify;
         line-height: 36px;
         padding-top: 30px;
         a:hover, .link-style:hover {
           @include dotted-hover;
-          color: $gradient-1;
+          color: $accent-1;
         }
         & > h2 {
           color: $accent;
@@ -151,7 +170,7 @@ input:focus, textarea:focus, button:focus {
           transition: background 500ms linear;
           &:hover {
             transition: color 500ms linear;
-            background-color: $gradient-2;
+            background-color: $accent-2;
             color: white;
             border: 0;
           }
@@ -229,7 +248,7 @@ input:focus, textarea:focus, button:focus {
     border-radius: 2px;
   }
   .exit-bar {
-    background-color: $accent;
+    background-color: $accent-1;
     text-align: right;
     color: white;
     padding: 6px 12px;
@@ -245,7 +264,7 @@ input:focus, textarea:focus, button:focus {
     }
     .fa-heart {
       font-size: 70px;
-      color: $accent;
+      color: #b53838;
       margin-bottom: 20px;
     }
     @-webkit-keyframes beating {
@@ -274,7 +293,7 @@ input:focus, textarea:focus, button:focus {
       text-align: right;
       button {
         margin-top: 20px;
-        background-color: $accent;
+        background-color: $accent-1;
         border: 0;
         color: white;
         border-radius: 2px;
@@ -373,25 +392,24 @@ input:focus, textarea:focus, button:focus {
 .loader {
   @include flexbox;
   @include justify-content(center);
-  margin-bottom: 60px;
+  margin: 60px auto;
   .dot1, .dot2, .dot3 {
     width: 10px;
     height: 10px;
-    background-color: $accent;
     border-radius: 50%;
     float: left;
     margin: auto 5px;
   }
   .dot1 {
-    background-color: $gradient-1;
+    background-color: $accent-1;
     animation: loading1 0.9s ease 0s infinite normal;
   }
   .dot2 {
-    background-color: #37BABA;
+    background-color: $accent;
     animation: loading2 0.9s ease 1s infinite normal;
   }
   .dot3 {
-    background-color: $gradient-2;
+    background-color: $accent-2;
     animation: loading3 0.9s ease 2s infinite normal;
   }
 }

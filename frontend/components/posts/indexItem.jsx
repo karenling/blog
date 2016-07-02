@@ -46,6 +46,15 @@ var PostIndexItem = React.createClass({
   componentWillUnmount: function() {
     this.listener.remove();
   },
+  formatTagList: function() {
+    return(
+      <ul className='post-tags'>
+        {this.props.post.tag_list.map(function(tagName) {
+          return <li><Link to='/'>{tagName}</Link></li>
+        })}
+      </ul>
+    )
+  },
   render: function() {
     var postLink = "/posts/" + this.props.post.friendly_name
     var editLink;
@@ -67,14 +76,15 @@ var PostIndexItem = React.createClass({
 
     return(
       <article>
-        <div className='post-title'><Link to={ postLink }>{ this.props.post.title }</Link></div>
+        {this.formatTagList()}
+        <div className='post-title'><Link to={postLink}>{this.props.post.title}</Link></div>
         <div className='post-detail'>
-          <em>By</em> Karen <em>on</em> { this.props.post.post_date }
-          { status } { editLink }
+          <em>By</em> Karen <em>on</em> {this.props.post.post_date}
+          {status} {editLink}
         </div>
-        <div className='post-body' dangerouslySetInnerHTML={ this.createMarkup() } />
-        { moreButton }
-        { view }
+        <div className='post-body' dangerouslySetInnerHTML={this.createMarkup()} />
+        {moreButton}
+        {view}
       </article>
     )
   }

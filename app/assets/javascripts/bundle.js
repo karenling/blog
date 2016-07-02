@@ -33961,6 +33961,23 @@
 	  componentWillUnmount: function () {
 	    this.listener.remove();
 	  },
+	  formatTagList: function () {
+	    return React.createElement(
+	      'ul',
+	      { className: 'post-tags' },
+	      this.props.post.tag_list.map(function (tagName) {
+	        return React.createElement(
+	          'li',
+	          null,
+	          React.createElement(
+	            Link,
+	            { to: '/' },
+	            tagName
+	          )
+	        );
+	      })
+	    );
+	  },
 	  render: function () {
 	    var postLink = "/posts/" + this.props.post.friendly_name;
 	    var editLink;
@@ -34005,6 +34022,7 @@
 	    return React.createElement(
 	      'article',
 	      null,
+	      this.formatTagList(),
 	      React.createElement(
 	        'div',
 	        { className: 'post-title' },
