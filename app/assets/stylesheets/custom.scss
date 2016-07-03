@@ -116,10 +116,7 @@ input:focus, textarea:focus, button:focus {
         text-transform: uppercase;
         li {
           display: inline;
-          a {
-            color: $accent;
-            border: 0;
-          }
+          color: $accent;
           &:after {
             content: ' | ';
             color: #eee;

@@ -50,7 +50,7 @@ var PostIndexItem = React.createClass({
     return(
       <ul className='post-tags'>
         {this.props.post.tag_list.map(function(tagName) {
-          return <li><Link to='/'>{tagName}</Link></li>
+          return <li>{tagName}</li>
         })}
       </ul>
     )

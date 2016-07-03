@@ -33969,11 +33969,7 @@
 	        return React.createElement(
 	          'li',
 	          null,
-	          React.createElement(
-	            Link,
-	            { to: '/' },
-	            tagName
-	          )
+	          tagName
 	        );
 	      })
 	    );
