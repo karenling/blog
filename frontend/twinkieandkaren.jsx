@@ -47,6 +47,6 @@ var routes = (
   </Route>
 );
 
-document.addEventListener('DOMContentLoaded', function() {
-  ReactDOM.render(<Router history={ BrowserHistory }>{ routes }</Router>, document.getElementById('root'));
-})
+// document.addEventListener('DOMContentLoaded', function() {
+//   ReactDOM.render(<Router history={ BrowserHistory }>{ routes }</Router>, document.getElementById('root'));
+// })

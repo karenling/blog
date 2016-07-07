@@ -1,6 +1,4 @@
 class PostsController < ApplicationController
-  include ApplicationHelper
-
   before_filter :require_current_user!, only: [:new, :create, :edit, :update]
   skip_before_filter :log_event!, only: [:new, :create, :edit, :update]
 
@@ -22,6 +20,18 @@ class PostsController < ApplicationController
   end
 
   def show
+    if current_user
+      @post = Post.includes(:tags).find_by_friendly_name(params[:id])
+    else
+      @post = Post.includes(:tags).public_posts.find_by_friendly_name(params[:id])
+    end
+
+    @title = @post.try(:title)
+
+    unless @post
+      flash[:alert] = 'Must be author.'
+      redirect_to posts_path
+    end
   end
 
   def index
@@ -29,13 +39,9 @@ class PostsController < ApplicationController
     @truncate = true
     if current_user
       @posts = Post.includes(:tags).page(params[:page])
-      @more_posts = !Post.includes(:tags).page(params[:page].to_i + 1).empty?
     else
       @posts = Post.includes(:tags).public_posts.page(params[:page])
-      @more_posts = !Post.includes(:tags).public_posts.page(params[:page].to_i + 1).empty?
     end
-
-    ajax_response('index')
   end
 
   def edit
@@ -50,8 +56,7 @@ class PostsController < ApplicationController
     else
       @posts = Post.includes(:tags).public_posts.tagged_with(params[:tag_name]).page(params[:page])
     end
-
-    ajax_response('index')
+    render :index
   end
 
   def update
@@ -76,6 +81,6 @@ class PostsController < ApplicationController
 
   def post_params
     params[:post][:post_date] = ActiveSupport::TimeZone.new('Pacific Time (US & Canada)').parse(params[:post][:post_date]).utc
-    params.require(:post).permit(:title, :header_image, :body, :status, :post_date, :tag_list)
+    params.require(:post).permit(:title, :body, :status, :post_date, :tag_list)
   end
 end

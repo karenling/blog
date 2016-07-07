@@ -1,26 +1,3 @@
-#main-wrapper
-  = render partial: 'posts/post', collection: @posts
-  .posts-pagination= link_to_next_page @posts, 'Next', remote: true
-  .spacer
-
-#show-wrapper
-
-  :javascript
-    var loadMore = function(postsPath) {
-      $.ajax({
-        url: postsPath,
-        data: { format: 'js' },
-        success: function() {
-          history.pushState({}, null, postsPath);
-        }
-      })
-    }
-    $(window).scroll(function() {
-      var largeWindow = $(window).width() > 768;
-      var hitRightBorder = $(window).scrollLeft() >= $(document).width() - $(window).width();
-      var hitBottomBorder = $(window).scrollTop() >= $(document).height() - $(window).height();
-      var postsPath = $('.posts-pagination a').attr('href');
-      if ((largeWindow && postsPath && hitRightBorder) || (!largeWindow && postsPath && hitBottomBorder)) {
-        loadMore(postsPath);
-      }
-    })
+= render @posts
+- if @posts.count > Post::PER_PAGE
+  .white-box.text-center= paginate @posts

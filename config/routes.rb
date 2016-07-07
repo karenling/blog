@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   root 'posts#index'
   # resources :users, only: [:new, :create, :show]
+  resource :session, only: [:new, :create, :destroy]
   resources :posts, only: [:new, :create, :show, :index, :edit, :update]
   resources :photos, only: [:create, :index]
   resources :events, only: [:index] do
@@ -15,14 +16,13 @@ Rails.application.routes.draw do
   get 'posts/tagged/:tag_name' => 'posts#tagged', as: 'tagged_posts'
   get 'about' => 'pages#about', as: 'about'
   get 'contact' => 'pages#contact', as: 'contact'
-  get 'login' => 'pages#login', as: 'login'
   post 'send_contact' => 'pages#send_contact', as: 'send_contact'
 
-  namespace :api , defaults: { format: :json } do
-    resource :session, only: [:show, :create, :destroy]
-    resources :posts, only: [:new, :create, :show, :index, :edit, :update]
-    post 'send_contact' => 'pages#send_contact', as: 'send_contact'
-  end
+  # namespace :api , defaults: { format: :json } do
+  #   resource :session, only: [:show, :create, :destroy]
+  #   resources :posts, only: [:new, :create, :show, :index, :edit, :update]
+  #   post 'send_contact' => 'pages#send_contact', as: 'send_contact'
+  # end
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

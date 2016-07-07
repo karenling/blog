@@ -1,417 +1,221 @@
-$light-gray: #b8c0c2;
-$med-gray: #888d8f;
-$dark-gray: #575b5c;
-$accent: #c9a125;
-$accent-1: #e1ba43;
-$accent-2: #b18a12;
-
-@mixin dotted-hover {
-  text-decoration: none;
-  border-bottom: 1px dotted #ddd;
-  padding-bottom: 3px;
-}
+$default-color: #414141;
+$bg-color: #f4f1eb;
+$light-gray: #aaa;
+$teal: #88d1c8;
 
 body {
-  font: 16px 'Open Sans', sans-serif;
-  color: $dark-gray;
-  background-color: #333;
-  a, .link-style {
-    color: $accent;
-    transition: color 200ms linear;
-    cursor: pointer;
-    &:hover, &:focus {
+  color: $default-color;
+  background-color: $bg-color;
+  font-size: 13px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  text-rendering: geometricPrecision;
+  line-height: 27px;
+
+  a {
+    color: $teal;
+    -webkit-transition: color linear 300ms;
+    &:link {
       text-decoration: none;
     }
   }
 }
-b, strong {
-  font-weight: 600;
+.clearfix {
+  display: block;
+  clear: both;
+  content: '';
 }
-input:focus, textarea:focus, button:focus {
-  outline: none;
+@mixin tag-formatting {
+  line-height: 21px;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 1px;
 }
-#root {
+.white-box {
   padding: 30px;
-  #react-main {
-    background-color: white;
-    box-shadow: 0 10px 48px rgba(0, 0, 0, 0.20);
-    padding: 0 30px;
+  margin: 30px 0;
+  background-color: white;
+  .title-wrapper {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
   }
-  #navigation {
+  .title {
+    font: 15px 'Montserrat', sans-serif;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    a {
+      color: $default-color;
+    }
+  }
+  .body {
+    p {
+      padding: 10px 0;
+    }
+  }
+}
+#flash {
+  padding: 15px 0;
+  position: relative;
+  a {
+    color: $default-color;
+  }
+}
+.navigation {
+  padding: 15px 0;
+  background-color: white;
+  position: relative;
+  z-index: 1;
+  &.scrolled {
+    display: none;
+    position: fixed;
     width: 100%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    height: 64px;
-    @include flexbox;
-    @include align-items(center);
-    @include justify-content(space-between);
-    ul#navigation-links {
+    top: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .inner-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto auto;
+    a {
+      color: $default-color;
+      &:hover {
+        color: $teal;
+      }
+    }
+    .title {
+      float: left;
+      font: 16px 'Montserrat', sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    ul {
       padding: 0;
+      float: right;
+      text-align: center;
       margin: 0;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 2px;
       li {
         display: inline;
-        margin-left: 32px;
-        font-size: 16px;
-        color: $light-gray;
-        .fa {
-          cursor: pointer;
-          transition: color 200ms linear;
-        }
-        &:hover, a:hover {
-          color: $accent;
-        }
-        a {
-          color: $light-gray;
-          &.active {
-            color: $accent-1;
-          }
-        }
-      }
-    }
-  }
-  #react-posts, #react-post, #about {
-    max-width: 600px;
-    margin: auto;
-    article {
-      margin: 60px auto;
-      border-bottom: 1px solid #ddd;
-      padding: 30px 0;
-      &:last-child {
-        border: 0;
-      }
-      .post-title, .about-title {
-        font-size: 50px;
-        font-weight: 100;
-        text-align: center;
-        a {
-          color: $dark-gray;
-          border: 0;
-          &:hover {
-            color: $accent;
-          }
-        }
-      }
-      a, .link-style {
-        border-bottom: 1px dotted #ddd;
-        padding-bottom: 3px;
-        &:hover {
-          border: 0;
-        }
-      }
-      .post-detail {
-        font-size: 12px;
-        color: $med-gray;
-        text-align: center;
-        margin-top: 15px;
-        em {
-          color: $light-gray;
-        }
-      }
-      ul.post-tags {
-        list-style-type: none;
-        padding: 0;
-        text-align: center;
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        li {
-          display: inline;
-          color: $accent;
-          &:after {
-            content: ' | ';
-            color: #eee;
-          }
-          &:last-child {
-            &:after {
-              content: '';
-            }
-          }
-        }
-      }
-      .post-body, .about-body {
-        font-family: 'Crimson Text', serif;
-        text-rendering: geometricPrecision;
-        text-align: justify;
-        line-height: 36px;
-        padding-top: 30px;
-        a:hover, .link-style:hover {
-          @include dotted-hover;
-          color: $accent-1;
-        }
-        & > h2 {
-          color: $accent;
-          font-weight: 100;
-        }
-        & > p {
-          margin: 0 0 30px;
-          & > img {
-            max-width: 100%;
-          }
-        }
-      }
-      .post-more {
-        text-align: center;
-        margin: 40px auto;
-        span {
-          border: 1px solid #ddd;
-          border-radius: 2px;
-          padding: 10px 15px;
-          color: #aaa;
-          font-size: 10px;
-          text-transform: uppercase;
-          font-weight: 600;
-          letter-spacing: 1px;
-          background-color: white;
-          cursor: pointer;
-          transition: color 500ms linear;
-          transition: background 500ms linear;
-          &:hover {
-            transition: color 500ms linear;
-            background-color: $accent-2;
-            color: white;
-            border: 0;
-          }
-        }
-      }
-      .post-header-img > img {
-        max-width: 100%;
       }
     }
   }
 }
-#contact-wrapper, #new-post-wrapper, #edit-post-wrapper {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  @include flexbox;
-  @include align-items(center);
-  @include justify-content(center);
-  background-color: rgba(0, 0, 0, 0.2);
-}
-#contact {
-  max-width: 400px;
-  width: 400px;
-  textarea[name=message] {
-    resize: none;
-    height: 100px;
-  }
-  input, textarea {
-    width: 100%;
-    display: block;
-  }
-}
-#new-post, #edit-post {
-  max-width: 900px;
-  width: 900px;
-  input[name=title], input[name=header_image] {
-    width: Calc(50% - 10px);
-    margin-top: 0px;
-  }
-  input[name=post_date], input[name=tag_list] {
-    width: Calc(50% - 52px);
-  }
-  input[name=title], input[name=post_date], select[name=status] {
-    margin-right: 20px;
-  }
-}
-
-#contact, #new-post, #edit-post {
-  margin: 0 30px;
-  box-shadow: 0 10px 48px rgba(0, 0, 0, 0.20);
-  background-color: white;
-  select {
-    -webkit-appearance: none;
-  }
-  input, select {
-    height: 37px;
-  }
-  .note-editor {
-    margin: 20px auto 0 auto;
-  }
-  .note-editing-area {
-    max-height: 40vh;
-    overflow: scroll;
-  }
-  .note-codable {
-    height: 40vh !important;
-  }
-  input, textarea, select {
-    margin-top: 20px;
-    border: 1px solid #ddd;
-    padding: 8px;
-    font-size: 14px;
-    border-radius: 2px;
-  }
-  .exit-bar {
-    background-color: $accent-1;
-    text-align: right;
-    color: white;
-    padding: 6px 12px;
-    cursor: pointer;
-    &:hover {
-      color: rgba(255, 255, 255, 0.5);
-    }
-  }
-  .message-body, .new-post-body {
-    padding: 50px;
-    &.center {
-      text-align: center;
-    }
-    .fa-heart {
-      font-size: 70px;
-      color: #b53838;
-      margin-bottom: 20px;
-    }
-    @-webkit-keyframes beating {
-      from{
-        -webkit-transform: scale(0.9);
-      }
-      to{
-        -webkit-transform: scale(1);
-      }
-    }
-    .fa-heart {
-      -webkit-animation: beating 0.7s ease 0s infinite normal;
-    }
-    .message-intro {
-      margin-bottom: 20px;
-      font-size: 12px;
-      color: $med-gray;
-    }
-    .error-message {
-      color: red;
-      font-size: 12px;
-      text-align: left;
-      margin-bottom: 20px;
-    }
-    .submit-wrapper {
-      text-align: right;
-      button {
-        margin-top: 20px;
-        background-color: $accent-1;
-        border: 0;
-        color: white;
-        border-radius: 2px;
-        padding: 10px 17px;
-        font-size: 12px;
-        text-transform: uppercase;
-        font-weight: 600;
-        letter-spacing: 1.5px;
-        transition: color 500ms linear;
-        transition: background 500ms linear;
-        i {
-          margin-right: 10px;
-        }
-        &:hover {
-          padding: 9px 16px;
-          border: 1px solid #ddd;
-          color: #aaa;
-          background-color: white;
-        }
-        &:focus {
-          background-color: $light-gray;
-        }
-      }
-
-    }
-
-  }
-}
-#footer {
-  width: 100%;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  height: 64px;
-  font-size: 10px;
-  color: $light-gray;
-  text-align: center;
-  @include flexbox;
-  @include align-items(center);
-  @include justify-content(center);
-}
-@media (max-width: 758px) {
-  #root {
-    #react-posts, #react-post, #about {
-      article {
-        padding: 0 0 30px 0;
-        .post-title, .about-title {
-          font-size: 6vw;
-          line-height: 36px;
-        }
-        .post-body, .about-body {
-          font-size: 12px;
-          line-height: 27px;
-        }
-      }
-    }
-  }
-}
-
-// modal animation
-.auto-enter {
- opacity: 0.01;
-}
-
-.auto-enter.auto-enter-active {
- opacity: 1;
- transition: opacity 500ms, transform 500ms;
-}
-
-.auto-leave {
- opacity: 1;
-}
-
-.auto-leave.auto-leave-active {
- opacity: 0.01;
- transition: opacity 500ms, transform 500ms;
-}
-
-.new-post {
-  .error-message {
-    color: red;
-    font-size: 12px;
-  }
-}
-
-@keyframes loading1 {
-  from{ transform: scale(0.001); }
-  to{ transform: scale(1); }
-}
-@keyframes loading2 {
-  from{ transform: scale(0.001); }
-  to{ transform: scale(1); }
-}
-@keyframes loading3 {
-  from{ transform: scale(0.001); }
-  to{ transform: scale(1); }
-}
-.loader {
-  @include flexbox;
-  @include justify-content(center);
-  margin: 60px auto;
-  .dot1, .dot2, .dot3 {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
+#main-wrapper {
+  margin: auto;
+  #left {
     float: left;
-    margin: auto 5px;
   }
-  .dot1 {
-    background-color: $accent-1;
-    animation: loading1 0.9s ease 0s infinite normal;
-  }
-  .dot2 {
-    background-color: $accent;
-    animation: loading2 0.9s ease 1s infinite normal;
-  }
-  .dot3 {
-    background-color: $accent-2;
-    animation: loading3 0.9s ease 2s infinite normal;
+  #right {
+    float: right;
+    .item {
+      font-family: sans-serif;
+      line-height: 21px;
+      font-size: 12px;
+      .profile-pic {
+        width: 190px;
+        margin: 0 auto 15px auto;
+        display: block;
+      }
+      .title {
+        font-size: 12px;
+        padding-bottom: 10px;
+      }
+      ul.tags {
+        @include tag-formatting;
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+        li {
+          border-bottom: 1px solid #eee;
+          padding: 5px 0;
+          &:first-child {
+            border-top: 1px solid #eee;
+          }
+        }
+      }
+      .social-media {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        a {
+          color: $default-color;
+          &:hover {
+            color: $teal;
+          }
+        }
+      }
+    }
   }
 }
+footer {
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding-bottom: 15px;
+}
 
-// for summernote modal
-.modal-backdrop {
-  z-index: -1;
+@media (max-width: 880px) {
+  .white-box {
+    width: 100%;
+  }
+  .navigation .inner-nav {
+    width: 100%;
+    flex-direction: column;
+    padding: 10px;
+    .title {
+      margin-bottom: 5px;
+    }
+    li {
+      padding: 0 10px;
+    }
+  }
+
+  #main-wrapper {
+    width: 100%;
+    article.post {
+      .body img {
+        max-width: Calc(100% + 60px);
+      }
+    }
+    #left {
+      width: 100%;
+      .title-wrapper {
+        flex-direction: column;
+      }
+    }
+    #right {
+      width: 100%;
+      margin-top: -30px;
+    }
+  }
+}
+@media (min-width: 880px) {
+  .navigation .inner-nav {
+    width: 880px;
+    li {
+      padding: 0 0 0 40px;
+    }
+  }
+
+  #main-wrapper {
+    width: 880px;
+    article.post {
+      .body img {
+        max-width: 600px;
+      }
+    }
+    #left {
+      width: 600px;
+    }
+    #right {
+      width: 250px;
+    }
+  }
 }

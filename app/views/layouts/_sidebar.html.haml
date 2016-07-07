@@ -1,0 +1,15 @@
+.item.white-box
+  = image_tag('http://images.twinkieandkaren.com/blog/2016-04-24-2016-02-25.jpg', class: 'profile-pic')
+  = "Hello! I'm Karen and Twinkie is my furry best friend!"
+.item.white-box
+  .social-media
+    = link_to icon('linkedin'), 'https://www.linkedin.com/in/karensling', target: '_blank'
+    = link_to icon('github'), 'https://github.com/karenling', target: '_blank'
+    = link_to icon('instagram'), 'https://www.instagram.com/hellotwinkie/', target: '_blank'
+    = link_to icon('envelope'), contact_path, target: '_blank'
+    = link_to icon('rss'), posts_feed_path, target: '_blank'
+.item.white-box
+  .title Tags
+  %ul.tags
+    - display_tags(all_tags).each do |tag|
+      %li= tag.html_safe

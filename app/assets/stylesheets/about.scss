@@ -1,0 +1,14 @@
+@media (max-width: 880px) {
+  #about {
+    img {
+      max-width: Calc(100% + 60px);
+    }
+  }
+}
+@media (min-width: 880px) {
+  #about {
+    img {
+      max-width: 600px;
+    }
+  }
+}

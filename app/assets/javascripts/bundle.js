@@ -93,13 +93,9 @@
 	  React.createElement(Route, { path: '/login', component: LoginForm })
 	);
 
-	document.addEventListener('DOMContentLoaded', function () {
-	  ReactDOM.render(React.createElement(
-	    Router,
-	    { history: BrowserHistory },
-	    routes
-	  ), document.getElementById('root'));
-	});
+	// document.addEventListener('DOMContentLoaded', function() {
+	//   ReactDOM.render(<Router history={ BrowserHistory }>{ routes }</Router>, document.getElementById('root'));
+	// })
 
 /***/ },
 /* 1 */
