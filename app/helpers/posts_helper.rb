@@ -1,4 +1,6 @@
 module PostsHelper
+  include ActsAsTaggableOn::TagsHelper
+
   def post_status_options
     ['private', 'draft', 'public'].
       zip([Post::PRIVATE, Post::DRAFT, Post::PUBLIC])
@@ -33,5 +35,14 @@ module PostsHelper
     else
       'link-overlay'
     end
+  end
+
+  def display_tag_cloud
+    html = ''
+    tag_cloud(all_tags, %w(css1 css2 css3 css4)) do |tag, css_class|
+      html += link_to tag.name, tagged_posts_path(tag.name), class: css_class
+      html += ' '
+    end
+    html.html_safe
   end
 end

@@ -10,6 +10,5 @@
     = link_to icon('rss'), posts_feed_path, target: '_blank'
 .item.white-box
   .title Tags
-  %ul.tags
-    - display_tags(all_tags).each do |tag|
-      %li= tag.html_safe
+  .all-tags
+    = display_tag_cloud

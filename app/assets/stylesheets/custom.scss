@@ -1,19 +1,19 @@
 $default-color: #000;
 $bg-color: #ffffff;
 $light-gray: #aaa;
-$teal: #88d1c8;
+$accent: #f5757b;
 
 body {
   color: $default-color;
   background-color: $bg-color;
-  font-size: 13px;
+  font-size: 14px;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 400;
   text-rendering: geometricPrecision;
   line-height: 27px;
 
   a {
-    color: $teal;
+    color: $accent;
     -webkit-transition: color linear 300ms;
     &:link {
       text-decoration: none;
@@ -32,7 +32,7 @@ body {
   letter-spacing: 1px;
 }
 .white-box {
-  margin: 30px 0;
+  margin: 50px 0;
   background-color: white;
   .title-wrapper {
     margin-bottom: 10px;
@@ -73,7 +73,7 @@ body {
     a {
       color: $bg-color;
       &:hover {
-        color: $teal;
+        color: $accent;
       }
     }
     ul {
@@ -90,7 +90,7 @@ body {
   }
 }
 #main-wrapper {
-  margin: 60px auto auto auto;
+  margin: 80px auto auto auto;
   #left {
     float: left;
   }
@@ -110,22 +110,20 @@ body {
         background-color: $default-color;
         color: $bg-color;
         padding: 10px;
+        margin-bottom: 10px;
       }
-      ul.tags {
-        @include tag-formatting;
-        padding: 0;
-        margin: 0;
-        list-style-type: none;
-        li {
-          border-bottom: 1px solid #eee;
-          padding: 5px 0;
-          a {
-            color: $light-gray;
-          }
-          &:first-child {
-            border-top: 1px solid #eee;
+      .all-tags {
+        text-align: justify;
+        a {
+          color: $default-color;
+          &:hover {
+            color: $accent;
           }
         }
+        .css1 { font-size: 0.8em; }
+        .css2 { font-size: 1.0em; }
+        .css3 { font-size: 1.2em; }
+        .css4 { font-size: 1.4em; }
       }
       .social-media {
         display: flex;
@@ -134,7 +132,7 @@ body {
         a {
           color: $default-color;
           &:hover {
-            color: $teal;
+            color: $accent;
           }
         }
       }

@@ -17,6 +17,8 @@ class Post < ActiveRecord::Base
 
   PER_PAGE = 2
 
+  paginates_per 2
+
   default_scope { order('post_date DESC') }
   scope :public_posts, -> { where('posts.status = ? AND posts.post_date <= ?', Post::PUBLIC, Time.current) }
 

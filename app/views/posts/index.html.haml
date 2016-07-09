@@ -1,3 +1,3 @@
 = render @posts
-- if @posts.count > Post::PER_PAGE
+- if Post.count > Post::PER_PAGE
   .white-box.text-center= paginate @posts
