@@ -1,14 +1,16 @@
 %article.post.white-box
   .title-wrapper
     .title= link_to post.title, post_path(post)
-    %time= post.humanized_post_date
+    %time
+      = post.humanized_post_date
+      - unless post.tags.empty?
+        = '/'
+        = display_tags(post.tags).join(', ').html_safe
   .body
     - if @truncate && post.humanized_body.length > 250
       = post.humanized_body_truncated
     - else
       = post.humanized_body
-  - unless post.tags.empty?
-    .tags= display_tags(post.tags).join(', ').html_safe
   - if current_user
     .admin-buttons
       = post.humanized_status

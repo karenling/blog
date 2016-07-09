@@ -1,5 +1,5 @@
-$default-color: #414141;
-$bg-color: #f4f1eb;
+$default-color: #000;
+$bg-color: #ffffff;
 $light-gray: #aaa;
 $teal: #88d1c8;
 
@@ -32,19 +32,13 @@ body {
   letter-spacing: 1px;
 }
 .white-box {
-  padding: 30px;
   margin: 30px 0;
   background-color: white;
   .title-wrapper {
-    border-bottom: 1px solid #eee;
-    padding-bottom: 20px;
     margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
   }
   .title {
-    font: 15px 'Montserrat', sans-serif;
+    font: 28px 'Montserrat', sans-serif;
     letter-spacing: 1.5px;
     text-transform: uppercase;
     a {
@@ -66,37 +60,25 @@ body {
 }
 .navigation {
   padding: 15px 0;
-  background-color: white;
+  background-color: $default-color;
   position: relative;
   z-index: 1;
-  &.scrolled {
-    display: none;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+  position: fixed;
+  width: 100%;
+  top: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   .inner-nav {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
     margin: auto auto;
     a {
-      color: $default-color;
+      color: $bg-color;
       &:hover {
         color: $teal;
       }
     }
-    .title {
-      float: left;
-      font: 16px 'Montserrat', sans-serif;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
     ul {
+      font-family: 'Montserrat', sans-serif;
       padding: 0;
-      float: right;
-      text-align: center;
       margin: 0;
       text-transform: uppercase;
       font-size: 10px;
@@ -108,7 +90,7 @@ body {
   }
 }
 #main-wrapper {
-  margin: auto;
+  margin: 60px auto auto auto;
   #left {
     float: left;
   }
@@ -124,8 +106,10 @@ body {
         display: block;
       }
       .title {
-        font-size: 12px;
-        padding-bottom: 10px;
+        font-size: 10px;
+        background-color: $default-color;
+        color: $bg-color;
+        padding: 10px;
       }
       ul.tags {
         @include tag-formatting;
@@ -135,6 +119,9 @@ body {
         li {
           border-bottom: 1px solid #eee;
           padding: 5px 0;
+          a {
+            color: $light-gray;
+          }
           &:first-child {
             border-top: 1px solid #eee;
           }
@@ -161,7 +148,7 @@ footer {
   padding-bottom: 15px;
 }
 
-@media (max-width: 880px) {
+@media (max-width: 1050px) {
   .white-box {
     width: 100%;
   }
@@ -181,14 +168,11 @@ footer {
     width: 100%;
     article.post {
       .body img {
-        max-width: Calc(100% + 60px);
+        max-width: 100%;
       }
     }
     #left {
       width: 100%;
-      .title-wrapper {
-        flex-direction: column;
-      }
     }
     #right {
       width: 100%;
@@ -196,26 +180,26 @@ footer {
     }
   }
 }
-@media (min-width: 880px) {
+@media (min-width: 1050px) {
   .navigation .inner-nav {
-    width: 880px;
+    width: 1050px;
     li {
-      padding: 0 0 0 40px;
+      padding: 0 40px 0 0;
     }
   }
 
   #main-wrapper {
-    width: 880px;
+    width: 1050px;
     article.post {
       .body img {
-        max-width: 600px;
+        max-width: 744px;
       }
     }
     #left {
-      width: 600px;
+      width: 744px;
     }
     #right {
-      width: 250px;
+      width: 200px;
     }
   }
 }

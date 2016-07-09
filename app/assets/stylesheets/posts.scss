@@ -2,14 +2,22 @@ article.post {
   .title-wrapper {
     time {
       font-size: 11px;
-      letter-spacing: 0.5px;
       color: $light-gray;
+      a {
+        color: $light-gray;
+        font-style: italic;
+      }
     }
   }
   .body {
     img {
-      margin-left: -30px;
-      margin-right: -30px;
+      margin: 2px;
+      &.half {
+        width: 368px;
+      }
+      &.full {
+        width: 740px;
+      }
     }
     .read-full {
       color: $default-color;
@@ -27,13 +35,6 @@ article.post {
       top: 4px;
       line-height: 14px;
     }
-  }
-  .tags {
-    @include tag-formatting;
-    text-align: center;
-    border-top: 1px solid #eee;
-    padding-top: 20px;
-    margin-bottom: -10px;
   }
   .admin-buttons {
     margin-top: 10px;
