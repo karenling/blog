@@ -7,8 +7,10 @@
         = '/'
         = display_tags(post.tags).join(', ').html_safe
   .body
-    - if @truncate && post.humanized_body.length > 250
-      = post.humanized_body_truncated
+    - if @truncate
+      = post.humanized_preview
+      .text-right
+        = link_to '...read more', post_path(post)
     - else
       = post.humanized_body
   - if current_user

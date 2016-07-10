@@ -46,8 +46,8 @@ class Post < ActiveRecord::Base
     body.html_safe
   end
 
-  def humanized_body_truncated
-    Nokogiri::HTML::DocumentFragment.parse(body.truncate(400, separator: ' ')).to_html.html_safe
+  def humanized_preview
+    preview && preview.html_safe
   end
 
   def set_friendly_name!

@@ -82,6 +82,6 @@ class PostsController < ApplicationController
   def post_params
     params[:post][:post_date] = ActiveSupport::TimeZone.new('Pacific Time (US & Canada)').parse(params[:post][:post_date]).utc
     params.require(:post)
-      .permit(:title, :body, :status, :post_date, :tag_list, :header_image)
+      .permit(:title, :preview, :body, :status, :post_date, :tag_list, :header_image)
   end
 end

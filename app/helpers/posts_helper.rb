@@ -23,9 +23,9 @@ module PostsHelper
 
   def all_tags
     if current_user
-      admin.posts.tag_counts_on(:tags)
+      Post.tag_counts_on(:tags)
     else
-      admin.posts.public_posts.tag_counts_on(:tags)
+      Post.public_posts.tag_counts_on(:tags)
     end
   end
 
