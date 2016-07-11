@@ -13,10 +13,10 @@ article.post {
     img {
       margin: 2px;
       &.half {
-        width: 368px;
+        width: Calc(50% - 4px);
       }
       &.full {
-        width: 740px;
+        width: Calc(100% - 4px);
       }
     }
     .read-full {
