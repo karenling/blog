@@ -11,13 +11,12 @@ class Post < ActiveRecord::Base
   validates_presence_of :title, :body, :status, :post_date, :user_id
   validates_uniqueness_of :friendly_name, :slug
 
-  Post::PRIVATE = 0
-  Post::DRAFT = 1
-  Post::PUBLIC = 2
+  PRIVATE = 0
+  DRAFT = 1
+  PUBLIC = 2
+  PER_PAGE = 5
 
-  PER_PAGE = 2
-
-  paginates_per 2
+  paginates_per PER_PAGE
 
   default_scope { order('post_date DESC') }
   scope :public_posts, -> { where('posts.status = ? AND posts.post_date <= ?', Post::PUBLIC, Time.current) }
