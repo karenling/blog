@@ -54,6 +54,7 @@ body {
 #flash {
   padding: 15px 0;
   position: relative;
+  z-index: 2;
   a {
     color: $default-color;
   }
