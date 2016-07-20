@@ -12,7 +12,7 @@ describe PostsController do
   describe 'new' do
     specify 'when non-logged in' do
       get :new
-      expect(response).to redirect_to(new_session_path)
+      expect(response).to redirect_to(root_path)
       expect(flash[:alert]).to eq('Must be logged in.')
     end
     specify 'when logged in' do
@@ -34,7 +34,7 @@ describe PostsController do
     end
     specify 'when non-logged in' do
       post :create, @post_params
-      expect(response).to redirect_to(new_session_path)
+      expect(response).to redirect_to(root_path)
       expect(flash[:alert]).to eq('Must be logged in.')
     end
     specify 'when logged in' do
@@ -135,7 +135,7 @@ describe PostsController do
   describe 'edit' do
     specify 'when non-logged in' do
       get :edit, id: @public_post.slug
-      expect(response).to redirect_to(new_session_path)
+      expect(response).to redirect_to(root_path)
       expect(flash[:alert]).to eq('Must be logged in.')
     end
     specify 'when logged in' do
@@ -158,7 +158,7 @@ describe PostsController do
     end
     specify 'when non-logged in' do
       patch :update, @post_params
-      expect(response).to redirect_to(new_session_path)
+      expect(response).to redirect_to(root_path)
       expect(flash[:alert]).to eq('Must be logged in.')
     end
     specify 'when logged in' do
