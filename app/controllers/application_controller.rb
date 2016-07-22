@@ -52,10 +52,11 @@ class ApplicationController < ActionController::Base
   end
 
   def is_a_bot?
+    return false if request.user_agent.blank?
     bots = [
       'majestic12.co', 'feedly', 'ahrefs', 'baidu', 'exabot',
       'SeznamBot', 'Exabot', 'Googlebot', 'bingbot', 'commoncrawl',
-      'dataprovider'
+      'dataprovider', 'Mechanize', 'ysearch/slurp', 'TestCrawler'
     ]
     bots.each do |bot|
       return true if request.user_agent.include?(bot)
