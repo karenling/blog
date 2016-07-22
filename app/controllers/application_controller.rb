@@ -38,6 +38,7 @@ class ApplicationController < ActionController::Base
   end
 
   def log_event!
+    return if is_a_bot?
     event = Event.new
     event.user_id = current_user.try(:id)
     session[:init] = true if !session.loaded?
@@ -48,6 +49,18 @@ class ApplicationController < ActionController::Base
     event.timezone = session_timezone
     Event.where(session_id: event.session_id).update_all(timezone: event.timezone, user_id: event.user_id)
     event.save
+  end
+
+  def is_a_bot?
+    bots = [
+      'majestic12.co', 'feedly', 'ahrefs', 'baidu', 'exabot',
+      'SeznamBot', 'Exabot', 'Googlebot', 'bingbot', 'commoncrawl',
+      'dataprovider'
+    ]
+    bots.each do |bot|
+      return true if request.user_agent.include?(bot)
+    end
+    return false
   end
 
   def store_location
