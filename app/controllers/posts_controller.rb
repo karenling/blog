@@ -51,6 +51,7 @@ class PostsController < ApplicationController
 
   def tagged
     @title = "Posts tagged with #{params[:tag_name]}"
+    @truncate = true
     if current_user
       @posts = Post.includes(:tags).tagged_with(params[:tag_name]).page(params[:page])
     else
