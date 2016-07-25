@@ -56,7 +56,8 @@ class ApplicationController < ActionController::Base
     bots = [
       'majestic12.co', 'feedly', 'ahrefs', 'baidu', 'exabot',
       'SeznamBot', 'Exabot', 'Googlebot', 'bingbot', 'commoncrawl',
-      'dataprovider', 'Mechanize', 'ysearch/slurp', 'TestCrawler'
+      'dataprovider', 'Mechanize', 'ysearch/slurp', 'TestCrawler',
+      'ltx71', 'siteexplorer'
     ]
     bots.each do |bot|
       return true if request.user_agent.include?(bot)
