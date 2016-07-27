@@ -7,7 +7,7 @@
         = '/'
         = display_tags(post.tags).join(', ').html_safe
   .body
-    - if @truncate
+    - if @truncate && post.humanized_preview != post.humanized_body
       = post.humanized_preview
       .text-right
         = link_to '...read more', post_path(post)
