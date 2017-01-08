@@ -6,16 +6,22 @@
   letter-spacing: 1px;
   font: 10px 'Montserrat', sans-serif;
   padding: 9px 12px;
-  opacity: 0.8;
   cursor: pointer;
-  transition: opacity 100ms;
+  position: relative;
+  top: 0;
+  left: 0;
+  transition: all 100ms;
+  box-shadow: 2px 2px 0 $accent-color;
+  margin-bottom: 2px;
 
   &:focus {
     outline: none;
   }
 
   &:hover {
-    opacity: 1;
+    box-shadow: 0 0;
+    top: 2px;
+    left: 2px;
   }
 }
 
@@ -27,6 +33,4 @@
 .btn--loadMore {
   border: 1px solid $default-color;
   color: $default-color;
-  box-shadow: 2px 2px 0 $accent-color;
-  margin-bottom: 2px;
 }
