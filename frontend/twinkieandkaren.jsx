@@ -21,6 +21,9 @@ const routes = {
   '/posts/:id': {
     title: 'Post',
   },
+  '/posts/tagged/:tag': {
+    title: 'Tag',
+  },
   '/about': {
     title: 'About',
   },
@@ -50,6 +53,7 @@ class TwinkieAndKaren extends React.Component {
         <RouterProvider store={store}>
             <Root>
               <Fragment forRoutes={['/']}><PostIndex /></Fragment>
+              <Fragment forRoutes={['/posts/tagged/:tag']}><PostIndex /></Fragment>
               <Fragment forRoutes={['/posts/:id']}><PostShow /></Fragment>
               <Fragment forRoutes={['/about']}><About /></Fragment>
             </Root>

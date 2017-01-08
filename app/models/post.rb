@@ -5,16 +5,13 @@ class Post < ActiveRecord::Base
   belongs_to :author, class_name: 'User', foreign_key: :user_id
   acts_as_taggable_on :tags
 
-  # default pagination
-  paginates_per 2
-
   validates_presence_of :title, :body, :status, :post_date, :user_id
   validates_uniqueness_of :friendly_name, :slug
 
   PRIVATE = 0
   DRAFT = 1
   PUBLIC = 2
-  PER_PAGE = 5
+  PER_PAGE = 2
 
   paginates_per PER_PAGE
 

@@ -22,6 +22,22 @@ export const fetchPosts = page =>
     });
   };
 
+export const fetchPost = id =>
+  (dispatch, getState) => {
+    const id = getState().router.params.id;
+    $.ajax({
+      type: 'GET',
+      url: `/api/posts/${id}`,
+      dataType: 'JSON',
+      success(post) {
+        dispatch(updatePosts(post));
+      },
+      error() {
+        console.log('error');
+      },
+    });
+  };
+
 export const sendMessage = (formData, success, error) =>
   () => {
     $.ajax({

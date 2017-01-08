@@ -6,11 +6,17 @@ import NavigationBar from './NavigationBar';
 import Sidebar from './Sidebar';
 import Contact from './Contact';
 
-import { fetchPosts } from '../actions';
+import { fetchPost, fetchPosts } from '../actions';
 
 class _Root extends React.Component {
   componentDidMount() {
-    this.props.fetchPosts();
+    const router = this.props.router;
+
+    if (router.params.id) {
+      this.props.fetchPost();
+    } else {
+      this.props.fetchPosts();
+    }
   }
 
   render() {
@@ -30,6 +36,7 @@ _Root.propTypes = {
     React.PropTypes.arrayOf(React.PropTypes.node),
     React.PropTypes.node,
   ]),
+  fetchPost: React.PropTypes.func.isRequired,
   fetchPosts: React.PropTypes.func.isRequired,
 };
 
@@ -37,7 +44,7 @@ const Root = connect(
   state => ({
     router: state.router,
   }),
-  { fetchPosts },
+  { fetchPost, fetchPosts },
 )(_Root);
 
 export default Root;
