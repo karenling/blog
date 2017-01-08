@@ -4,7 +4,6 @@ import { Link } from 'redux-little-router';
 
 class PostItem extends React.Component {
   getDate() {
-    console.log(moment(this.props.post.post_date, 'X'))
     return moment(this.props.post.post_date, 'X').format('MMMM D, YYYY');
   }
 
