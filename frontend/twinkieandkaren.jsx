@@ -39,7 +39,7 @@ const {
   routes,
 });
 
-const logger = createLogger();
+// const logger = createLogger();
 
 const store = createStore(
   RootReducer,
