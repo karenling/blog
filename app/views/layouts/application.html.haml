@@ -9,16 +9,7 @@
     = csrf_meta_tags
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
 %body
-
-  .container-fluid
-    = render partial: 'layouts/flash'
-    = render partial: 'layouts/navigation'
-    .row
-      #main-wrapper
-        #left
-          = yield
-        #right
-          = render partial: 'layouts/sidebar'
+  #root
   %footer.container-fluid
     .row
       .col-xs-12.text-center

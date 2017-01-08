@@ -25,7 +25,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'haml'
-gem 'bootstrap-sass', '~> 3.3.6'
 gem 'factory_girl_rails'
 gem 'faker'
 gem 'acts-as-taggable-on', '~> 3.4'
@@ -38,8 +37,7 @@ gem 'mailgun_rails'
 gem 'friendly_id', '~> 5.1.0'
 gem 'rollbar'
 gem 'newrelic_rpm'
-gem 'flexbox-sass'
-gem 'summernote-rails'
+gem 'autoprefixer-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

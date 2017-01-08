@@ -15,5 +15,3 @@
 //= require_tree .
 //= require bundle.js
 //= require jquery
-//= require bootstrap-sprockets
-//= require summernote

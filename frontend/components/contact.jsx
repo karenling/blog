@@ -1,104 +1,143 @@
-var React = require('react');
-var ClientActions = require('../actions/clientActions');
+import React from 'react';
+import { connect } from 'react-redux';
+import Modal from 'simple-react-modal';
 
-var Contact = React.createClass({
-  getInitialState: function() {
-    return this.blankState;
-  },
-  blankState: {
-    name: '',
-    email: '',
-    message: '',
-    errorMessage: '',
-    successMessage: ''
-  },
-  handleChange: function(e) {
-    var change = {}
-    change[e.target.name] = e.target.value;
-    this.setState(change)
-  },
-  handleMessage: function(status, message) {
-    if (status === 'success') {
-      this.setState(this.blankState);
-      this.setState({ successMessage: message })
-    } else {
-      this.setState({ errorMessage: message })
-    }
-  },
-  onSubmit: function(e) {
-    e.preventDefault();
-    ClientActions.sendMessage(this.state, this.handleMessage)
-  },
-  closeContactModal: function() {
-    this.props.updateContactForm(false);
-  },
-  closeOnEsc: function(e) {
-    if (e.key === "Escape") {
-      this.closeContactModal();
-    }
-  },
-  closeOnOutsideClick: function(e) {
-    if (e.target.id === 'contact-wrapper') {
-      this.closeContactModal();
-    }
-  },
-  componentDidMount: function() {
-    document.addEventListener('keydown', this.closeOnEsc);
-    document.addEventListener('click', this.closeOnOutsideClick);
-  },
-  componentWillUnmount: function() {
-    document.removeEventListener('keydown', this.closeOnEsc);
-    document.removeEventListener('clck', this.closeOnOutsideClick);
-  },
-  render: function() {
-    if (this.state.successMessage.length > 0) {
-      return(
-        <div id='contact-wrapper'>
-          <div id='contact'>
-            <div className='exit-bar' onClick={ this.closeContactModal }>
-              <i className='fa fa-close'></i>
-            </div>
-            <div className='message-body center'>
-              <i className='fa fa-heart'></i>
-              <div className='message-intro'>
-                { this.state.successMessage }
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    } else {
+import { toggleContactModal, sendMessage } from '../actions';
 
-      if (this.state.errorMessage.length > 0) {
-        var errorMessage = <div className='error-message'>{ this.state.errorMessage }</div>;
-      }
-
-      return(
-        <div id='contact-wrapper'>
-          <div id='contact'>
-            <div className='exit-bar' onClick={ this.closeContactModal }>
-              <i className='fa fa-close'></i>
-            </div>
-            <div className='message-body'>
-              <div className='message-intro'>
-                Feel free to send me a comment, question, anything!
-              </div>
-              { errorMessage }
-              <form className='new-message' onSubmit={ this.onSubmit } >
-                <input type='text' onChange={ this.handleChange } name='name' value={ this.state.name } placeholder='Name'/>
-                <input type='text' onChange={ this.handleChange } name='email' value={ this.state.email } placeholder='Email'/>
-                <textarea onChange={ this.handleChange } name='message' value={ this.state.message } placeholder='Message'></textarea>
-                <div className='submit-wrapper'>
-                  <button><i className='fa fa-paper-plane'></i>Send</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      )
-    }
-
+class _Contact extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      email: '',
+      message: '',
+      success: false,
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSuccess = this.handleSuccess.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
-})
 
-module.exports = Contact;
+  handleClose() {
+    if (this.state.success) {
+      this.setState({
+        name: '',
+        email: '',
+        message: '',
+        success: false,
+      });
+    }
+    this.props.toggleContactModal();
+  }
+
+  handleChange(e) {
+    const change = {};
+    change[e.target.name] = e.target.value;
+    this.setState(change);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.sendMessage(this.state, this.handleSuccess, this.handleError);
+  }
+
+  handleSuccess() {
+    this.setState({
+      success: true,
+    });
+  }
+
+  handleError(jqXHR, textStatus, errorThrown) {
+    console.log('error');
+  }
+
+  renderHeading() {
+    if (this.state.success) {
+      return (
+        <div>
+          <i className="fa fa-paper-plane contact--icon" />
+          <div className="u-headingText">
+            Thank you, {this.state.name}! Your message has been sent!
+          </div>
+        </div>
+      );
+    }
+    return (
+      <div>
+        <i className="fa fa-envelope contact--icon" />
+        <div className="u-headingText">Thank you for wanting to get in touch!</div>
+      </div>
+    );
+  }
+
+  renderForm() {
+    return (
+      <div className="modal--body">
+        <form className="new-message" onSubmit={this.handleSubmit}>
+          <div className="u-sideBySide">
+            <input
+              className="form--input"
+              type="text"
+              onChange={this.handleChange}
+              name="name"
+              value={this.state.name}
+              placeholder="Name"
+            />
+            <input
+              className="form--input"
+              type="text"
+              onChange={this.handleChange}
+              name="email"
+              value={this.state.email}
+              placeholder="Email"
+            />
+          </div>
+          <input
+            className="form--input u-fullWidth"
+            onChange={this.handleChange}
+            name="message"
+            value={this.state.message}
+            placeholder="Message"
+          />
+          <br />
+          <br />
+          <button className="btn btn--primary u-fullWidth">Send</button>
+        </form>
+      </div>
+    );
+  }
+
+  render() {
+    return (
+      <Modal
+        show={this.props.contactModal}
+        onClose={this.handleClose}
+        containerClassName="modal"
+      >
+        <div className="modal--heading">
+          {this.renderHeading()}
+        </div>
+        {!this.state.success && this.renderForm()}
+      </Modal>
+    );
+  }
+}
+
+_Contact.propTypes = {
+  contactModal: React.PropTypes.bool,
+  toggleContactModal: React.PropTypes.func.isRequired,
+  sendMessage: React.PropTypes.func.isRequired,
+};
+
+const Contact = connect(
+  state => ({
+    contactModal: state.modals.contactModal,
+  }),
+  {
+    toggleContactModal,
+    sendMessage,
+  },
+)(_Contact);
+
+export default Contact;

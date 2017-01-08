@@ -1,0 +1,17 @@
+@import './variables';
+
+body {
+  padding-top: $navigation-height;
+  margin: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+a {
+  color: $accent-color;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+}

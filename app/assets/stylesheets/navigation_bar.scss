@@ -1,0 +1,20 @@
+@import './variables';
+
+.navigationBar {
+  padding: 15px 0;
+  background-color: $navigation-color;
+  font: 10px 'Montserrat', sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.navigationBar--link {
+  color: $white;
+  margin-left: $default-spacing;
+}

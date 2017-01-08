@@ -1,0 +1,20 @@
+.u-headingText {
+  font: 10px 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  color: $default-color;
+  text-transform: uppercase;
+}
+
+.u-sideBySide {
+  > * {
+    width: calc(50% - #{$default-spacing} / 2);
+
+    &:first-child {
+      margin-right: 16px;
+    }
+  }
+}
+
+.u-fullWidth {
+  width: 100%;
+}
