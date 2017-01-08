@@ -37,7 +37,8 @@ class _PostIndex extends React.Component {
             href={`/posts/page/${this.getNextPage()}`}
             className="btn btn--loadMore"
           >
-            Load More
+            Load More{'\n'}
+            {this.props.loadingPosts && <i className="fa fa-spin fa-spinner" />}
           </Link>
         </div>
       );
@@ -63,6 +64,7 @@ class _PostIndex extends React.Component {
 _PostIndex.propTypes = {
   router: React.PropTypes.object.isRequired,
   posts: React.PropTypes.array,
+  loadingPosts: React.PropTypes.bool,
   totalPages: React.PropTypes.number.isRequired,
   fetchPosts: React.PropTypes.func.isRequired,
 };
@@ -71,6 +73,7 @@ const PostIndex = connect(
   state => ({
     router: state.router,
     posts: orderPostsSelector(state),
+    loadingPosts: state.posts.loadingPosts,
     totalPages: state.posts.totalPages,
   }),
   { fetchPosts },

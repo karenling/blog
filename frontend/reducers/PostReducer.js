@@ -7,6 +7,7 @@ const initialState = {
   totalPosts: 0,
   totalPages: 0,
   currentPage: 1,
+  loadingPosts: false,
 };
 
 export default (state = initialState, action) => {
@@ -15,6 +16,9 @@ export default (state = initialState, action) => {
       ReactGA.set({ page: window.location.pathname });
       ReactGA.pageview(window.location.pathname);
       return state;
+    }
+    case 'LOADING_POSTS': {
+      return { ...state, loadingPosts: true }
     }
     case 'UPDATE_POSTS': {
       const posts = state.posts;
@@ -25,7 +29,7 @@ export default (state = initialState, action) => {
       // TODO: not sure if we really need to keep track of the total posts
       const totalPosts = action.data.total_posts || state.totalPosts;
       const totalPages = action.data.total_pages || state.totalPages;
-      return { ...state, posts, totalPosts, totalPages };
+      return { ...state, posts, totalPosts, totalPages, loadingPosts: false };
     }
     default:
       return state;

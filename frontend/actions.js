@@ -9,6 +9,10 @@ const updatePosts = data => ({
   data,
 });
 
+const loadingPosts = () => ({
+  type: 'LOADING_POSTS',
+});
+
 export const fetchPosts = pg =>
   (dispatch, getState) => {
     const page = pg || parseInt(getState().router.params.page, 10) || 1;
@@ -19,6 +23,7 @@ export const fetchPosts = pg =>
       return;
     }
 
+    dispatch(loadingPosts());
     $.ajax({
       type: 'GET',
       url: '/api/posts',
@@ -40,6 +45,7 @@ export const fetchPost = () =>
       return;
     }
 
+    dispatch(loadingPosts());
     $.ajax({
       type: 'GET',
       url: `/api/posts/${id}`,

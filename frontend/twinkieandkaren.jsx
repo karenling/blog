@@ -68,6 +68,6 @@ const TwinkieAndKaren = () => (
   </Provider>
 );
 
-document.addEventListener('DomContentLoaded' => {
+document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(<TwinkieAndKaren />, document.getElementById('root'));
-})
+});

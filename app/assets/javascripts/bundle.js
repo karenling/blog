@@ -28277,7 +28277,8 @@
 	  posts: {},
 	  totalPosts: 0,
 	  totalPages: 0,
-	  currentPage: 1
+	  currentPage: 1,
+	  loadingPosts: false
 	};
 
 	exports.default = function () {
@@ -28291,6 +28292,10 @@
 	        _reactGa2.default.pageview(window.location.pathname);
 	        return state;
 	      }
+	    case 'LOADING_POSTS':
+	      {
+	        return _extends({}, state, { loadingPosts: true });
+	      }
 	    case 'UPDATE_POSTS':
 	      {
 	        var _ret = function () {
@@ -28303,7 +28308,7 @@
 	          var totalPosts = action.data.total_posts || state.totalPosts;
 	          var totalPages = action.data.total_pages || state.totalPages;
 	          return {
-	            v: _extends({}, state, { posts: posts, totalPosts: totalPosts, totalPages: totalPages })
+	            v: _extends({}, state, { posts: posts, totalPosts: totalPosts, totalPages: totalPages, loadingPosts: false })
 	          };
 	        }();
 
@@ -28523,6 +28528,12 @@
 	  };
 	};
 
+	var loadingPosts = function loadingPosts() {
+	  return {
+	    type: 'LOADING_POSTS'
+	  };
+	};
+
 	var fetchPosts = exports.fetchPosts = function fetchPosts(pg) {
 	  return function (dispatch, getState) {
 	    var page = pg || parseInt(getState().router.params.page, 10) || 1;
@@ -28533,6 +28544,7 @@
 	      return;
 	    }
 
+	    dispatch(loadingPosts());
 	    $.ajax({
 	      type: 'GET',
 	      url: '/api/posts',
@@ -28555,6 +28567,7 @@
 	      return;
 	    }
 
+	    dispatch(loadingPosts());
 	    $.ajax({
 	      type: 'GET',
 	      url: '/api/posts/' + id,
@@ -29283,7 +29296,9 @@
 	              href: '/posts/page/' + this.getNextPage(),
 	              className: 'btn btn--loadMore'
 	            },
-	            'Load More'
+	            'Load More',
+	            '\n',
+	            this.props.loadingPosts && _react2.default.createElement('i', { className: 'fa fa-spin fa-spinner' })
 	          )
 	        );
 	      }
@@ -29312,6 +29327,7 @@
 	_PostIndex.propTypes = {
 	  router: _react2.default.PropTypes.object.isRequired,
 	  posts: _react2.default.PropTypes.array,
+	  loadingPosts: _react2.default.PropTypes.bool,
 	  totalPages: _react2.default.PropTypes.number.isRequired,
 	  fetchPosts: _react2.default.PropTypes.func.isRequired
 	};
@@ -29320,6 +29336,7 @@
 	  return {
 	    router: state.router,
 	    posts: (0, _selectors.orderPostsSelector)(state),
+	    loadingPosts: state.posts.loadingPosts,
 	    totalPages: state.posts.totalPages
 	  };
 	}, { fetchPosts: _actions.fetchPosts })(_PostIndex);
