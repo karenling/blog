@@ -9,12 +9,12 @@ const updatePosts = data => ({
   data,
 });
 
-export const fetchPosts = () =>
+export const fetchPosts = pg =>
   (dispatch, getState) => {
-    const page = parseInt(getState().router.params.page, 10) || 1;
+    const page = pg || parseInt(getState().router.params.page, 10) || 1;
 
     const selectedPages = orderPostsSelector(getState());
-    if (selectedPages.length > 0 && selectedPages[0].page === page) {
+    if (selectedPages.length > 0 && selectedPages[selectedPages.length - 1].page === page) {
       // check if we have the pages before we make the request
       return;
     }

@@ -1,13 +1,14 @@
 .btn {
+  display: inline-block;
   border: 0;
   color: $white;
   text-transform: uppercase;
   letter-spacing: 1px;
   font: 10px 'Montserrat', sans-serif;
   padding: 9px 12px;
-  opacity: 0.9;
+  opacity: 0.8;
   cursor: pointer;
-  transition: opacity 200ms;
+  transition: opacity 100ms;
 
   &:focus {
     outline: none;
@@ -20,4 +21,12 @@
 
 .btn--primary {
   background-color: $default-color;
+  color: $white;
+}
+
+.btn--loadMore {
+  border: 1px solid $default-color;
+  color: $default-color;
+  box-shadow: 2px 2px 0 $accent-color;
+  margin-bottom: 2px;
 }

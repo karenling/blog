@@ -16,6 +16,6 @@ export const orderPostsSelector = createSelector(
       orderedPosts = orderedPosts.concat(posts.posts[id]);
     });
     const page = parseInt(router.params.page, 10) || 1;
-    return orderedPosts.filter(post => post.page === page);
+    return orderedPosts.filter(post => post.page <= page);
   },
 );

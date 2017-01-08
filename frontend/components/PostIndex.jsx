@@ -5,35 +5,44 @@ import { Link } from 'redux-little-router';
 import { orderPostsSelector } from '../selectors';
 import { fetchPosts } from '../actions';
 
-import PostItem from './PostItem'
+import PostItem from './PostItem';
 
 class _PostIndex extends React.Component {
+  constructor(props) {
+    super(props);
+    this.loadNextPage = this.loadNextPage.bind(this);
+  }
+
   componentDidMount() {
     this.props.fetchPosts();
   }
 
-  componentWillUpdate() {
-    this.props.fetchPosts();
+  getNextPage() {
+    const page = parseInt(this.props.router.params.page || 1, 10) + 1;
+    return page > this.props.totalPages ? null : page;
+  }
+
+  loadNextPage() {
+    this.props.fetchPosts(this.getNextPage());
   }
 
   renderPagination() {
-    let start = (parseInt(this.props.router.params.page, 10) || 1) - 2;
-    let arr = [];
-    start = Math.max(1, start);
-    let end = Math.min(start + 5, this.props.totalPages);
-    for (let i=start; i <= end; i++) {
-      arr = arr.concat(i);
+    const nextPage = this.getNextPage();
+    if (nextPage) {
+      return (
+        <div>
+          <Link
+            replaceState
+            onClick={this.loadNextPage}
+            href={`/posts/page/${this.getNextPage()}`}
+            className="btn btn--loadMore"
+          >
+            Load More
+          </Link>
+        </div>
+      );
     }
-
-    return (
-      <div>
-        {start > 1 && '...'}
-        {arr.map(i =>
-          <Link href={`/posts/page/${i}`} key={`pagination-${i}`}>{i}</Link>
-        )}
-        {end < this.props.totalPages && '...'}
-      </div>
-    )
+    return null;
   }
 
   render() {
@@ -41,7 +50,7 @@ class _PostIndex extends React.Component {
       return (
         <div>
           {(this.props.posts).map(post =>
-            <PostItem key={post.id} post={post} postIndex />
+            <PostItem key={post.id} post={post} postIndex />,
           )}
           {this.renderPagination()}
         </div>
@@ -52,8 +61,10 @@ class _PostIndex extends React.Component {
 }
 
 _PostIndex.propTypes = {
+  router: React.PropTypes.object.isRequired,
   posts: React.PropTypes.array,
   totalPages: React.PropTypes.number.isRequired,
+  fetchPosts: React.PropTypes.func.isRequired,
 };
 
 const PostIndex = connect(

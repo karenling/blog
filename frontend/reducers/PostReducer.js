@@ -4,6 +4,7 @@ const initialState = {
   posts: {},
   totalPosts: 0,
   totalPages: 0,
+  currentPage: 1,
 };
 
 export default (state = initialState, action) => {
