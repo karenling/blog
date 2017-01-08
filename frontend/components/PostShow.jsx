@@ -5,9 +5,12 @@ import { postSelector } from '../selectors';
 
 import PostItem from './PostItem';
 
-const _PostShow = props => (
-  <PostItem post={props.post} />
-);
+const _PostShow = props => {
+  if (props.post) {
+    return <PostItem post={props.post} />;
+  }
+  return null;
+};
 
 _PostShow.propTypes = {
   post: React.PropTypes.object,
