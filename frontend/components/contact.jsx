@@ -12,10 +12,12 @@ class _Contact extends React.Component {
       email: '',
       message: '',
       success: false,
+      errors: null,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSuccess = this.handleSuccess.bind(this);
+    this.handleError = this.handleError.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
 
@@ -26,6 +28,7 @@ class _Contact extends React.Component {
         email: '',
         message: '',
         success: false,
+        errors: null,
       });
     }
     this.props.toggleContactModal();
@@ -48,8 +51,10 @@ class _Contact extends React.Component {
     });
   }
 
-  handleError(jqXHR, textStatus, errorThrown) {
-    console.log('error');
+  handleError(jqXHR, textStatus) {
+    this.setState({
+      errors: jqXHR.responseText,
+    });
   }
 
   renderHeading() {
@@ -75,6 +80,7 @@ class _Contact extends React.Component {
     return (
       <div className="modal--body">
         <form className="new-message" onSubmit={this.handleSubmit}>
+          {this.state.errors && <div className="contact--errors">{this.state.errors}</div>}
           <div className="u-sideBySide">
             <input
               className="form--input"

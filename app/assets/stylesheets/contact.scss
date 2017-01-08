@@ -3,3 +3,9 @@
 .contact--icon {
   margin-bottom: $default-spacing;
 }
+
+.contact--errors {
+  color: $red;
+  text-align: center;
+  font-size: 12px;
+}
