@@ -4,7 +4,8 @@ import { Link } from 'redux-little-router';
 
 class PostItem extends React.Component {
   getDate() {
-    return moment(this.props.post.post_date, 'YYYY-MM-DD HH:MM:SSZZ').format('MMMM D, YYYY');
+    console.log(moment(this.props.post.post_date, 'X'))
+    return moment(this.props.post.post_date, 'X').format('MMMM D, YYYY');
   }
 
   getPermalink() {

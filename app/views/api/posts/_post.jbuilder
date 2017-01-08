@@ -3,7 +3,7 @@ json.friendly_name post.friendly_name
 json.title post.title
 json.body post.body
 json.preview post.preview
-json.post_date post.post_date
+json.post_date post.post_date.to_i
 json.status post.humanized_status
 json.tag_list post.tag_list
 json.page post.page
