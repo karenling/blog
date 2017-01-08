@@ -1,10 +1,7 @@
 @import './variables';
 
-.form {
-
-}
-
-.form--input, .form--textarea {
+.form--input,
+.form--textarea {
   border: 0;
   border-bottom: 1px solid $gray;
   font: 14px 'Source Sans Pro', sans-serif;

@@ -29160,50 +29160,70 @@
 	            null,
 	            'Hi! My name is ',
 	            _react2.default.createElement(
-	              'b',
+	              'strong',
 	              null,
 	              'Karen'
 	            ),
-	            '. Previously a Berkeley biology grad, and now a',
-	            '\n',
+	            ' and ',
 	            _react2.default.createElement(
-	              'b',
-	              null,
-	              'software engineer'
-	            ),
-	            ', and I could not be happier coding all day and all night (well, except to hang out with my amazing friend/dog, ',
-	            _react2.default.createElement(
-	              'b',
+	              'strong',
 	              null,
 	              'Twinkie'
 	            ),
-	            '!). Currently, I\u2019m working in Berkeley, California, as a full-stack dev. I think ',
+	            ' is my amazing friend, who happens to be a dog. This blog was created as a way to keep my thoughts and write about my adventures with Twinkie.'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'I\'m a ',
 	            _react2.default.createElement(
-	              'b',
+	              'strong',
+	              null,
+	              'software engineer'
+	            ),
+	            ' with a love for front end. Outside of coding, I dabble in photography, and eating carbs. I think ',
+	            _react2.default.createElement(
+	              'strong',
 	              null,
 	              'focaccia bread'
 	            ),
-	            ' is fantastic, I\u2019ve never turned down a',
+	            '\n',
+	            'is fantastic, I\u2019ve never turned down a ',
 	            _react2.default.createElement(
-	              'b',
+	              'strong',
 	              null,
 	              'red velvet cupcake'
 	            ),
-	            ' or ',
+	            ' or',
+	            '\n',
 	            _react2.default.createElement(
-	              'b',
+	              'strong',
 	              null,
-	              'banana cream pie'
+	              'banana or coconut cream pie'
 	            ),
 	            ', and I love',
 	            '\n',
 	            _react2.default.createElement(
-	              'b',
+	              'strong',
 	              null,
 	              'Japanese ramen'
 	            ),
-	            '. I think carbs are amazing.',
-	            '\n',
+	            '.',
+	            '\n'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            _react2.default.createElement(
+	              'strong',
+	              null,
+	              'Twinkie'
+	            ),
+	            ', on the otherhand, prefers liver and steak. Unfortunately, she is diabetic, so treats are very limited. \uD83D\uDE14'
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
 	            _react2.default.createElement(
 	              'a',
 	              { className: 'link-style', onClick: this.props.toggleContactModal },

@@ -9,13 +9,22 @@ class _About extends React.Component {
         <div className="post--title">About</div>
         <div className="post--body">
           <p>
-            Hi! My name is <b>Karen</b>. Previously a Berkeley biology grad, and now a{'\n'}
-            <b>software engineer</b>, and I could not be happier coding all day and all night
-            (well, except to hang out with my amazing friend/dog, <b>Twinkie</b>!).
-            Currently, I’m working in Berkeley, California, as a full-stack dev.
-            I think <b>focaccia bread</b> is fantastic, I’ve never turned down a
-            <b>red velvet cupcake</b> or <b>banana cream pie</b>, and I love{'\n'}
-            <b>Japanese ramen</b>. I think carbs are amazing.{'\n'}
+            Hi! My name is <strong>Karen</strong> and <strong>Twinkie</strong> is my amazing friend, who happens to be a
+            dog. This blog was created as a way to keep my thoughts and write about my adventures
+            with Twinkie.
+          </p>
+          <p>
+            I'm a <strong>software engineer</strong> with a love for front end. Outside of coding,
+            I dabble in photography, and eating carbs. I think <strong>focaccia bread</strong>{'\n'}
+            is fantastic, I’ve never turned down a <strong>red velvet cupcake</strong> or{'\n'}
+            <strong>banana or coconut cream pie</strong>, and I love{'\n'}
+            <strong>Japanese ramen</strong>.{'\n'}
+          </p>
+          <p>
+            <strong>Twinkie</strong>, on the otherhand, prefers liver and steak. Unfortunately,
+            she is diabetic, so treats are very limited. 😔
+          </p>
+          <p>
             <a className="link-style" onClick={this.props.toggleContactModal}>
               Feel free to send me a message.
             </a>
