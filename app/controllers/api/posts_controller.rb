@@ -3,7 +3,6 @@ class Api::PostsController < ApplicationController
   skip_before_filter :log_event!, only: [:new, :create, :edit, :update]
 
   def index
-
     if current_user
       @posts = Post.includes(:tags).page(params[:page])
       @total_posts = Post.count
