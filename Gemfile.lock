@@ -413,7 +413,7 @@ DEPENDENCIES
   faker
   figaro
   fog
-  font-awesome-rails (~> 4.7.0.1)
+  font-awesome-rails (~> 4.2)
   friendly_id (~> 5.1.0)
   haml
   jbuilder (~> 2.0)
