@@ -18,11 +18,11 @@ Rails.application.routes.draw do
   get 'contact' => 'pages#contact', as: 'contact'
   post 'send_contact' => 'pages#send_contact', as: 'send_contact'
 
-  # namespace :api , defaults: { format: :json } do
-  #   resource :session, only: [:show, :create, :destroy]
-  #   resources :posts, only: [:new, :create, :show, :index, :edit, :update]
-  #   post 'send_contact' => 'pages#send_contact', as: 'send_contact'
-  # end
+  namespace :api , defaults: { format: :json } do
+    resource :session, only: [:show, :create, :destroy]
+    resources :posts, only: [:show, :index]
+    post 'send_contact' => 'pages#send_contact', as: 'send_contact'
+  end
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

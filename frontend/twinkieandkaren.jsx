@@ -2,7 +2,7 @@ import { compose, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import { Provider } from 'react-redux';
-import { RouterProvider, routerForBrowser, RelativeFragment as Fragment } from 'redux-little-router';
+import { RouterProvider, routerForBrowser, AbsoluteFragment as Fragment } from 'redux-little-router';
 import ReactDOM from 'react-dom';
 import React from 'react';
 
@@ -11,22 +11,18 @@ import RootReducer from './reducers/';
 // import Home from './components/Home';
 import Root from './components/Root';
 import About from './components/About';
-import Posts from './components/Posts';
+import PostIndex from './components/PostIndex';
+import PostShow from './components/PostShow';
 
 const routes = {
   '/': {
     title: 'Home',
-    '/posts': {
-      title: 'Posts',
-      '/tag': {
-        '/:name': {
-          title: 'Tag for:',
-        },
-      },
-    },
-    '/about': {
-      title: 'About',
-    },
+  },
+  '/posts/:id': {
+    title: 'Post',
+  },
+  '/about': {
+    title: 'About',
   },
 };
 
@@ -36,10 +32,6 @@ const {
 } = routerForBrowser({
   routes,
 });
-
-const initialState = {
-  aboutModal: true,
-};
 
 const logger = createLogger();
 
@@ -56,12 +48,11 @@ class TwinkieAndKaren extends React.Component {
     return (
       <Provider store={store}>
         <RouterProvider store={store}>
-          <Fragment forRoute="/">
             <Root>
-              <Fragment forRoute="/posts"><Posts /></Fragment>
-              <Fragment forRoute="/about"><About /></Fragment>
+              <Fragment forRoutes={['/']}><PostIndex /></Fragment>
+              <Fragment forRoutes={['/posts/:id']}><PostShow /></Fragment>
+              <Fragment forRoutes={['/about']}><About /></Fragment>
             </Root>
-          </Fragment>
         </RouterProvider>
       </Provider>
     );

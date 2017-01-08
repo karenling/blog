@@ -17,6 +17,6 @@ module ApplicationHelper
   end
 
   def copyright_text
-    "&copy; Copyright 2016. Karen Ling. All Rights Reserved.".html_safe
+    "&copy; Copyright 2016 - 2017. Karen Ling. All Rights Reserved.".html_safe
   end
 end

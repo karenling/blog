@@ -6,15 +6,23 @@
   font: 10px 'Montserrat', sans-serif;
   letter-spacing: 2px;
   text-transform: uppercase;
-  position: relative;
   z-index: 1;
   position: fixed;
-  width: 100%;
   top: 0;
+  left: 0;
+  right: 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.navigationBar--inner {
+  width: $container-width;
+  margin: auto;
+}
 .navigationBar--link {
   color: $white;
-  margin-left: $default-spacing;
+  margin-right: $default-spacing;
+
+  &:hover {
+    color: $accent-color;
+  }
 }

@@ -1,4 +1,4 @@
-json.current_posts do
+json.posts do
   json.array!(@posts) do |post|
     json.partial!('post', post: post)
   end

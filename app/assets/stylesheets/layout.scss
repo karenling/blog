@@ -1,0 +1,23 @@
+@import './variables';
+
+.container {
+  width: $container-width;
+  margin: auto;
+  overflow: hidden;
+}
+
+.main {
+  width: $main-width;
+  float: left;
+}
+
+.sidebar {
+  width: $sidebar-width;
+  float: right;
+}
+
+footer {
+  font-size: 12px;
+  text-align: center;
+  margin: 10px;
+}

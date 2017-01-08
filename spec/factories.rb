@@ -7,6 +7,7 @@ FactoryGirl.define do
   factory :post do
     association :author
     title { Faker::Book.title }
+    preview { "<p>#{Faker::Lorem.paragraph(10)}</p>" }
     body { (1..rand(1..4)).to_a.map { "<p>#{Faker::Lorem.paragraph(10)}</p>" }.join }
     status { [Post::PRIVATE, Post::DRAFT, Post::PUBLIC].sample }
     post_date { Time.current + rand(-50..50).days }

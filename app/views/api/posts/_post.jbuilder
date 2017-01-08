@@ -1,10 +1,8 @@
 json.id post.id
+json.friendly_name post.friendly_name
 json.title post.title
 json.body post.body
-json.body_truncated post.humanized_body_truncated
-json.post_date post.humanized_post_date
-json.post_date_for_field set_post_date(post)
-json.friendly_name post.friendly_name
-json.header_image post.header_image
-json.status post.humanized_status if @current_user
+json.preview post.preview
+json.post_date post.post_date
+json.status post.humanized_status
 json.tag_list post.tag_list

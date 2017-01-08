@@ -1,36 +1,43 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'redux-little-router';
 
+import { connect } from 'react-redux';
+
+import NavigationBar from './NavigationBar';
+import Sidebar from './Sidebar';
 import Contact from './Contact';
 
-import { toggleContactModal } from '../actions';
+import { fetchPosts } from '../actions';
 
-const _Root = props => (
-  <div>
-    <nav className="navigationBar">
-      <Link href="/posts" className="navigationBar--link">Posts</Link>
-      <Link href="/about" className="navigationBar--link">About</Link>
-      <a onClick={props.toggleContactModal} className="navigationBar--link">Contact</a>
-    </nav>
-    {props.children}
-    <Contact />
-  </div>
-);
+class _Root extends React.Component {
+  componentDidMount() {
+    this.props.fetchPosts();
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <NavigationBar />
+        <div className="main">{this.props.children}</div>
+        <Sidebar />
+        <Contact />
+      </div>
+    );
+  }
+}
 
 _Root.propTypes = {
   children: React.PropTypes.oneOfType([
     React.PropTypes.arrayOf(React.PropTypes.node),
     React.PropTypes.node,
   ]),
-  toggleContactModal: React.PropTypes.func.isRequired,
+  fetchPosts: React.PropTypes.func.isRequired,
 };
 
 const Root = connect(
   state => ({
     router: state.router,
   }),
-  { toggleContactModal },
+  { fetchPosts },
 )(_Root);
 
 export default Root;
