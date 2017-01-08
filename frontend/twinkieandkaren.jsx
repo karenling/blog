@@ -1,6 +1,6 @@
 import { compose, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import createLogger from 'redux-logger';
+// import createLogger from 'redux-logger';
 import { Provider } from 'react-redux';
 import { RouterProvider, routerForBrowser, AbsoluteFragment as Fragment, initializeCurrentLocation }
        from 'redux-little-router';
@@ -45,7 +45,7 @@ const store = createStore(
   RootReducer,
   compose(
     routerEnhancer,
-    applyMiddleware(routerMiddleware, thunk, logger),
+    applyMiddleware(routerMiddleware, thunk),
   ),
 );
 
