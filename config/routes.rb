@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   get 'feed' => 'posts#feed', as: 'posts_feed', format: 'rss'
   get 'posts/tagged/:tag_name' => 'posts#tagged', as: 'tagged_posts'
+  get 'posts/page/:page' => 'posts#page', as: 'posts_page'
   get 'about' => 'pages#about', as: 'about'
   get 'contact' => 'pages#contact', as: 'contact'
   post 'send_contact' => 'pages#send_contact', as: 'send_contact'

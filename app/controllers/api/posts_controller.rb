@@ -3,6 +3,7 @@ class Api::PostsController < ApplicationController
   skip_before_filter :log_event!, only: [:new, :create, :edit, :update]
 
   def index
+
     if current_user
       @posts = Post.includes(:tags).page(params[:page])
       @total_posts = Post.count
@@ -10,7 +11,7 @@ class Api::PostsController < ApplicationController
       @posts = Post.includes(:tags).public_posts.page(params[:page])
       @total_posts = Post.public_posts.count
     end
-    @pages_loaded = params[:page]
+    @total_pages = @posts.total_pages
   end
 
   def show

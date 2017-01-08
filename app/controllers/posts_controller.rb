@@ -20,28 +20,15 @@ class PostsController < ApplicationController
   end
 
   def show
-    if current_user
-      @post = Post.includes(:tags).find_by_friendly_name(params[:id])
-    else
-      @post = Post.includes(:tags).public_posts.find_by_friendly_name(params[:id])
-    end
+    render 'index'
+  end
 
-    @title = @post.try(:title)
-
-    unless @post
-      flash[:alert] = 'Must be author.'
-      redirect_to posts_path
-    end
+  def page
+    render 'index'
   end
 
   def index
-    @title = 'All Posts'
-    @truncate = true
-    if current_user
-      @posts = Post.includes(:tags).page(params[:page])
-    else
-      @posts = Post.includes(:tags).public_posts.page(params[:page])
-    end
+    render 'index'
   end
 
   def edit

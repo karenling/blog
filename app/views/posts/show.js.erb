@@ -1,5 +1,0 @@
-$('#show-wrapper').html('<%= escape_javascript(render partial: 'posts/show', locals: {post: @post}) %>').css('display', 'flex');
-$('#main-wrapper').addClass('hide-main-wrapper');
-$('html,body').animate({ scrollTop: 0 }, 0);
-PR.prettyPrint();
-history.pushState({}, null, '<%= @path %>');

@@ -50,4 +50,9 @@ class Post < ActiveRecord::Base
     self.friendly_name = self.post_date.in_time_zone('Pacific Time (US & Canada)').strftime('%Y-%m-%d') + '-' + self.title.parameterize
     self.slug = self.friendly_name
   end
+
+  def page
+    position = Post.public_posts.where("post_date >= ?", post_date).count
+    (position.to_f / PER_PAGE).ceil
+  end
 end

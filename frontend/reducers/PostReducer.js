@@ -1,5 +1,9 @@
+import { orderPostsSelector } from '../selectors';
+
 const initialState = {
   posts: {},
+  totalPosts: 0,
+  totalPages: 0,
 };
 
 export default (state = initialState, action) => {
@@ -10,7 +14,10 @@ export default (state = initialState, action) => {
       data.forEach((post) => {
         posts[post.friendly_name] = post;
       });
-      return { ...state, posts };
+      // TODO: not sure if we really need to keep track of the total posts
+      const totalPosts = action.data.total_posts || state.totalPosts;
+      const totalPages = action.data.total_pages || state.totalPages;
+      return { ...state, posts, totalPosts, totalPages };
     }
     default:
       return state;
