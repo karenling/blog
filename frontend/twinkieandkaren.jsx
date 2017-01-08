@@ -69,5 +69,8 @@ const TwinkieAndKaren = () => (
 );
 
 document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(<TwinkieAndKaren />, document.getElementById('root'));
+  const root = document.getElementById('root');
+  if (root) {
+    ReactDOM.render(<TwinkieAndKaren />, root);
+  }
 });

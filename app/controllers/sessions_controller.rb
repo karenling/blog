@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_filter :log_event!
-  
+
   def create
     user = User.find_by_credentials(
       params[:user_email],
@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
     if user
       login!(user)
-      redirect_to session[:forwarding_url] || posts_path
+      redirect_to session[:forwarding_url] || root_path
     else
       render json: 'Credentials were wrong'
     end

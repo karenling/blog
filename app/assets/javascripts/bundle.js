@@ -164,7 +164,10 @@
 	};
 
 	document.addEventListener('DOMContentLoaded', function () {
-	  _reactDom2.default.render(_react2.default.createElement(TwinkieAndKaren, null), document.getElementById('root'));
+	  var root = document.getElementById('root');
+	  if (root) {
+	    _reactDom2.default.render(_react2.default.createElement(TwinkieAndKaren, null), root);
+	  }
 	});
 
 /***/ },
