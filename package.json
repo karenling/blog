@@ -23,10 +23,18 @@
     "react-addons-linked-state-mixin": "^15.1.0",
     "react-dom": "^15.1.0",
     "react-ga": "^2.1.0",
+    "react-redux": "^5.0.1",
     "react-router": "^2.4.1",
+    "redux-little-router": "^12.1.2",
     "webpack": "^1.13.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^3.13.0",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0"
+  },
   "engines": {
     "node": "6.2.2",
     "npm": "3.9.5"
