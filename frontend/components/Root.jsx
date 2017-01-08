@@ -10,6 +10,7 @@ import { fetchPost, fetchPosts } from '../actions';
 
 class _Root extends React.Component {
   componentDidMount() {
+    console.log(process.env.NODE_ENV)
     const router = this.props.router;
 
     if (router.params.id) {
