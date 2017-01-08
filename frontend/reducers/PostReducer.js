@@ -1,4 +1,6 @@
-import { orderPostsSelector } from '../selectors';
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('UA-4234175-15');
 
 const initialState = {
   posts: {},
@@ -9,6 +11,11 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case 'ROUTER_LOCATION_CHANGED': {
+      ReactGA.set({ page: window.location.pathname });
+      ReactGA.pageview(window.location.pathname);
+      return state;
+    }
     case 'UPDATE_POSTS': {
       const posts = state.posts;
       const data = action.data.posts || [action.data];
