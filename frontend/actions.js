@@ -35,6 +35,11 @@ export const fetchPosts = () =>
 export const fetchPost = () =>
   (dispatch, getState) => {
     const id = getState().router.params.id;
+
+    if (getState().posts.posts[id]) {
+      return;
+    }
+
     $.ajax({
       type: 'GET',
       url: `/api/posts/${id}`,
