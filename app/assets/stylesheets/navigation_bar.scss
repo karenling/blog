@@ -19,6 +19,9 @@
   margin: auto;
   padding: 0 30px;
   box-sizing: border-box;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 }
 .navigationBar--link {
   color: $white;
