@@ -6,6 +6,9 @@ body {
   padding-top: 75px;
   margin: 0;
   font: 14px serif;
+  @media (max-width: 800px) {
+    padding-top: 40px;
+  }
 }
 
 a {
