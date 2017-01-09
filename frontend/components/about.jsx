@@ -5,7 +5,7 @@ import { toggleContactModal } from '../actions';
 class _About extends React.Component {
   render() {
     return (
-      <div>
+      <div className="post">
         <div className="post--title">About</div>
         <div className="post--body">
           <p>
