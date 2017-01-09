@@ -16,10 +16,15 @@ const loadingPosts = () => ({
 export const fetchPosts = pg =>
   (dispatch, getState) => {
     const page = pg || parseInt(getState().router.params.page, 10) || 1;
+    const selectedPosts = orderPostsSelector(getState());
+    const lastPost = selectedPosts[selectedPosts.length - 1];
 
-    const selectedPages = orderPostsSelector(getState());
-    if (selectedPages.length > 0 && selectedPages[selectedPages.length - 1].page === page) {
+    if (selectedPosts.length > 0 && lastPost.page !== 1 && lastPost.page === page) {
       // check if we have the pages before we make the request
+      // must have selectedPosts
+      // if the last post is on first page,
+      // we'll fetch all in case user comes from permalink and clicks home
+      // if the last post page belongs to the current page num, we don't need to fetch
       return;
     }
 
