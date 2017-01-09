@@ -1,7 +1,7 @@
 @import './variables';
 
 .navigationBar {
-  padding: 15px 30px;
+  padding: 15px 0;
   background-color: $navigation-color;
   font: 10px 'Montserrat', sans-serif;
   letter-spacing: 2px;
@@ -17,6 +17,8 @@
 .navigationBar--inner {
   width: $container-width;
   margin: auto;
+  padding: 0 30px;
+  box-sizing: border-box;
 }
 .navigationBar--link {
   color: $white;
