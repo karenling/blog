@@ -6,7 +6,7 @@ class _About extends React.Component {
   render() {
     return (
       <div className="post">
-        <div className="post--title">About</div>
+        <h2 className="post--title">About</h2>
         <div className="post--body">
           <p>
             Hi! My name is <strong>Karen</strong> and <strong>Twinkie</strong> is my amazing friend, who happens to be a

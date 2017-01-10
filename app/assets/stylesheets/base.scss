@@ -3,12 +3,12 @@
 @import './variables';
 
 body {
-  padding-top: 75px;
   margin: 0;
-  font: 14px serif;
-  @media (max-width: 800px) {
-    padding-top: 40px;
-  }
+  background-image: url('http://images.karenling.net/aa/portfolio/bg.jpg');
+  background-size: 375px;
+  font: 14px 'Lato', sans-serif;
+  color: $default-color;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {

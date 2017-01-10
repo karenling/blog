@@ -1,33 +1,58 @@
 @import './variables';
 
 .navigationBar {
+  width: $main-width;
+  margin: auto;
   padding: 15px 0;
-  background-color: $navigation-color;
   font: 10px 'Montserrat', sans-serif;
   letter-spacing: 2px;
   text-transform: uppercase;
-  z-index: 1;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.navigationBar--inner {
-  width: $container-width;
-  margin: auto;
-  padding: 0 30px;
+  padding: 15px 100px;
   box-sizing: border-box;
+
   @media (max-width: 800px) {
     width: 100%;
   }
 }
+
+.navigationBar--inner {
+  padding-top: 30px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .navigationBar--link {
+  font-size: $navigation-icon-size;
   color: $white;
-  margin-right: $default-spacing;
+  text-align: center;
+  opacity: 0.4;
+  transition: all 500ms;
+  margin-bottom: 35px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 
   &:hover {
-    color: $accent-color;
+    opacity: 1;
   }
+
+  &:after {
+    position: relative;
+    top: 50px;
+    content: '';
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+  }
+}
+
+.navigationBar--link-is-selected {
+  opacity: 1;
+
+  &:after {
+    border-bottom: 25px solid $white;
+  }
+
 }

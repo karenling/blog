@@ -14,7 +14,10 @@ class PostItem extends React.Component {
   getBody() {
     const body = this.props.postIndex ? this.props.post.preview : this.props.post.body;
     return (
-      <div className="post--body" dangerouslySetInnerHTML={{ __html: body }} />
+      <div className="post--body">
+        <span dangerouslySetInnerHTML={{ __html: body }} />
+        {this.getReadMore()}
+      </div>
     );
   }
 
@@ -22,8 +25,8 @@ class PostItem extends React.Component {
     const { postIndex, post: { preview, body } } = this.props;
     if (postIndex && preview !== body) {
       return (
-        <Link href={this.getPermalink()} className="btn btn--primary">
-          Continue Reading
+        <Link href={this.getPermalink()}>
+          Continue reading...
         </Link>
       );
     }
@@ -35,11 +38,12 @@ class PostItem extends React.Component {
       return (
         <div className="post">
           <Link href={this.getPermalink()}>
-            <h3 className="post--title">{this.props.post.title}</h3>
+            <h2 className="post--title">{this.props.post.title}</h2>
           </Link>
-          <div className="post--date">{this.getDate()}</div>
           {this.getBody()}
-          {this.getReadMore()}
+          <div className="post--date">
+            <div className="post--dateText">{this.getDate()}</div>
+          </div>
         </div>
       );
     }

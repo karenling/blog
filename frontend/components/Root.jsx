@@ -3,7 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import NavigationBar from './NavigationBar';
-import Sidebar from './Sidebar';
 import Contact from './Contact';
 
 import { fetchPost, fetchPosts } from '../actions';
@@ -21,10 +20,9 @@ class _Root extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
         <NavigationBar />
         <div className="main">{this.props.children}</div>
-        <Sidebar />
         <Contact />
       </div>
     );
@@ -38,6 +36,7 @@ _Root.propTypes = {
   ]),
   fetchPost: React.PropTypes.func.isRequired,
   fetchPosts: React.PropTypes.func.isRequired,
+  router: React.PropTypes.object.isRequired,
 };
 
 const Root = connect(

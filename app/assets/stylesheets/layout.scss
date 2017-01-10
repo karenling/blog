@@ -1,34 +1,20 @@
 @import './variables';
 
-.container {
-  width: $container-width;
-  margin: auto;
-  overflow: hidden;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 30px;
-  box-sizing: border-box;
-  @media (max-width: 800px) {
-    width: 100%;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
-
 .main {
   width: $main-width;
+  padding: 70px 100px 100px 100px;
+  margin: auto;
+  background-color: $white;
+  box-sizing: border-box;
+
   @media (max-width: 800px) {
     width: 100%;
   }
-}
-
-.sidebar {
-  width: $sidebar-width;
 }
 
 footer {
-  margin: 10px;
+  margin: 70px auto 20px;
+  color: $white;
   text-align: center;
-  font-size: 12px;
-  -webkit-font-smoothing: antialiased;
+  font-size: 10px;
 }
