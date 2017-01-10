@@ -3,7 +3,6 @@
 .navigationBar {
   width: $main-width;
   margin: auto;
-  padding: 15px 0;
   font: 10px 'Montserrat', sans-serif;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -12,6 +11,7 @@
 
   @media (max-width: 800px) {
     width: 100%;
+    padding: 0px 50px;
   }
 }
 
@@ -20,6 +20,9 @@
   margin-top: 30px;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 800px) {
+    margin-top: 0;
+  }
 }
 
 .navigationBar--link {
@@ -46,6 +49,11 @@
     border-right: 25px solid transparent;
     border-bottom: 25px solid transparent;
   }
+
+  @media (max-width: 800px) {
+    font-size: 30px;
+    margin-bottom: 0;
+  }
 }
 
 .navigationBar--link-is-selected {
@@ -54,5 +62,4 @@
   &:after {
     border-bottom: 25px solid $white;
   }
-
 }
