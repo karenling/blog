@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'feed' => 'posts#feed', as: 'posts_feed', format: 'rss'
+  # get 'feed' => 'posts#feed', as: 'posts_feed', format: 'rss'
   # get 'posts/tagged/:tag_name' => 'posts#tagged', as: 'tagged_posts'
   get 'posts/page/:page' => 'posts#page', as: 'posts_page'
   get 'about' => 'pages#about', as: 'about'
