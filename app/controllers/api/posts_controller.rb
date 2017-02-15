@@ -55,7 +55,7 @@ class Api::PostsController < ApplicationController
   end
 
   def require_referrer
-    unless request.referrer
+    if !request.referrer || !request.xhr?
       redirect_to root_path
     end
   end
