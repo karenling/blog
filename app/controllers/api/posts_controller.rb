@@ -1,6 +1,7 @@
 class Api::PostsController < ApplicationController
   before_filter :require_current_user!, only: [:new, :create, :edit, :update]
   skip_before_filter :log_event!, only: [:new, :create, :edit, :update]
+  before_filter :require_referrer, only: [:index, :show]
 
   def index
     if current_user
@@ -51,5 +52,11 @@ class Api::PostsController < ApplicationController
     params[:post].delete('errorMessage')
     params[:post][:post_date] = ActiveSupport::TimeZone.new('Pacific Time (US & Canada)').parse(params[:post][:post_date]).utc
     params.require(:post).permit(:title, :header_image, :body, :status, :post_date, :tag_list)
+  end
+
+  def require_referrer
+    unless request.referrer
+      redirect_to root_path
+    end
   end
 end
