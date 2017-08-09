@@ -25,7 +25,7 @@ class _Root extends React.Component {
           <div className="main">{this.props.children}</div>
           <aside className="sidebar">
             <section className="sidebar--section">
-              <img role="presentation" src="assets/profile.png" width="100%" />
+              <img role="presentation" src={window.profile_url} width="100%" />
               <p>Hello! I{'\''}m Karen and Twinkie is my best friend!</p>
             </section>
             <section className="sidebar--section"><NavigationBar /></section>

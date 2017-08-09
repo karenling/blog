@@ -28242,7 +28242,7 @@
 	            _react2.default.createElement(
 	              'section',
 	              { className: 'sidebar--section' },
-	              _react2.default.createElement('img', { role: 'presentation', src: 'assets/profile.png', width: '100%' }),
+	              _react2.default.createElement('img', { role: 'presentation', src: window.profile_url, width: '100%' }),
 	              _react2.default.createElement(
 	                'p',
 	                null,
