@@ -21,8 +21,16 @@ class _Root extends React.Component {
   render() {
     return (
       <div>
-        <NavigationBar />
-        <div className="main">{this.props.children}</div>
+        <div className="container">
+          <div className="main">{this.props.children}</div>
+          <aside className="sidebar">
+            <section className="sidebar--section">
+              <img role="presentation" src="assets/profile.png" width="100%" />
+              <p>Hello! I{'\''}m Karen and Twinkie is my best friend!</p>
+            </section>
+            <section className="sidebar--section"><NavigationBar /></section>
+          </aside>
+        </div>
         <Contact />
       </div>
     );

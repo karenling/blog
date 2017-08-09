@@ -2,28 +2,27 @@
 
 .btn {
   display: inline-block;
-  border: 0;
-  color: $white;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font: 10px 'Montserrat', sans-serif;
-  padding: 9px 12px;
-  cursor: pointer;
   position: relative;
   top: 0;
   left: 0;
-  transition: all 100ms;
-  box-shadow: 2px 2px 0 $accent-color;
   margin-bottom: 2px;
+  padding: 9px 12px;
+  transition: all 100ms;
+  border: 0;
+  color: $white;
+  font: 10px 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
 
   &:focus {
     outline: none;
   }
 
   &:hover {
-    box-shadow: 0 0;
     top: 2px;
     left: 2px;
+    box-shadow: 0 0;
   }
 }
 
@@ -33,6 +32,7 @@
 }
 
 .btn--loadMore {
-  border: 1px solid $default-color;
+  display: block;
+  background-color: $white;
   color: $default-color;
 }

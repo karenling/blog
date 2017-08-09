@@ -2,16 +2,16 @@
 
 .form--input,
 .form--textarea {
+  margin: 6px 0;
+  padding: 6px 0;
   border: 0;
   border-bottom: 1px solid $gray;
-  font: 14px 'Source Sans Pro', sans-serif;
-  padding: 6px 0;
-  margin: 6px 0;
+  font: 13px 'Lato', sans-serif;
   resize: none;
   box-sizing: border-box;
 
   &:focus {
-    outline: none;
     border-color: $accent-color;
+    outline: none;
   }
 }

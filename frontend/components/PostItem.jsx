@@ -1,8 +1,18 @@
 import React from 'react';
 import moment from 'moment';
 import { Link } from 'redux-little-router';
+import ReactDOM from 'react-dom';
 
 class PostItem extends React.Component {
+  componentDidMount() {
+    const $lastParagraph = $(this.element).find('p:last-child');
+    $lastParagraph.append($(`.${this.getContinueSelector()}`));
+  }
+
+  getContinueSelector() {
+    return `js-continue-${this.props.post.id}`;
+  }
+
   getDate() {
     return moment(this.props.post.post_date, 'X').format('MMMM D, YYYY');
   }
@@ -14,7 +24,7 @@ class PostItem extends React.Component {
   getBody() {
     const body = this.props.postIndex ? this.props.post.preview : this.props.post.body;
     return (
-      <div className="post--body">
+      <div className="post--body" ref={c => (this.element = c)}>
         <span dangerouslySetInnerHTML={{ __html: body }} />
         {this.getReadMore()}
       </div>
@@ -25,8 +35,8 @@ class PostItem extends React.Component {
     const { postIndex, post: { preview, body } } = this.props;
     if (postIndex && preview !== body) {
       return (
-        <Link href={this.getPermalink()}>
-          Continue reading...
+        <Link className={this.getContinueSelector()} href={this.getPermalink()}>
+          {'\n'}Continue reading...
         </Link>
       );
     }
@@ -40,10 +50,8 @@ class PostItem extends React.Component {
           <Link href={this.getPermalink()}>
             <h2 className="post--title">{this.props.post.title}</h2>
           </Link>
+          <div className="post--date">{this.getDate()}</div>
           {this.getBody()}
-          <div className="post--date">
-            <div className="post--dateText">{this.getDate()}</div>
-          </div>
         </div>
       );
     }

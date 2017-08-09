@@ -1,12 +1,11 @@
 @import './variables';
 
 .navigationBar {
-  width: $main-width;
+  width: 100%;
   margin: auto;
   font: 10px 'Montserrat', sans-serif;
   letter-spacing: 2px;
   text-transform: uppercase;
-  padding: 15px 100px;
   box-sizing: border-box;
 
   @media (max-width: 800px) {
@@ -16,50 +15,30 @@
 }
 
 .navigationBar--inner {
-  padding-top: 30px;
-  margin-top: 30px;
   display: flex;
   justify-content: space-between;
+
   @media (max-width: 800px) {
     margin-top: 0;
   }
 }
 
 .navigationBar--link {
-  font-size: $navigation-icon-size;
-  color: $white;
-  text-align: center;
-  opacity: 0.4;
   transition: all 500ms;
-  margin-bottom: 35px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+  opacity: 0.2;
+  color: $black;
+  font-size: $navigation-icon-size;
 
   &:hover {
     opacity: 1;
   }
 
-  &:after {
-    position: relative;
-    top: 50px;
-    content: '';
-    border-left: 25px solid transparent;
-    border-right: 25px solid transparent;
-    border-bottom: 25px solid transparent;
-  }
-
   @media (max-width: 800px) {
-    font-size: 30px;
     margin-bottom: 0;
+    font-size: 30px;
   }
 }
 
 .navigationBar--link-is-selected {
   opacity: 1;
-
-  &:after {
-    border-bottom: 25px solid $white;
-  }
 }

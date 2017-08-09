@@ -4,18 +4,17 @@
 
 body {
   margin: 0;
-  background-image: url('http://images.karenling.net/aa/portfolio/bg.jpg');
-  background-size: 375px;
-  font: 14px 'Lato', sans-serif;
+  background-color: #F2EFEA;
   color: $default-color;
+  font: 13px 'Lato', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
 a {
+  transition: color 300ms;
   color: $accent-color;
   text-decoration: none;
   cursor: pointer;
-  transition: color 300ms;
 
   &:hover {
     text-decoration: none;
