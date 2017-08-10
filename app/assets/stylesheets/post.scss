@@ -41,6 +41,10 @@
     &:last-child {
       margin-bottom: 0;
     }
+
+    &.media {
+      margin: 0 -32px;
+    }
   }
 
   img {
