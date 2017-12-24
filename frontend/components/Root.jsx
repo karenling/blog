@@ -22,14 +22,11 @@ class _Root extends React.Component {
     return (
       <div>
         <div className="container">
-          <div className="main">{this.props.children}</div>
-          <aside className="sidebar">
-            <section className="sidebar--section">
-              <img role="presentation" src={window.profile_url} width="100%" />
-              <p>Hello! I{'\''}m Karen and Twinkie is my best friend!</p>
-            </section>
-            <section className="sidebar--section"><NavigationBar /></section>
-          </aside>
+          <div className="main">
+            {this.props.children}
+            <NavigationBar />
+            <footer>&copy; Copyright 2016 - 2017. Karen Ling. All Rights Reserved.</footer>
+          </div>
         </div>
         <Contact />
       </div>

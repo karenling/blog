@@ -1,26 +1,17 @@
 @import './variables';
 
 .navigationBar {
-  width: 100%;
-  margin: auto;
+  width: 220px;
+  padding: 50px 30px 15px;
   font: 10px 'Montserrat', sans-serif;
   letter-spacing: 2px;
   text-transform: uppercase;
   box-sizing: border-box;
-
-  @media (max-width: 800px) {
-    width: 100%;
-    padding: 0px 50px;
-  }
 }
 
 .navigationBar--inner {
   display: flex;
   justify-content: space-between;
-
-  @media (max-width: 800px) {
-    margin-top: 0;
-  }
 }
 
 .navigationBar--link {
@@ -31,11 +22,6 @@
 
   &:hover {
     opacity: 1;
-  }
-
-  @media (max-width: 800px) {
-    margin-bottom: 0;
-    font-size: 30px;
   }
 }
 
